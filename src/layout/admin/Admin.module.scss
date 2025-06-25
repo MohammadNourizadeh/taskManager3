@@ -1,0 +1,22 @@
+@use "../../assets/styles/index.scss";
+
+.king {
+  background-color: index.$darkMode_part_bg_color;
+  display: flex;
+  height: 100vh;
+  color: index.$darkMode_text_color;
+
+  .sidebarPart {
+    border-right: 1px solid index.$darkMode_border_color;
+    width: 20%;
+  }
+
+  .headerAndOutletPart {
+    width: calc(100% - 20%);
+
+    .headerPart {
+      height: 35vh;
+      background-color: index.$darkMode_main_bg_color;
+    }
+  }
+}
