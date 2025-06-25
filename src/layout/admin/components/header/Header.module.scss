@@ -1,3 +1,11 @@
-.king{
-    
+.king {
+  display: flex;
+  height: 100%;
+  align-items: flex-end;
+  padding: 20px;
+  text-transform: capitalize;
+
+  .searchInputContainer {
+    margin-left: auto;
+  }
 }
