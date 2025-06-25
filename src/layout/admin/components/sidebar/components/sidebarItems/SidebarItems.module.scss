@@ -1,0 +1,34 @@
+@use "../../../../../../assets/styles/index.scss";
+
+.king {
+  text-transform: capitalize;
+  list-style: none;
+
+  .disableItem,
+  a {
+    padding: 22px 10px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .disableItem,
+  li {
+    margin: 1px 0px;
+  }
+
+  .disableItem {
+    opacity: 0.4;
+  }
+
+  li {
+    a {
+      color: index.$darkMode_text_color;
+      text-decoration: none;
+
+      &:hover {
+        background-color: index.$darkMode_border_color;
+      }
+    }
+  }
+}
