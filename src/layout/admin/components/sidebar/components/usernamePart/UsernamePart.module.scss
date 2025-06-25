@@ -1,0 +1,14 @@
+.usernamePart {
+  padding: 20px 10px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+
+  .userIcon {
+    font-size: 2.3em;
+  }
+
+  .username {
+    font-size: 1.5em;
+  }
+}
