@@ -1,5 +1,7 @@
 @use "../../assets/styles/index.scss";
 
+$sidebarWidth: 20%;
+
 .king {
   background-color: index.$darkMode_part_bg_color;
   display: flex;
@@ -8,11 +10,11 @@
 
   .sidebarPart {
     border-right: 1px solid index.$darkMode_border_color;
-    width: 20%;
+    width: $sidebarWidth;
   }
 
   .headerAndOutletPart {
-    width: calc(100% - 20%);
+    width: calc(100% - $sidebarWidth);
 
     .headerPart {
       height: 35vh;
