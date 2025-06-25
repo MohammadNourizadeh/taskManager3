@@ -1,0 +1,34 @@
+@use "../../../../../../assets/styles/index.scss";
+
+.inputContainer {
+  position: relative;
+
+  input {
+    padding: 18px 10px;
+    width: 250px;
+    border-radius: 10px;
+    border: 2px solid index.$darkMode_border_color;
+    background-color: index.$darkMode_part_bg_color;
+    color: index.$darkMode_text_color;
+
+    &:focus {
+      outline: 2px solid index.$green_accepted_color;
+    }
+  }
+
+  .searchIcon {
+    top: calc(50% - 8px);
+    right: 10px;
+    cursor: pointer;
+    position: absolute;
+    transition: 0.1s ease-in-out;
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    &:active {
+      opacity: 0.6;
+    }
+  }
+}

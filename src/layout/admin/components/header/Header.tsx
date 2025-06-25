@@ -1,5 +1,6 @@
 import HeaderDate from './components/headerDate/HeaderDate'
 import PageName from './components/pageName/PageName'
+import SearchInput from './components/searchInput/SearchInput'
 import styles from './Header.module.scss'
 
 export default function Header() {
@@ -10,7 +11,7 @@ export default function Header() {
                 <HeaderDate />
             </div>
             <div className={styles.searchInputContainer}>
-                <input type="text" placeholder='search' />
+                <SearchInput />
             </div>
         </div>
     )
