@@ -1,6 +1,7 @@
 import type { JSX } from "react";
-import Admin from "./layout/admin/Admin";
 import { Navigate } from "react-router-dom";
+import Admin from "./layout/admin/Admin";
+import MyDayPage from "./pages/homePage/myDayPage";
 
 type RoutesType = {
     path: string,
@@ -11,10 +12,16 @@ type RoutesType = {
 export const routes: RoutesType[] = [
     {
         path: '/',
-        element: <Navigate to={'/admin'} />
+        element: <Navigate to={'/admin/my_day'} />
     },
     {
         path: '/admin',
-        element: <Admin />
+        element: <Admin />,
+        children: [
+            {
+                path: '/admin/my_day',
+                element: <MyDayPage />
+            }
+        ]
     }
 ]

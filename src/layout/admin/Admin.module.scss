@@ -1,6 +1,7 @@
 @use "../../assets/styles/index.scss";
 
 $sidebarWidth: 20%;
+$headerHeight: 35vh;
 
 .king {
   background-color: index.$darkMode_part_bg_color;
@@ -17,8 +18,14 @@ $sidebarWidth: 20%;
     width: calc(100% - $sidebarWidth);
 
     .headerPart {
-      height: 35vh;
+      height: $headerHeight;
       background-color: index.$darkMode_main_bg_color;
+    }
+
+    .pagePart {
+      height: calc(100vh - $headerHeight);
+      overflow: scroll;
+      padding: 20px;
     }
   }
 }
