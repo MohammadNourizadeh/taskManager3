@@ -13,7 +13,7 @@ const MainContext = createContext<MainContextProviderValueType | null>(null)
 
 export const MainContextProvider = ({ children }: MainContextProviderPropsType) => {
     // states
-    const [pageName, setPageName] = useState<string>('my page')
+    const [pageName, setPageName] = useState<string>('my day')
 
 
     return (

@@ -1,15 +1,12 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import MainContext from '../../../../../../contexts/mainContext/MainContext'
+import { useMyContext } from '../../../../../../contexts/mainContext/useMyContext'
 import styles from './SidebarItems.module.scss'
 import { sidebarItemsInfo } from './sidebarItemsInfo'
 
 export default function SidebarItems() {
     // context
-    const context = useContext(MainContext);
-    if (!context) return null;
-    const { setPageName } = context;
+    const { pageName, setPageName } = useMyContext();
 
     return (
         <ul className={styles.king}>
@@ -23,7 +20,7 @@ export default function SidebarItems() {
                     </li>
                     :
                     <li key={index}>
-                        <Link to={sidebarItem.linkAddress ?? '#'} onClick={() => { setPageName(sidebarItem.name)}}>
+                        <Link to={sidebarItem.linkAddress ?? '#'} onClick={() => { setPageName(sidebarItem.name) }} id={pageName === sidebarItem.name ? styles.chosenItem : ''}>
                             <span style={{ color: sidebarItem.iconColor ?? 'rgb(51, 139, 246)' }}>
                                 <FontAwesomeIcon icon={sidebarItem.icon} />
                             </span>
