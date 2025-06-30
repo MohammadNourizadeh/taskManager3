@@ -1,27 +1,66 @@
-import { faStar, faTrashCan } from '@fortawesome/free-regular-svg-icons'
+import { faTrashCan, faStar as regStar } from '@fortawesome/free-regular-svg-icons'
+import { faStar as solidStar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import type { tasksType } from '../../contexts/mainContext/MainContext'
 import styles from './TaskBox.module.scss'
 
-export default function TaskBox() {
+type TaskBoxType = {
+    task: tasksType,
+    tasks: tasksType[],
+    onMakeTaskImportant: (val: tasksType[]) => void,
+    onDeleteTask: (val: tasksType[]) => void,
+}
+
+
+export default function TaskBox({ task, tasks, onMakeTaskImportant, onDeleteTask }: TaskBoxType) {
+
+    // func
+    const handleImportant = () => {
+        fetch(`http://localhost:8000/tasks/${task.id}`, {
+            method: "PATCH",
+            body: JSON.stringify({ isImportant: !task.isImportant })
+        }).then(res => {
+            if (res.ok) {
+                const index = tasks.findIndex(item => item.id === task.id)
+                const temp = [...tasks]
+                const changedTask = temp[index]
+                changedTask.isImportant = !changedTask.isImportant
+                temp[index] = changedTask
+                onMakeTaskImportant(temp)
+            }
+        })
+    }
+
+    const handleDelete = () => {
+        fetch(`http://localhost:8000/tasks/${task.id}`, {
+            method: "DELETE"
+        }).then(res => {
+            if (res.ok) {
+                const temp = tasks.filter(item => item.id !== task.id)
+                onDeleteTask(temp)
+            }
+        })
+    }
+
     return (
         <div className={styles.king}>
             <div className={styles.checkboxInputContainer}>
-                <input type="checkbox" />
+                <input type="checkbox" checked={task.isDone} />
             </div>
             <div className={styles.taskInfoContainer}>
                 <div className={styles.taskName}>
-                    washing parking
+                    {task.name}
                 </div>
                 <div className={styles.taskDate}>
-                    2025-03-20
+                    {task.date}
                 </div>
             </div>
 
             <div className={styles.starAndBasketBtnContainer}>
-                <button className={styles.starBtn}>
-                    <FontAwesomeIcon icon={faStar} />
+                <button className={styles.starBtn} id={task.isImportant ? styles.turnedOnStar : ''} onClick={handleImportant}>
+                    <FontAwesomeIcon icon={task.isImportant ? solidStar : regStar} />
                 </button>
-                <button className={styles.trashBtn}>
+                <button className={styles.trashBtn} onClick={handleDelete}>
                     <FontAwesomeIcon icon={faTrashCan} />
                 </button>
             </div>

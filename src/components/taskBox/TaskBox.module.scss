@@ -59,6 +59,13 @@
       }
     }
 
+    #turnedOnStar {
+      color: index.$blue_color;
+      padding: 18px 15px;
+      border-color: index.$blue_color;
+      background-color: rgba(51, 139, 246, 0.107);
+    }
+
     .trashBtn {
       &:hover {
         color: index.$red_error_color;
