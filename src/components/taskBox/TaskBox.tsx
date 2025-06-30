@@ -9,10 +9,11 @@ type TaskBoxType = {
     tasks: tasksType[],
     onMakeTaskImportant: (val: tasksType[]) => void,
     onDeleteTask: (val: tasksType[]) => void,
+    onCheckTask: (val: tasksType[]) => void
 }
 
 
-export default function TaskBox({ task, tasks, onMakeTaskImportant, onDeleteTask }: TaskBoxType) {
+export default function TaskBox({ task, tasks, onMakeTaskImportant, onDeleteTask, onCheckTask }: TaskBoxType) {
 
     // func
     const handleImportant = () => {
@@ -42,9 +43,25 @@ export default function TaskBox({ task, tasks, onMakeTaskImportant, onDeleteTask
         })
     }
 
+    const handleCheck = () => {
+        fetch(`http://localhost:8000/tasks/${task.id}`, {
+            method: "PATCH",
+            body: JSON.stringify({ isDone: !task.isDone })
+        }).then(res => {
+            if (res.ok) {
+                const index = tasks.findIndex(item => item.id === task.id)
+                const temp = [...tasks]
+                const changedTask = temp[index]
+                changedTask.isDone = !changedTask.isDone
+                temp[index] = changedTask
+                onCheckTask(temp)
+            }
+        })
+    }
+
     return (
         <div className={styles.king}>
-            <div className={styles.checkboxInputContainer}>
+            <div className={styles.checkboxInputContainer} onChange={handleCheck}>
                 <input type="checkbox" checked={task.isDone} />
             </div>
             <div className={styles.taskInfoContainer}>

@@ -33,6 +33,7 @@ export default function MyDayPage() {
                     tasks={tasks}
                     onMakeTaskImportant={changeTasks}
                     onDeleteTask={changeTasks}
+                    onCheckTask={changeTasks}
                 />
             ))}
             <AddNewTaskBtn />
