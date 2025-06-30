@@ -24,7 +24,7 @@ $headerHeight: 35vh;
 
     .pagePart {
       height: calc(100vh - $headerHeight);
-      overflow: scroll;
+      overflow: auto;
       padding: 20px;
     }
   }

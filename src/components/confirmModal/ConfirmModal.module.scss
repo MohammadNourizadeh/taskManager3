@@ -1,0 +1,59 @@
+@use "../../assets/styles/index.scss";
+
+.king {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: index.$modal_blur;
+
+  .modal {
+    border: 2px solid index.$darkMode_border_color;
+    background-color: index.$darkMode_part_bg_color;
+    padding: 30px;
+    border-radius: 10px;
+    width: 365px;
+    font-size: 1.1em;
+
+    .btnsContainer {
+      display: flex;
+      gap: 15px;
+      margin-top: 35px;
+
+      button {
+        width: 100%;
+        padding: 5px;
+        color: index.$darkMode_text_color;
+        border: 0px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.1s ease-in-out;
+        text-transform: uppercase;
+        box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.445);
+        background: none;
+      }
+
+      .yesBtn {
+        border: 1px solid index.$green_accepted_color;
+        background-color: rgba(35, 134, 55, 0.077);
+
+        &:hover {
+          background-color: index.$green_accepted_color;
+        }
+      }
+
+      .noBtn {
+        border: 1px solid index.$red_error_color;
+        background-color: rgba(204, 6, 6, 0.077);
+
+        &:hover {
+          background-color: index.$red_error_color;
+        }
+      }
+    }
+  }
+}
