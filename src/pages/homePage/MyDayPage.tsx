@@ -3,14 +3,14 @@ import TaskBox from '../../components/taskBox/TaskBox'
 import { useMyContext } from '../../contexts/mainContext/useMyContext'
 import AddNewTaskBtn from './components/addNewTaskBtn/AddNewTaskBtn'
 import styles from './myDayPage.module.scss'
-import type { tasksType } from '../../contexts/mainContext/MainContext'
+import type { TasksType } from '../../contexts/mainContext/MainContext'
 
 export default function MyDayPage() {
     // context
     const { setTasks, tasks } = useMyContext()
 
     // states
-    const [fetchedTasks, setFetchedTasks] = useState<tasksType[]>([])
+    const [fetchedTasks, setFetchedTasks] = useState<TasksType[]>([])
 
     // sideEffect
     useEffect(() => {
@@ -20,7 +20,7 @@ export default function MyDayPage() {
     }, [fetchedTasks, setTasks])
 
     // func
-    const changeTasks = (val: tasksType[]) => {
+    const changeTasks = (val: TasksType[]) => {
         setFetchedTasks(val)
     }
 

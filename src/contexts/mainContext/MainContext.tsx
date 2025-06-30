@@ -7,12 +7,12 @@ type MainContextProviderPropsType = {
 type MainContextProviderValueType = {
     pageName: string,
     setPageName: React.Dispatch<React.SetStateAction<string>>,
-    tasks: tasksType[],
-    setTasks: React.Dispatch<React.SetStateAction<tasksType[]>>
+    tasks: TasksType[],
+    setTasks: React.Dispatch<React.SetStateAction<TasksType[]>>
 }
 
 
-export type tasksType = {
+export type TasksType = {
     id: number,
     name: string,
     date: string,
@@ -25,7 +25,7 @@ const MainContext = createContext<MainContextProviderValueType | null>(null)
 export const MainContextProvider = ({ children }: MainContextProviderPropsType) => {
     // states
     const [pageName, setPageName] = useState<string>('my day')
-    const [tasks, setTasks] = useState<tasksType[]>([])
+    const [tasks, setTasks] = useState<TasksType[]>([])
 
 
     return (
