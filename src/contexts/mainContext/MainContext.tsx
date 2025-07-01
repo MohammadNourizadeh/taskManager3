@@ -9,6 +9,8 @@ type MainContextProviderValueType = {
     setPageName: React.Dispatch<React.SetStateAction<string>>,
     tasks: TasksType[],
     setTasks: React.Dispatch<React.SetStateAction<TasksType[]>>
+    isModalOpen: boolean,
+    setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 
@@ -17,7 +19,7 @@ export type TasksType = {
     name: string,
     date: string,
     isImportant: boolean,
-    isDone: boolean
+    isDone: boolean,
 }
 
 const MainContext = createContext<MainContextProviderValueType | null>(null)
@@ -26,6 +28,7 @@ export const MainContextProvider = ({ children }: MainContextProviderPropsType) 
     // states
     const [pageName, setPageName] = useState<string>('my day')
     const [tasks, setTasks] = useState<TasksType[]>([])
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
 
 
     return (
@@ -33,7 +36,9 @@ export const MainContextProvider = ({ children }: MainContextProviderPropsType) 
             pageName,
             setPageName,
             tasks,
-            setTasks
+            setTasks,
+            isModalOpen,
+            setIsModalOpen
         }}>
             {children}
         </MainContext.Provider >
