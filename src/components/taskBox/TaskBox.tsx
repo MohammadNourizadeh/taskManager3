@@ -3,17 +3,19 @@ import { faStar as solidStar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import type { TasksType } from '../../contexts/mainContext/MainContext'
 import styles from './TaskBox.module.scss'
+import { useMyContext } from '../../contexts/mainContext/useMyContext'
 
 type TaskBoxType = {
     task: TasksType,
     tasks: TasksType[],
     onMakeTaskImportant: (val: TasksType[]) => void,
-    onDeleteTask: (val: TasksType[]) => void,
     onCheckTask: (val: TasksType[]) => void
 }
 
 
-export default function TaskBox({ task, tasks, onMakeTaskImportant, onDeleteTask, onCheckTask }: TaskBoxType) {
+export default function TaskBox({ task, tasks, onMakeTaskImportant, onCheckTask }: TaskBoxType) {
+    // context
+    const { confirmModalInfo, setConfirmModalInfo } = useMyContext()
 
     // func
     const handleImportant = () => {
@@ -28,17 +30,6 @@ export default function TaskBox({ task, tasks, onMakeTaskImportant, onDeleteTask
                 changedTask.isImportant = !changedTask.isImportant
                 temp[index] = changedTask
                 onMakeTaskImportant(temp)
-            }
-        })
-    }
-
-    const handleDelete = () => {
-        fetch(`http://localhost:8000/tasks/${task.id}`, {
-            method: "DELETE"
-        }).then(res => {
-            if (res.ok) {
-                const temp = tasks.filter(item => item.id !== task.id)
-                onDeleteTask(temp)
             }
         })
     }
@@ -77,7 +68,12 @@ export default function TaskBox({ task, tasks, onMakeTaskImportant, onDeleteTask
                 <button className={styles.starBtn} id={task.isImportant ? styles.turnedOnStar : ''} onClick={handleImportant}>
                     <FontAwesomeIcon icon={task.isImportant ? solidStar : regStar} />
                 </button>
-                <button className={styles.trashBtn} onClick={handleDelete}>
+                <button className={styles.trashBtn} onClick={() => {
+                    const temp = { ...confirmModalInfo }
+                    temp.chosenItemName = task.name
+                    temp.isModalOpen = true
+                    setConfirmModalInfo(temp)
+                }}>
                     <FontAwesomeIcon icon={faTrashCan} />
                 </button>
             </div>

@@ -8,7 +8,7 @@ import ConfirmModal from '../../components/confirmModal/ConfirmModal'
 
 export default function MyDayPage() {
     // context
-    const { setTasks, tasks } = useMyContext()
+    const { setTasks, tasks, confirmModalInfo } = useMyContext()
 
     // states
     const [fetchedTasks, setFetchedTasks] = useState<TasksType[]>([])
@@ -33,12 +33,11 @@ export default function MyDayPage() {
                     task={task}
                     tasks={tasks}
                     onMakeTaskImportant={changeTasks}
-                    onDeleteTask={changeTasks}
                     onCheckTask={changeTasks}
                 />
             ))}
             <AddNewTaskBtn />
-            <ConfirmModal />
+            {confirmModalInfo.isModalOpen && <ConfirmModal onConfirm={changeTasks} />}
         </div>
     )
 }

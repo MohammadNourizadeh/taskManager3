@@ -8,9 +8,14 @@ type MainContextProviderValueType = {
     pageName: string,
     setPageName: React.Dispatch<React.SetStateAction<string>>,
     tasks: TasksType[],
-    setTasks: React.Dispatch<React.SetStateAction<TasksType[]>>
-    isModalOpen: boolean,
-    setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>
+    setTasks: React.Dispatch<React.SetStateAction<TasksType[]>>,
+    confirmModalInfo: ModalValueType,
+    setConfirmModalInfo: React.Dispatch<React.SetStateAction<ModalValueType>>
+}
+
+type ModalValueType = {
+    chosenItemName: string;
+    isModalOpen: boolean;
 }
 
 
@@ -28,7 +33,7 @@ export const MainContextProvider = ({ children }: MainContextProviderPropsType) 
     // states
     const [pageName, setPageName] = useState<string>('my day')
     const [tasks, setTasks] = useState<TasksType[]>([])
-    const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+    const [confirmModalInfo, setConfirmModalInfo] = useState<ModalValueType>({ chosenItemName: '', isModalOpen: false })
 
 
     return (
@@ -37,8 +42,8 @@ export const MainContextProvider = ({ children }: MainContextProviderPropsType) 
             setPageName,
             tasks,
             setTasks,
-            isModalOpen,
-            setIsModalOpen
+            confirmModalInfo,
+            setConfirmModalInfo
         }}>
             {children}
         </MainContext.Provider >
