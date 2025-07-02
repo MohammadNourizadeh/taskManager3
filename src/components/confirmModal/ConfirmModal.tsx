@@ -8,30 +8,26 @@ type ConfirmModalPropsType = {
 
 export default function ConfirmModal({ onConfirm }: ConfirmModalPropsType) {
     // context
-    const { tasks, confirmModalInfo, setConfirmModalInfo } = useMyContext()
+    const { confirmModalInfo, setConfirmModalInfo } = useMyContext()
 
 
     // func
     const handleDelete = () => {
-        fetch(`http://localhost:8000/tasks/${confirmModalInfo.chosenItemId}`, {
+        fetch(`http://localhost:8000/tasks/${confirmModalInfo.arrayItem.id}`, {
             method: "DELETE"
         }).then(res => {
             if (res.ok) {
-                const temp = tasks.filter(item => item.id !== confirmModalInfo.chosenItemId)
+                const temp = confirmModalInfo.array.filter(item => item.id !== confirmModalInfo.arrayItem.id)
                 onConfirm(temp)
             }
         })
-
-        const temp = { ...confirmModalInfo }
-        temp.isModalOpen = false
-        setConfirmModalInfo(temp)
     }
 
     return (
         <div className={styles.king}>
             <div className={styles.modal}>
                 <div className={styles.modalText}>
-                    Are you sure you want to delete the task ({tasks[0].name})?
+                    Are you sure you want to delete the task ({confirmModalInfo.arrayItem.name})?
                 </div>
                 <div className={styles.btnsContainer}>
                     <button className={styles.yesBtn} onClick={handleDelete}>yes</button>

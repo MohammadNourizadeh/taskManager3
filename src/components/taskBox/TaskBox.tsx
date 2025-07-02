@@ -2,8 +2,8 @@ import { faTrashCan, faStar as regStar } from '@fortawesome/free-regular-svg-ico
 import { faStar as solidStar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import type { TasksType } from '../../contexts/mainContext/MainContext'
-import styles from './TaskBox.module.scss'
 import { useMyContext } from '../../contexts/mainContext/useMyContext'
+import styles from './TaskBox.module.scss'
 
 type TaskBoxType = {
     task: TasksType,
@@ -15,7 +15,7 @@ type TaskBoxType = {
 
 export default function TaskBox({ task, tasks, onMakeTaskImportant, onCheckTask }: TaskBoxType) {
     // context
-    const { confirmModalInfo, setConfirmModalInfo } = useMyContext()
+    const { setConfirmModalInfo } = useMyContext()
 
     // func
     const handleImportant = () => {
@@ -69,10 +69,7 @@ export default function TaskBox({ task, tasks, onMakeTaskImportant, onCheckTask 
                     <FontAwesomeIcon icon={task.isImportant ? solidStar : regStar} />
                 </button>
                 <button className={styles.trashBtn} onClick={() => {
-                    const temp = { ...confirmModalInfo }
-                    temp.chosenItemId = task.id
-                    temp.isModalOpen = true
-                    setConfirmModalInfo(temp)
+                    setConfirmModalInfo({ isModalOpen: true, array: tasks, arrayItem: task })
                 }}>
                     <FontAwesomeIcon icon={faTrashCan} />
                 </button>
