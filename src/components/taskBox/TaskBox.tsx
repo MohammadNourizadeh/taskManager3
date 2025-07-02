@@ -70,7 +70,7 @@ export default function TaskBox({ task, tasks, onMakeTaskImportant, onCheckTask 
                 </button>
                 <button className={styles.trashBtn} onClick={() => {
                     const temp = { ...confirmModalInfo }
-                    temp.chosenItemName = task.name
+                    temp.chosenItemId = task.id
                     temp.isModalOpen = true
                     setConfirmModalInfo(temp)
                 }}>

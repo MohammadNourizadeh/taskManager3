@@ -13,22 +13,17 @@ export default function ConfirmModal({ onConfirm }: ConfirmModalPropsType) {
 
     // func
     const handleDelete = () => {
-        const index = tasks.findIndex(item => item.name === confirmModalInfo.chosenItemName)
-        const deletedItem = tasks[index]
-        const taskId = deletedItem.id
-
-        fetch(`http://localhost:8000/tasks/${taskId}`, {
+        fetch(`http://localhost:8000/tasks/${confirmModalInfo.chosenItemId}`, {
             method: "DELETE"
         }).then(res => {
             if (res.ok) {
-                const temp = tasks.filter(item => item.id !== taskId)
+                const temp = tasks.filter(item => item.id !== confirmModalInfo.chosenItemId)
                 onConfirm(temp)
             }
         })
 
         const temp = { ...confirmModalInfo }
         temp.isModalOpen = false
-        temp.chosenItemName = ''
         setConfirmModalInfo(temp)
     }
 
@@ -36,13 +31,12 @@ export default function ConfirmModal({ onConfirm }: ConfirmModalPropsType) {
         <div className={styles.king}>
             <div className={styles.modal}>
                 <div className={styles.modalText}>
-                    Are you sure you want to delete the task ({confirmModalInfo.chosenItemName})?
+                    Are you sure you want to delete the task ({tasks[0].name})?
                 </div>
                 <div className={styles.btnsContainer}>
                     <button className={styles.yesBtn} onClick={handleDelete}>yes</button>
                     <button className={styles.noBtn} onClick={() => {
                         const temp = { ...confirmModalInfo }
-                        temp.chosenItemName = ''
                         temp.isModalOpen = false
                         setConfirmModalInfo(temp)
                     }}>no</button>

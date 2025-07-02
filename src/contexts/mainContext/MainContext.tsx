@@ -14,8 +14,8 @@ type MainContextProviderValueType = {
 }
 
 type ModalValueType = {
-    chosenItemName: string;
-    isModalOpen: boolean;
+    chosenItemId: number,
+    isModalOpen: boolean
 }
 
 
@@ -33,7 +33,7 @@ export const MainContextProvider = ({ children }: MainContextProviderPropsType) 
     // states
     const [pageName, setPageName] = useState<string>('my day')
     const [tasks, setTasks] = useState<TasksType[]>([])
-    const [confirmModalInfo, setConfirmModalInfo] = useState<ModalValueType>({ chosenItemName: '', isModalOpen: false })
+    const [confirmModalInfo, setConfirmModalInfo] = useState<ModalValueType>({ chosenItemId: 0, isModalOpen: false })
 
 
     return (
