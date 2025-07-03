@@ -1,7 +1,7 @@
 import type { JSX } from "react";
 import { Navigate } from "react-router-dom";
 import Admin from "./layout/admin/Admin";
-import MyDayPage from "./pages/homePage/myDayPage";
+import MyDayPage from "./pages/homePage/MyDayPage";
 
 type RoutesType = {
     path: string,
