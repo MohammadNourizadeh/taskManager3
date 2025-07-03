@@ -16,9 +16,6 @@ export default function MyDayPage() {
         fetch('http://localhost:8000/tasks')
             .then(res => res.json())
             .then(data => setTasks(data))
-
-        console.log('1');
-
     }, [fetchedTasks, setTasks])
 
 
