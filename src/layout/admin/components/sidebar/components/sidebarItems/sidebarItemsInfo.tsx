@@ -17,8 +17,7 @@ export const sidebarItemsInfo: sidebarItemsInfoType[] = [
     {
         icon: faStar,
         name: 'important',
-        linkAddress: '',
-        disable: true
+        linkAddress: '/admin/important_tasks',
     },
     {
         icon: faCalendarAlt,

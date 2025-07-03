@@ -2,6 +2,7 @@ import type { JSX } from "react";
 import { Navigate } from "react-router-dom";
 import Admin from "./layout/admin/Admin";
 import MyDayPage from "./pages/homePage/MyDayPage";
+import ImportantTasksPage from "./pages/importantTasksPage/ImportantTasksPage";
 
 type RoutesType = {
     path: string,
@@ -21,6 +22,10 @@ export const routes: RoutesType[] = [
             {
                 path: '/admin/my_day',
                 element: <MyDayPage />
+            },
+            {
+                path: '/admin/important_tasks',
+                element: <ImportantTasksPage />
             }
         ]
     }
