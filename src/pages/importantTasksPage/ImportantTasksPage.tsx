@@ -1,28 +1,31 @@
 import { useEffect } from "react"
-import TaskBox from "../../components/taskBox/TaskBox"
-import { useMyContext } from "../../contexts/mainContext/useMyContext"
 import NotFoundMessage from "../../components/notFoundMessage/NotFoundMessage"
+import TaskBox from "../../components/taskBox/TaskBox"
+import type { TasksType } from "../../contexts/mainContext/MainContext"
+import { useMyContext } from "../../contexts/mainContext/useMyContext"
 
 export default function ImportantTasksPage() {
     // context
-    const { fetchedTasks, setFetchedTasks, changeTasks } = useMyContext()
+    const { tasks, setTasks } = useMyContext()
 
     // side effect
     useEffect(() => {
         fetch("http://localhost:8000/tasks")
             .then(res => res.json())
-            .then(data => setFetchedTasks(data))
-    }, [setFetchedTasks])
+            .then(data => setTasks(data.filter((item: TasksType) => item.isImportant)))
+    }, [setTasks])
 
+    // func
+    const changeTasksState = (val: TasksType[]) => {
+        setTasks(val)
+    }
 
-    // var
-    const importantTasks = [...fetchedTasks].filter(importantTask => importantTask.isImportant)
 
     return (
-        importantTasks.length !== 0 ?
+        tasks.length !== 0 ?
             <div>
-                {importantTasks.map(importantTask => (
-                    <TaskBox tasks={fetchedTasks} task={importantTask} onCheckTask={changeTasks} onMakeTaskImportant={changeTasks} key={importantTask.id} />
+                {tasks.map(task => (
+                    <TaskBox tasks={tasks} task={task} onCheckTask={changeTasksState} onMakeTaskImportant={changeTasksState} key={task.id} />
                 ))}
             </div>
             :

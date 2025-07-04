@@ -11,9 +11,6 @@ type MainContextProviderValueType = {
     setTasks: React.Dispatch<React.SetStateAction<TasksType[]>>,
     confirmModalInfo: ModalValueType<TasksType>,
     setConfirmModalInfo: React.Dispatch<React.SetStateAction<ModalValueType<TasksType>>>
-    fetchedTasks: TasksType[],
-    setFetchedTasks: React.Dispatch<React.SetStateAction<TasksType[]>>
-    changeTasks: (val: TasksType[]) => void
 }
 
 type ModalValueType<T> = {
@@ -38,12 +35,8 @@ export const MainContextProvider = ({ children }: MainContextProviderPropsType) 
     const [pageName, setPageName] = useState<string>('my day')
     const [tasks, setTasks] = useState<TasksType[]>([])
     const [confirmModalInfo, setConfirmModalInfo] = useState<ModalValueType<TasksType>>({ isModalOpen: false, array: [], arrayItem: { id: 0, name: '', date: '', isImportant: false, isDone: false } })
-    const [fetchedTasks, setFetchedTasks] = useState<TasksType[]>([])
 
-    // func
-    const changeTasks = (val: TasksType[]) => {
-        setFetchedTasks(val)
-    }
+
     return (
         < MainContext.Provider value={{
             pageName,
@@ -52,9 +45,6 @@ export const MainContextProvider = ({ children }: MainContextProviderPropsType) 
             setTasks,
             confirmModalInfo,
             setConfirmModalInfo,
-            fetchedTasks,
-            setFetchedTasks,
-            changeTasks
         }}>
             {children}
         </MainContext.Provider >

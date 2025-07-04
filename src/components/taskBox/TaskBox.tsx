@@ -15,7 +15,7 @@ type TaskBoxType = {
 
 export default function TaskBox({ task, tasks, onMakeTaskImportant, onCheckTask }: TaskBoxType) {
     // context
-    const { setConfirmModalInfo } = useMyContext()
+    const { setConfirmModalInfo, pageName } = useMyContext()
 
     // func
     const handleImportant = () => {
@@ -68,11 +68,12 @@ export default function TaskBox({ task, tasks, onMakeTaskImportant, onCheckTask 
                 <button className={styles.starBtn} id={task.isImportant ? styles.turnedOnStar : ''} onClick={handleImportant}>
                     <FontAwesomeIcon icon={task.isImportant ? solidStar : regStar} />
                 </button>
-                <button className={styles.trashBtn} onClick={() => {
-                    setConfirmModalInfo({ isModalOpen: true, array: tasks, arrayItem: task })
-                }}>
-                    <FontAwesomeIcon icon={faTrashCan} />
-                </button>
+                {pageName === 'my day' &&
+                    <button className={styles.trashBtn} onClick={() => {
+                        setConfirmModalInfo({ isModalOpen: true, array: tasks, arrayItem: task })
+                    }}>
+                        <FontAwesomeIcon icon={faTrashCan} />
+                    </button>}
             </div>
         </div>
     )

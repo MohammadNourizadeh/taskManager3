@@ -1,23 +1,27 @@
 import { useEffect } from 'react'
 import ConfirmModal from '../../components/confirmModal/ConfirmModal'
 import TaskBox from '../../components/taskBox/TaskBox'
+import type { TasksType } from '../../contexts/mainContext/MainContext'
 import { useMyContext } from '../../contexts/mainContext/useMyContext'
 import AddNewTaskBtn from './components/addNewTaskBtn/AddNewTaskBtn'
 import styles from './myDayPage.module.scss'
 
 export default function MyDayPage() {
     // context
-    const { setTasks, tasks, confirmModalInfo, fetchedTasks, changeTasks } = useMyContext()
-
-
+    const { setTasks, tasks, confirmModalInfo } = useMyContext()
 
     // sideEffect
     useEffect(() => {
         fetch('http://localhost:8000/tasks')
             .then(res => res.json())
             .then(data => setTasks(data))
-    }, [fetchedTasks, setTasks])
 
+    }, [setTasks])
+
+    // func
+    const changeTasksState = (val: TasksType[]) => {
+        setTasks(val)
+    }
 
 
     return (
@@ -27,12 +31,12 @@ export default function MyDayPage() {
                     key={task.id}
                     task={task}
                     tasks={tasks}
-                    onMakeTaskImportant={changeTasks}
-                    onCheckTask={changeTasks}
+                    onMakeTaskImportant={changeTasksState}
+                    onCheckTask={changeTasksState}
                 />
             ))}
             <AddNewTaskBtn />
-            {confirmModalInfo.isModalOpen && <ConfirmModal onConfirm={changeTasks} />}
+            {confirmModalInfo.isModalOpen && <ConfirmModal onConfirm={changeTasksState} />}
         </div>
     )
 }
