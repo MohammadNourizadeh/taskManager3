@@ -29,6 +29,10 @@ export default function ImportantTasksPage() {
                 ))}
             </div>
             :
-            <NotFoundMessage />
+            <NotFoundMessage
+                notFoundItem="important task"
+                description="give a star to tasks that are important to you, and 
+                show up here with star icon appearing at
+                the end"/>
     )
 }

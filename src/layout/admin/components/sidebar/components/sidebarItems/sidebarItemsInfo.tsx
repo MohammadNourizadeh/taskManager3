@@ -36,8 +36,7 @@ export const sidebarItemsInfo: sidebarItemsInfoType[] = [
     {
         icon: faTasks,
         name: 'checked',
-        linkAddress: '',
-        disable: true
+        linkAddress: '/admin/checked_tasks',
     },
     {
         icon: faCog,
