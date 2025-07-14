@@ -1,0 +1,36 @@
+@use "../../assets/styles/index.scss";
+
+.king {
+  width: 150px;
+  height: 150px;
+  position: relative;
+
+  .spinner {
+    border: 2px solid index.$darkMode_text_color;
+    border-right: 0px;
+    border-left: 0px;
+    border-radius: 50%;
+    height: 100%;
+    opacity: 1;
+    animation: rotateAnimation 2s infinite linear;
+  }
+
+  .loadingContainer {
+    position: absolute;
+    left: 45px;
+    top: calc(50% - 9.2px);
+    animation: opacityAnimation 1s infinite linear alternate;
+  }
+}
+
+@keyframes rotateAnimation {
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes opacityAnimation {
+  100% {
+    opacity: 0.5;
+  }
+}

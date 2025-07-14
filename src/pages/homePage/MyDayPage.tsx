@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import ConfirmModal from '../../components/confirmModal/ConfirmModal'
+import LoadingIcon from '../../components/loadingIcon/LoadingIcon'
 import TaskBox from '../../components/taskBox/TaskBox'
 import type { TasksType } from '../../contexts/mainContext/MainContext'
 import { useMyContext } from '../../contexts/mainContext/useMyContext'
@@ -26,15 +27,21 @@ export default function MyDayPage() {
 
     return (
         <div className={styles.king}>
-            {tasks.map(task => (
-                <TaskBox
-                    key={task.id}
-                    task={task}
-                    tasks={tasks}
-                    onMakeTaskImportant={changeTasksState}
-                    onCheckTask={changeTasksState}
-                />
-            ))}
+            {
+                tasks.length > 0 ?
+                    tasks.map(task => (
+                        <TaskBox
+                            key={task.id}
+                            task={task}
+                            tasks={tasks}
+                            onMakeTaskImportant={changeTasksState}
+                            onCheckTask={changeTasksState}
+                        />
+                    ))
+                    :
+                    <LoadingIcon />
+
+            }
             <AddNewTaskBtn />
             {confirmModalInfo.isModalOpen && <ConfirmModal onConfirm={changeTasksState} />}
         </div>
