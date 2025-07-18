@@ -1,15 +1,13 @@
 import { faCheckSquare } from "@fortawesome/free-solid-svg-icons";
-import AuthTitle from "../../layout/auth/components/authTitle/AuthTitle";
+import AuthForm from "../../components/authComponents/authForm/AuthForm";
+import AuthTitle from "../../components/authComponents/authTitle/AuthTitle";
+import styles from './SignUpPage.module.scss'
 
 export default function SignUpPage() {
     return (
-        <div>
+        <div className={styles.signUpPage}>
             <AuthTitle icon={faCheckSquare} title="sign up" />
-            <div>
-                <form>
-
-                </form>
-            </div>
+            <AuthForm />
         </div>
     )
 }

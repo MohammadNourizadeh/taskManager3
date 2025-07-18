@@ -1,0 +1,49 @@
+@use "../../../assets/styles/index.scss";
+
+.authForm {
+  background-color: index.$darkMode_part_bg_color;
+  padding: 20px;
+  border-radius: 10px;
+
+  input,
+  button {
+    padding: 8px;
+    color: index.$darkMode_text_color;
+    border-radius: 10px;
+  }
+
+  .inputsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 30px;
+
+    input {
+      width: 300px;
+      background-color: index.$darkMode_main_bg_color;
+      border: 1px solid index.$darkMode_border_color;
+
+      &:focus {
+        outline: 3px solid index.$green_accepted_color;
+      }
+    }
+  }
+
+  .btnContainer {
+    button {
+      width: 100%;
+      background-color: index.$green_accepted_color;
+      border: 0px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: 0.2s ease-in-out;
+
+      &:hover {
+        background-color: rgba(35, 134, 55, 0.8352941176);
+      }
+      &:active {
+        background-color: rgba(35, 134, 55, 0.772);
+      }
+    }
+  }
+}
