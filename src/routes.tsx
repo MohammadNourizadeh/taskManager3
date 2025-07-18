@@ -1,9 +1,11 @@
 import type { JSX } from "react";
 import { Navigate } from "react-router-dom";
 import Admin from "./layout/admin/Admin";
+import Auth from "./layout/auth/Auth";
+import CheckedTasksPage from "./pages/checkedTasksPage/CheckedTasksPage";
 import MyDayPage from "./pages/homePage/MyDayPage";
 import ImportantTasksPage from "./pages/importantTasksPage/ImportantTasksPage";
-import CheckedTasksPage from "./pages/checkedTasksPage/CheckedTasksPage";
+import SignUpPage from "./pages/signUpPage/SignUpPage";
 
 type RoutesType = {
     path: string,
@@ -14,7 +16,7 @@ type RoutesType = {
 export const routes: RoutesType[] = [
     {
         path: '/',
-        element: <Navigate to={'/admin/my_day'} />
+        element: <Navigate to={'/auth/signup'} />
     },
     {
         path: '/admin',
@@ -31,6 +33,16 @@ export const routes: RoutesType[] = [
             {
                 path: '/admin/checked_tasks',
                 element: <CheckedTasksPage />
+            }
+        ]
+    },
+    {
+        path: '/auth',
+        element: <Auth />,
+        children: [
+            {
+                path: '/auth/signup',
+                element: <SignUpPage />
             }
         ]
     }
