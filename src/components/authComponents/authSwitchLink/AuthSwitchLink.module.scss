@@ -1,0 +1,13 @@
+@use "../../../assets/styles/index.scss";
+
+.authSwitchLink {
+  border: 1px solid index.$darkMode_border_color;
+  border-radius: 5px;
+  padding: 20px;
+  text-align: center;
+
+  a {
+    text-decoration: none;
+    color: index.$blue_color;
+  }
+}
