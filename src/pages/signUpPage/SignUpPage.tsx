@@ -8,8 +8,8 @@ export default function SignUpPage() {
     return (
         <div className={styles.signUpPage}>
             <AuthTitle icon={faCheckSquare} title="sign up" />
-            <AuthForm />
-            <AuthSwitchLink text="already have account" linkName="log in" linkAddress="#" />
+            <AuthForm signUp />
+            <AuthSwitchLink text="already have account" linkName="login" linkAddress="/auth/login" />
         </div>
     )
 }

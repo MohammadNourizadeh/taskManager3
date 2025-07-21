@@ -1,11 +1,7 @@
 .authTitle {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 7px;
-  font-size: 1.7em;
-
-  span {
-    font-size: 1.5em;
-  }
+  gap: 20px;
+  font-size: 2em;
 }

@@ -5,12 +5,10 @@
   background-color: index.$darkMode_part_bg_color;
   padding: 20px;
   border-radius: 5px;
-  width: 300px;
+  width: 320px;
 
   input,
   button {
-    width: 100%;
-    padding: 8px;
     color: index.$darkMode_text_color;
     border-radius: 8px;
   }
@@ -24,10 +22,16 @@
     input {
       background-color: index.$darkMode_main_bg_color;
       border: 1px solid index.$darkMode_border_color;
+      width: 100%;
+      padding: 8px;
 
       &:focus {
         outline: 3px solid index.$green_accepted_color;
       }
+    }
+
+    .passwordInput {
+      position: relative;
     }
   }
 
@@ -38,6 +42,8 @@
       font-size: 1em;
       cursor: pointer;
       transition: 0.2s ease-in-out;
+      width: 100%;
+      padding: 8px;
 
       &:hover {
         background-color: rgba(35, 134, 55, 0.8352941176);

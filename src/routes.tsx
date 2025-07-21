@@ -5,6 +5,7 @@ import Auth from "./layout/auth/Auth";
 import CheckedTasksPage from "./pages/checkedTasksPage/CheckedTasksPage";
 import MyDayPage from "./pages/homePage/MyDayPage";
 import ImportantTasksPage from "./pages/importantTasksPage/ImportantTasksPage";
+import LogInPage from "./pages/logInPage/LogInPage";
 import SignUpPage from "./pages/signUpPage/SignUpPage";
 
 type RoutesType = {
@@ -43,7 +44,11 @@ export const routes: RoutesType[] = [
             {
                 path: '/auth/signup',
                 element: <SignUpPage />
-            }
+            },
+            {
+                path: '/auth/login',
+                element: <LogInPage />
+            },
         ]
     }
 ]
