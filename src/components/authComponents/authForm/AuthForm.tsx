@@ -1,6 +1,6 @@
-import useToggle from '../../../customHooks/useToggle/usetoggle'
-import styles from './AuthForm.module.scss'
-import ShowPassIcon from './components/showPassIcon/ShowPassIcon'
+import useToggle from '../../../customHooks/useToggle/useToggle';
+import styles from './AuthForm.module.scss';
+import ShowPassIcon from './components/showPassIcon/ShowPassIcon';
 
 export default function AuthForm({ signUp = false }: { signUp?: boolean }) {
     // custom hook
