@@ -1,4 +1,4 @@
-import useToggle from '../../../customHooks/useToggle/useToggle';
+import useToggle from '../../../../customHooks/useToggle/useToggle';
 import styles from './AuthForm.module.scss';
 import ShowPassIcon from './components/showPassIcon/ShowPassIcon';
 

@@ -1,5 +1,5 @@
 import type { IconDefinition } from "@fortawesome/free-solid-svg-icons";
-import AuthForm from "../authComponents/authForm/AuthForm";
+import AuthForm from "./components/authForm/AuthForm";
 import AuthSwitchLink from "./components/authSwitchLink/AuthSwitchLink";
 import AuthTitle from "./components/authTitle/AuthTitle";
 import styles from './AuthPages.module.scss';
