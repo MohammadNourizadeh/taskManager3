@@ -9,14 +9,15 @@ type AuthPagesPropsType = {
     titleIcon: IconDefinition,
     switchLinkText: string,
     switchLinkName: string,
-    switchLinkAddress: string
+    switchLinkAddress: string,
+    isSignUp?: boolean
 }
 
-export default function AuthPages({ pageTitle, titleIcon, switchLinkText, switchLinkName, switchLinkAddress }: AuthPagesPropsType) {
+export default function AuthPages({ pageTitle, titleIcon, switchLinkText, switchLinkName, switchLinkAddress, isSignUp }: AuthPagesPropsType) {
     return (
         <div className={styles.authPages}>
             <AuthTitle icon={titleIcon} title={pageTitle} />
-            <AuthForm />
+            <AuthForm signUp={!!isSignUp} />
             <AuthSwitchLink text={switchLinkText} linkName={switchLinkName} linkAddress={switchLinkAddress} />
         </div>
     )
