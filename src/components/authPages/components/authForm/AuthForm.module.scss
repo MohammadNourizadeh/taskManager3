@@ -14,24 +14,52 @@
   }
 
   .inputsContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
     margin-bottom: 22px;
+
+    label {
+      margin-bottom: 10px;
+      display: block;
+    }
 
     input {
       background-color: index.$darkMode_main_bg_color;
       border: 1px solid index.$darkMode_border_color;
       width: 100%;
       padding: 8px;
+      margin-bottom: 7px;
 
       &:focus {
         outline: 3px solid index.$green_accepted_color;
       }
     }
 
+    .inputWithError {
+      outline: 1px solid index.$red_error_color;
+
+      &:focus {
+        outline-color: index.$red_error_color;
+      }
+    }
+
     .passwordInput {
       position: relative;
+    }
+
+    .errMsgContainer,
+    .greenErrMsgContainer {
+      font-size: 0.8em;
+
+      span {
+        margin-right: 5px;
+      }
+    }
+
+    .errMsgContainer {
+      color: index.$red_error_color;
+    }
+
+    .greenErrMsgContainer {
+      color: index.$green_accepted_color;
     }
   }
 
@@ -41,7 +69,7 @@
       border: 0px;
       font-size: 1em;
       cursor: pointer;
-      transition: 0.2s ease-in-out;
+      transition: 0.1s ease-in-out;
       width: 100%;
       padding: 8px;
 
@@ -49,7 +77,7 @@
         background-color: rgba(35, 134, 55, 0.8352941176);
       }
       &:active {
-        background-color: rgba(35, 134, 55, 0.772);
+        background-color: rgba(35, 134, 55, 0.672);
       }
     }
   }
