@@ -1,9 +1,8 @@
-import { faCheckCircle, faWarning } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useToggle from '../../../../customHooks/useToggle/useToggle';
 import styles from './AuthForm.module.scss';
+import InputErrMessage from './components/inputErrMessage/InputErrMessage';
 import ShowPassIcon from './components/showPassIcon/ShowPassIcon';
 
 type FetchBodyType = {
@@ -50,7 +49,8 @@ export default function AuthForm({ signUp = false }: { signUp?: boolean }) {
         }));
     }
 
-    const handleFormSubmit = () => {
+    const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
         if (emailInput === '') {
             handleInputErr('emailErr', 'Enter your email')
         } else {
@@ -105,35 +105,20 @@ export default function AuthForm({ signUp = false }: { signUp?: boolean }) {
         }
     }
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        handleFormSubmit()
-    }
-
     return (
-        <form className={styles.authForm} onSubmit={handleSubmit}>
+        <form className={styles.authForm} onSubmit={handleFormSubmit}>
             {
                 signUp &&
                 <div className={styles.inputsContainer}>
                     <label htmlFor="email">email :</label>
                     <input type="email" id='email' value={emailInput} onChange={(e) => { setEmailInput(e.target.value) }} className={errors.emailErr !== '' && emailInput === '' ? styles.inputWithError : ''} />
-                    {errors.emailErr !== '' && <div className={emailInput === '' ? styles.errMsgContainer : styles.greenErrMsgContainer}>
-                        <span>
-                            <FontAwesomeIcon icon={emailInput === '' ? faWarning : faCheckCircle} />
-                        </span>
-                        {errors.emailErr}
-                    </div>}
+                    {errors.emailErr !== '' && <InputErrMessage errMessage={errors.emailErr} conditionState1={emailInput} />}
                 </div>
             }
             <div className={styles.inputsContainer}>
                 <label htmlFor="username">username :</label>
                 <input type="text" id='username' value={usernameInput} onChange={(e) => { setUsernameInput(e.target.value) }} className={errors.usernameErr !== '' && usernameInput === '' ? styles.inputWithError : ''} />
-                {errors.usernameErr !== '' && <div className={usernameInput === '' ? styles.errMsgContainer : styles.greenErrMsgContainer}>
-                    <span>
-                        <FontAwesomeIcon icon={usernameInput === '' ? faWarning : faCheckCircle} />
-                    </span>
-                    {errors.usernameErr}
-                </div>}
+                {errors.usernameErr !== '' && <InputErrMessage errMessage={errors.usernameErr} conditionState1={usernameInput} />}
             </div>
             <div className={styles.inputsContainer}>
                 <label htmlFor="password">password :</label>
@@ -141,27 +126,24 @@ export default function AuthForm({ signUp = false }: { signUp?: boolean }) {
                     <input type={showPass ? 'text' : "password"} id='password' value={passwordInput} onChange={(e) => { setPasswordInput(e.target.value) }} className={errors.passwordErr !== '' && passwordInput === '' ? styles.inputWithError : ''} />
                     <ShowPassIcon showPass={showPass} onToggle={(val) => { setShowPass(val) }} />
                 </div>
-                {errors.passwordErr !== '' && <div className={passwordInput === '' ? styles.errMsgContainer : styles.greenErrMsgContainer}>
-                    <span>
-                        <FontAwesomeIcon icon={passwordInput === '' ? faWarning : faCheckCircle} />
-                    </span>
-                    {errors.passwordErr}
-                </div>}
+                {errors.passwordErr !== '' && <InputErrMessage errMessage={errors.passwordErr} conditionState1={passwordInput} />}
             </div>
             {
                 signUp &&
                 <div className={styles.inputsContainer}>
                     <label htmlFor="confirmPassword">confirm your password :</label>
                     <div className={styles.passwordInput}>
-                        <input type={showConfirmPass ? 'text' : "password"} id='confirmPassword' value={confirmPasswordInput} onChange={(e) => { setConfirmPasswordInput(e.target.value) }} className={errors.confirmPasswordErr !== '' && (confirmPasswordInput === '' || confirmPasswordInput !== passwordInput) ? styles.inputWithError : ''} />
+                        <input type={showConfirmPass ? 'text' : "password"} id='confirmPassword' value={confirmPasswordInput} onChange={(e) => { setConfirmPasswordInput(e.target.value) }} className={(errors.confirmPasswordErr === 'Confirm your password' && confirmPasswordInput === '') || (errors.confirmPasswordErr === 'Passwords do not match' && passwordInput !== confirmPasswordInput) ? styles.inputWithError : ''} />
                         <ShowPassIcon showPass={showConfirmPass} onToggle={(val) => { setShowConfirmPass(val) }} />
                     </div>
-                    {errors.confirmPasswordErr !== '' && <div className={confirmPasswordInput === '' || confirmPasswordInput !== passwordInput ? styles.errMsgContainer : styles.greenErrMsgContainer}>
-                        <span>
-                            <FontAwesomeIcon icon={confirmPasswordInput === '' || confirmPasswordInput !== passwordInput ? faWarning : faCheckCircle} />
-                        </span>
-                        {errors.confirmPasswordErr}
-                    </div>}
+                    {errors.confirmPasswordErr !== '' && <InputErrMessage conditionState1={confirmPasswordInput} errMessage={errors.confirmPasswordErr} conditionState2={passwordInput} />
+                        // <div className={confirmPasswordInput === '' || confirmPasswordInput !== passwordInput ? styles.errMsgContainer : styles.greenErrMsgContainer}>
+                        //     <span>
+                        //         <FontAwesomeIcon icon={confirmPasswordInput === '' || confirmPasswordInput !== passwordInput ? faWarning : faCheckCircle} />
+                        //     </span>
+                        //     {errors.confirmPasswordErr}
+                        // </div>
+                    }
                 </div>
             }
             <div className={styles.btnContainer}>

@@ -1,0 +1,18 @@
+@use '../../../../../../assets/styles/index.scss';
+
+.errMsgContainer,
+.greenErrMsgContainer {
+  font-size: 0.8em;
+
+  span {
+    margin-right: 5px;
+  }
+}
+
+.errMsgContainer {
+  color: index.$red_error_color;
+}
+
+.greenErrMsgContainer {
+  color: index.$green_accepted_color;
+}
