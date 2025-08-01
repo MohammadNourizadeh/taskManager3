@@ -9,12 +9,14 @@ type InputErrMessageProps = {
 }
 
 export default function InputErrMessage({ errMessage, conditionState1, conditionState2 }: InputErrMessageProps) {
+
     return (
-        <div className={(conditionState1 === '') || (conditionState2 ? (conditionState1 !== conditionState2) : "") ? styles.errMsgContainer : styles.greenErrMsgContainer}>
+        <div className={(conditionState2 ? errMessage === 'Confirm your password' ? conditionState1 !== '' : conditionState1 === conditionState2 : conditionState1 !== '') ? styles.greenErrMsgContainer : styles.errMsgContainer}>
             <span>
-                <FontAwesomeIcon icon={(conditionState1 === '') || (conditionState2 ? (conditionState1 !== conditionState2) : "") ? faWarning : faCheckCircle} />
+                <FontAwesomeIcon icon={(conditionState2 ? errMessage === 'Confirm your password' ? conditionState1 !== '' : conditionState1 === conditionState2 : conditionState1 !== '') ? faCheckCircle : faWarning} />
             </span>
             {errMessage}
-        </div>
+        </div >
     )
 }
+

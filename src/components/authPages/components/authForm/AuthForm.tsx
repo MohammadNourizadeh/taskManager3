@@ -136,14 +136,7 @@ export default function AuthForm({ signUp = false }: { signUp?: boolean }) {
                         <input type={showConfirmPass ? 'text' : "password"} id='confirmPassword' value={confirmPasswordInput} onChange={(e) => { setConfirmPasswordInput(e.target.value) }} className={(errors.confirmPasswordErr === 'Confirm your password' && confirmPasswordInput === '') || (errors.confirmPasswordErr === 'Passwords do not match' && passwordInput !== confirmPasswordInput) ? styles.inputWithError : ''} />
                         <ShowPassIcon showPass={showConfirmPass} onToggle={(val) => { setShowConfirmPass(val) }} />
                     </div>
-                    {errors.confirmPasswordErr !== '' && <InputErrMessage conditionState1={confirmPasswordInput} errMessage={errors.confirmPasswordErr} conditionState2={passwordInput} />
-                        // <div className={confirmPasswordInput === '' || confirmPasswordInput !== passwordInput ? styles.errMsgContainer : styles.greenErrMsgContainer}>
-                        //     <span>
-                        //         <FontAwesomeIcon icon={confirmPasswordInput === '' || confirmPasswordInput !== passwordInput ? faWarning : faCheckCircle} />
-                        //     </span>
-                        //     {errors.confirmPasswordErr}
-                        // </div>
-                    }
+                    {errors.confirmPasswordErr !== '' && <InputErrMessage conditionState1={confirmPasswordInput} errMessage={errors.confirmPasswordErr} conditionState2={passwordInput} />}
                 </div>
             }
             <div className={styles.btnContainer}>
