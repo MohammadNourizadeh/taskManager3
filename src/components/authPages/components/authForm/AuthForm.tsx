@@ -5,11 +5,18 @@ import styles from './AuthForm.module.scss';
 import InputErrMessage from './components/inputErrMessage/InputErrMessage';
 import ShowPassIcon from './components/showPassIcon/ShowPassIcon';
 
-type FetchBodyType = {
+type signUpFetchBodyType = {
+    action: string,
     email: string,
     username: string,
     password: string,
     confirmPassword: string
+}
+
+type logInFetchBodyType = {
+    action: string,
+    username: string,
+    password: string,
 }
 
 type ErrorType = {
@@ -42,6 +49,40 @@ export default function AuthForm({ signUp = false }: { signUp?: boolean }) {
 
 
     // func
+    const handleFetch = () => {
+        const body: signUpFetchBodyType | logInFetchBodyType = signUp ?
+            {
+                action: 'signUp',
+                email: emailInput,
+                username: usernameInput,
+                password: passwordInput,
+                confirmPassword: confirmPasswordInput,
+            }
+            :
+            {
+                action: 'logIn',
+                username: usernameInput,
+                password: passwordInput,
+            }
+
+        fetch('http://localhost:8080/php/task_manager/authentication.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body)
+        })
+            .then(res => {
+                if (signUp) {
+                    if (res.ok) {
+                        navigate('/auth/login')
+                    }
+                }
+                return res.json()
+            })
+            .then(data => console.log(data))
+    }
+
     const handleInputErr = (inputName: keyof ErrorType, errMessage: string) => {
         setErrors(prev => ({
             ...prev,
@@ -59,7 +100,6 @@ export default function AuthForm({ signUp = false }: { signUp?: boolean }) {
 
         if (usernameInput === '') {
             handleInputErr('usernameErr', 'Set your username')
-
         } else {
             handleInputErr('usernameErr', '')
 
@@ -67,7 +107,6 @@ export default function AuthForm({ signUp = false }: { signUp?: boolean }) {
 
         if (passwordInput === '') {
             handleInputErr('passwordErr', 'Set your password')
-
         } else {
             handleInputErr('passwordErr', '')
 
@@ -75,33 +114,20 @@ export default function AuthForm({ signUp = false }: { signUp?: boolean }) {
 
         if (confirmPasswordInput === '') {
             handleInputErr('confirmPasswordErr', 'Confirm your password')
-
         } else if (confirmPasswordInput !== passwordInput) {
             handleInputErr('confirmPasswordErr', 'Passwords do not match')
         } else {
             handleInputErr('confirmPasswordErr', '')
         }
 
-        if (confirmPasswordInput === passwordInput && emailInput !== '' && usernameInput !== '' && passwordInput !== '' && confirmPasswordInput !== '') {
-            const body: FetchBodyType = {
-                email: emailInput,
-                username: usernameInput,
-                password: passwordInput,
-                confirmPassword: confirmPasswordInput,
+        if (signUp) {
+            if (confirmPasswordInput === passwordInput && emailInput !== '' && usernameInput !== '' && passwordInput !== '' && confirmPasswordInput !== '') {
+                handleFetch()
             }
-
-            fetch('http://localhost:8080/php/task_manager/authentication.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(body)
-            })
-                .then(res => {
-                    if (res.ok) {
-                        navigate("/auth/login")
-                    }
-                })
+        } else {
+            if (usernameInput !== '' && passwordInput !== '') {
+                handleFetch()
+            }
         }
     }
 
