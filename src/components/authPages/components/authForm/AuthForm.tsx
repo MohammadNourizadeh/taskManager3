@@ -4,6 +4,7 @@ import useToggle from '../../../../customHooks/useToggle/useToggle';
 import styles from './AuthForm.module.scss';
 import InputErrMessage from './components/inputErrMessage/InputErrMessage';
 import ShowPassIcon from './components/showPassIcon/ShowPassIcon';
+import { toast } from 'react-toastify';
 
 type signUpFetchBodyType = {
     action: string,
@@ -72,15 +73,19 @@ export default function AuthForm({ signUp = false }: { signUp?: boolean }) {
             },
             body: JSON.stringify(body)
         })
-            .then(res => {
-                if (signUp) {
-                    if (res.ok) {
+            .then(res => res.json())
+            .then(data => {
+                if (data.error) {
+                    toast.error(data.msg)
+                } else {
+                    toast.success(data.msg, {
+                        hideProgressBar: true,
+                    })
+                    if (signUp) {
                         navigate('/auth/login')
                     }
                 }
-                return res.json()
             })
-            .then(data => console.log(data))
     }
 
     const handleInputErr = (inputName: keyof ErrorType, errMessage: string) => {
