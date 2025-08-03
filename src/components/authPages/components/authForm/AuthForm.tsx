@@ -78,9 +78,7 @@ export default function AuthForm({ signUp = false }: { signUp?: boolean }) {
                 if (data.error) {
                     toast.error(data.msg)
                 } else {
-                    toast.success(data.msg, {
-                        hideProgressBar: true,
-                    })
+                    toast.success(data.msg)
                     if (signUp) {
                         navigate('/auth/login')
                     }

@@ -11,8 +11,6 @@ type MainContextProviderValueType = {
     setTasks: React.Dispatch<React.SetStateAction<TasksType[]>>,
     confirmModalInfo: ModalValueType<TasksType>,
     setConfirmModalInfo: React.Dispatch<React.SetStateAction<ModalValueType<TasksType>>>
-    toastMsg: string,
-    setToastMsg: React.Dispatch<React.SetStateAction<string>>
 }
 
 type ModalValueType<T> = {
@@ -37,7 +35,6 @@ export const MainContextProvider = ({ children }: MainContextProviderPropsType) 
     const [pageName, setPageName] = useState<string>('my day')
     const [tasks, setTasks] = useState<TasksType[]>([])
     const [confirmModalInfo, setConfirmModalInfo] = useState<ModalValueType<TasksType>>({ isModalOpen: false, array: [], arrayItem: { id: 0, name: '', date: '', isImportant: false, isDone: false } })
-    const [toastMsg, setToastMsg] = useState<string>('')
 
     return (
         < MainContext.Provider value={{
@@ -47,8 +44,6 @@ export const MainContextProvider = ({ children }: MainContextProviderPropsType) 
             setTasks,
             confirmModalInfo,
             setConfirmModalInfo,
-            toastMsg,
-            setToastMsg
         }}>
             {children}
         </MainContext.Provider >
