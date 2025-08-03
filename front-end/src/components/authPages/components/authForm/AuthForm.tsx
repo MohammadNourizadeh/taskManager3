@@ -1,21 +1,19 @@
 import { useState, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import useToggle from '../../../../customHooks/useToggle/useToggle';
 import styles from './AuthForm.module.scss';
 import InputErrMessage from './components/inputErrMessage/InputErrMessage';
 import ShowPassIcon from './components/showPassIcon/ShowPassIcon';
-import { toast } from 'react-toastify';
 
-type signUpFetchBodyType = {
-    action: string,
+type signUpFetchBodyContentType = {
     email: string,
     username: string,
     password: string,
     confirmPassword: string
 }
 
-type logInFetchBodyType = {
-    action: string,
+type logInFetchBodyContentType = {
     username: string,
     password: string,
 }
@@ -50,28 +48,13 @@ export default function AuthForm({ signUp = false }: { signUp?: boolean }) {
 
 
     // func
-    const handleFetch = () => {
-        const body: signUpFetchBodyType | logInFetchBodyType = signUp ?
-            {
-                action: 'signUp',
-                email: emailInput,
-                username: usernameInput,
-                password: passwordInput,
-                confirmPassword: confirmPasswordInput,
-            }
-            :
-            {
-                action: 'logIn',
-                username: usernameInput,
-                password: passwordInput,
-            }
-
-        fetch('http://localhost:8080/php/task_manager/authentication.php', {
+    const handleFetch = (url: string, bodyContent: signUpFetchBodyContentType | logInFetchBodyContentType, navigationUrl: string) => {
+        fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(body)
+            body: JSON.stringify(bodyContent)
         })
             .then(res => res.json())
             .then(data => {
@@ -79,9 +62,7 @@ export default function AuthForm({ signUp = false }: { signUp?: boolean }) {
                     toast.error(data.msg)
                 } else {
                     toast.success(data.msg)
-                    if (signUp) {
-                        navigate('/auth/login')
-                    }
+                    navigate(navigationUrl)
                 }
             })
     }
@@ -125,11 +106,11 @@ export default function AuthForm({ signUp = false }: { signUp?: boolean }) {
 
         if (signUp) {
             if (confirmPasswordInput === passwordInput && emailInput !== '' && usernameInput !== '' && passwordInput !== '' && confirmPasswordInput !== '') {
-                handleFetch()
+                handleFetch('http://localhost:8080/php/task_manager/signup.php', { email: emailInput, username: usernameInput, password: passwordInput }, '/auth/login')
             }
         } else {
             if (usernameInput !== '' && passwordInput !== '') {
-                handleFetch()
+                handleFetch('http://localhost:8080/php/task_manager/login.php', { username: usernameInput, password: passwordInput }, '/admin/my_day')
             }
         }
     }
