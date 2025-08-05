@@ -12,7 +12,10 @@ export default function MyDayPage() {
 
     // sideEffect
     useEffect(() => {
-        fetch('http://localhost:8000/tasks')
+        fetch('http://localhost:8080/php/task_manager/showTasks.php', {
+            method: 'GET',
+            credentials: 'include'
+        })
             .then(res => res.json())
             .then(data => setTasks(data))
 
@@ -26,7 +29,7 @@ export default function MyDayPage() {
 
     return (
         <div className={styles.king}>
-            {tasks.map(task => (
+            {tasks?.map(task => (
                 <TaskBox
                     key={task.id}
                     task={task}

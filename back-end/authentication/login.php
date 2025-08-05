@@ -5,6 +5,8 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
+session_start();
+
 $fetchedData = file_get_contents("php://input");
 $data = json_decode($fetchedData, true);
 
@@ -18,7 +20,8 @@ if (isset($data)) {
         WHERE `username` = '$username' AND `password` = '$password'
     ");
 
-    if (mysqli_fetch_assoc($userFromDb)) {
+    if ($userInfo = mysqli_fetch_assoc($userFromDb)) {
+        $_SESSION['userId'] = $userInfo['id'];
         $dataSend = ['error' => false, 'msg' => 'welcome'];
         echo json_encode($dataSend);
     } else {
