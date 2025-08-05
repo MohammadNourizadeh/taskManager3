@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import Admin from "./layout/admin/Admin";
 import Auth from "./layout/auth/Auth";
 import CheckedTasksPage from "./pages/checkedTasksPage/CheckedTasksPage";
-import MyDayPage from "./pages/homePage/MyDayPage";
+import MyDayPage from "./pages/myDayPage/MyDayPage";
 import ImportantTasksPage from "./pages/importantTasksPage/ImportantTasksPage";
 import LogInPage from "./pages/logInPage/LogInPage";
 import SignUpPage from "./pages/signUpPage/SignUpPage";
