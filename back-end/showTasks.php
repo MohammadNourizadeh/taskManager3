@@ -17,7 +17,7 @@ $userId = $_SESSION['userId'];
 $db = mysqli_connect('localhost', 'root', '', 'task_manager');
 $tasks = mysqli_query($db, "
     SELECT * FROM `tasks` 
-    WHERE tasks.user_id = '$userId'
+    WHERE tasks.user_id = $userId
 ");
 
 $userTasks = [];
