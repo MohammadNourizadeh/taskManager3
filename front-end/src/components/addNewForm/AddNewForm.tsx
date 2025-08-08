@@ -2,7 +2,7 @@ import { faMultiply } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from './AddNewForm.module.scss'
 
-export default function AddNewForm() {
+export default function AddNewForm({ onCloseForm }: { onCloseForm: (val: boolean) => void }) {
     return (
         <div className={styles.king}>
             <form className={styles.addNewForm}>
@@ -28,7 +28,7 @@ export default function AddNewForm() {
                     <button>Add</button>
                 </div>
                 <div className={styles.cancelBtn}>
-                    <button>
+                    <button onClick={() => { onCloseForm(false) }}>
                         <FontAwesomeIcon icon={faMultiply} />
                     </button>
                 </div>

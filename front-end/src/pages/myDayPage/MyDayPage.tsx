@@ -6,10 +6,14 @@ import { useMyContext } from '../../contexts/mainContext/useMyContext'
 import AddNewTaskBtn from './components/addNewTaskBtn/AddNewTaskBtn'
 import styles from './myDayPage.module.scss'
 import AddNewForm from '../../components/addNewForm/AddNewForm'
+import useToggle from '../../customHooks/useToggle/useToggle'
 
 export default function MyDayPage() {
     // context
     const { setTasks, tasks, confirmModalInfo } = useMyContext()
+
+    // state
+    const [isFormOpen, setIsFormOpen] = useToggle()
 
     // sideEffect
     useEffect(() => {
@@ -39,13 +43,13 @@ export default function MyDayPage() {
                     onCheckTask={changeTasksState}
                 />
             ))}
-            <AddNewTaskBtn />
+            <AddNewTaskBtn onOpenForm={(val) => { setIsFormOpen(val) }} />
 
             {/* confirm modal */}
             {confirmModalInfo.isModalOpen && <ConfirmModal onConfirm={changeTasksState} />}
 
             {/* add new task form */}
-            <AddNewForm />
+            {isFormOpen && <AddNewForm onCloseForm={(val) => { setIsFormOpen(val) }} />}
         </div>
     )
 }
