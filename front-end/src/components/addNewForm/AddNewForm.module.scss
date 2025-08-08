@@ -1,0 +1,118 @@
+@use "../../assets/styles/index.scss";
+
+.king {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: index.$modal_blur;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .addNewForm {
+    padding: 30px;
+    background-color: index.$darkMode_main_bg_color;
+    border: 1px solid index.$darkMode_border_color;
+    width: 320px;
+    position: relative;
+    border-radius: 10px;
+
+    .inputsAndSelectContainer {
+      margin-bottom: 35px;
+
+      input,
+      .selectContainer select {
+        padding: 8px;
+        border-radius: 10px;
+        background-color: index.$darkMode_part_bg_color;
+        border: 1px solid index.$darkMode_border_color;
+        color: index.$darkMode_text_color;
+
+        &:focus {
+          outline: 2px solid index.$green_accepted_color;
+        }
+      }
+
+      .inputsLabel {
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      input {
+        width: 100%;
+      }
+
+      input[type="date"] {
+        cursor: text;
+      }
+
+      .selectContainer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        label {
+          flex: 3;
+        }
+
+        select {
+          flex: 1;
+          text-align: center;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .addBtnContainer {
+      display: flex;
+      justify-content: center;
+      margin-top: 35px;
+
+      button {
+        padding: 10px;
+        width: 65%;
+        border-radius: 20px;
+        border: 0px;
+        cursor: pointer;
+        color: index.$darkMode_text_color;
+        background-color: index.$green_accepted_color;
+        font-size: 1em;
+        transition: 0.1s ease-in-out;
+
+        &:hover {
+          background-color: rgba(35, 134, 55, 0.8352941176);
+        }
+        &:active {
+          background-color: rgba(35, 134, 55, 0.672);
+        }
+      }
+    }
+    
+    .cancelBtn {
+      position: absolute;
+      top: -25.2px;
+      right: 20px;
+
+      button {
+        font-size: 1em;
+        background: none;
+        color: index.$red_error_color;
+        border: 0px;
+        border: 1px solid index.$darkMode_border_color;
+        padding: 3px 40px;
+        border-bottom: 0px;
+        border-radius: 10px 10px 0px 0px;
+        cursor: pointer;
+        transition: 0.1s ease-in-out;
+
+        &:hover {
+          border-color: index.$red_error_color;
+          background-color: rgba(204, 6, 6, 0.059);
+          border-radius: 5px 5px 0px 0px;
+        }
+      }
+    }
+  }
+}

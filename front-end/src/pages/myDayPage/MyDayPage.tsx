@@ -5,6 +5,7 @@ import type { TasksType } from '../../contexts/mainContext/MainContext'
 import { useMyContext } from '../../contexts/mainContext/useMyContext'
 import AddNewTaskBtn from './components/addNewTaskBtn/AddNewTaskBtn'
 import styles from './myDayPage.module.scss'
+import AddNewForm from '../../components/addNewForm/AddNewForm'
 
 export default function MyDayPage() {
     // context
@@ -39,7 +40,12 @@ export default function MyDayPage() {
                 />
             ))}
             <AddNewTaskBtn />
+
+            {/* confirm modal */}
             {confirmModalInfo.isModalOpen && <ConfirmModal onConfirm={changeTasksState} />}
+
+            {/* add new task form */}
+            <AddNewForm />
         </div>
     )
 }
