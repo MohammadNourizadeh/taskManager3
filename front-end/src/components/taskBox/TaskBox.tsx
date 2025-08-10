@@ -8,52 +8,56 @@ import styles from './TaskBox.module.scss'
 type TaskBoxType = {
     task: TasksType,
     tasks: TasksType[],
-    onMakeTaskImportant: (val: TasksType[]) => void,
-    onCheckTask: (val: TasksType[]) => void
+    onUpdateTaskState: (val: TasksType[]) => void,
 }
 
 
-export default function TaskBox({ task, tasks, onMakeTaskImportant, onCheckTask }: TaskBoxType) {
+export default function TaskBox({ task, tasks, onUpdateTaskState }: TaskBoxType) {
     // context
     const { setConfirmModalInfo, pageName } = useMyContext()
 
     // func
-    const handleImportant = () => {
-        fetch(`http://localhost:8000/tasks/${task.id}`, {
-            method: "PATCH",
-            body: JSON.stringify({ isImportant: !task.isImportant })
-        }).then(res => {
-            if (res.ok) {
-                const index = tasks.findIndex(item => item.id === task.id)
-                const temp = [...tasks]
-                const changedTask = temp[index]
-                changedTask.isImportant = !changedTask.isImportant
-                temp[index] = changedTask
-                onMakeTaskImportant(temp)
-            }
-        })
-    }
+    const handleUpdateTaskState = (state: string) => {
+        const body = {
+            id: task.id,
+            taskState: state === 'isImportant' ? 'isImportant' : 'isDone',
+            taskStateValue: state === 'isImportant' ? !task.isImportant : !task.isDone,
+        }
 
-    const handleCheck = () => {
-        fetch(`http://localhost:8000/tasks/${task.id}`, {
+        fetch('http://localhost:8080/php/task_manager/updateTaskState.php', {
             method: "PATCH",
-            body: JSON.stringify({ isDone: !task.isDone })
-        }).then(res => {
-            if (res.ok) {
-                const index = tasks.findIndex(item => item.id === task.id)
-                const temp = [...tasks]
-                const changedTask = temp[index]
-                changedTask.isDone = !changedTask.isDone
-                temp[index] = changedTask
-                onCheckTask(temp)
-            }
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body)
         })
+            .then(res => {
+                if (res.ok) {
+                    const changedTaskIndex = tasks.findIndex(item => item.id === task.id)
+                    const temp = [...tasks]
+                    const changedTask = temp[changedTaskIndex];
+
+                    switch (state) {
+                        case 'isImportant':
+                            changedTask.isImportant = !changedTask.isImportant
+                            break;
+                        case 'isDone':
+                            changedTask.isDone = !changedTask.isDone
+                            break;
+                        default:
+                            break;
+                    }
+
+                    temp[changedTaskIndex] = changedTask;
+                    onUpdateTaskState(temp);
+                }
+            })
     }
 
     return (
         <div className={styles.king}>
-            <div className={styles.checkboxInputContainer} onChange={handleCheck}>
-                <input type="checkbox" checked={task.isDone} />
+            <div className={styles.checkboxInputContainer}>
+                <input type="checkbox" checked={task.isDone ? true : false} onChange={() => { handleUpdateTaskState('isDone') }} />
             </div>
             <div className={styles.taskInfoContainer}>
                 <div className={styles.taskName}>
@@ -65,7 +69,7 @@ export default function TaskBox({ task, tasks, onMakeTaskImportant, onCheckTask 
             </div>
 
             <div className={styles.starAndBasketBtnContainer}>
-                <button className={styles.starBtn} id={task.isImportant ? styles.turnedOnStar : ''} onClick={handleImportant}>
+                <button className={styles.starBtn} id={task.isImportant ? styles.turnedOnStar : ''} onClick={() => { handleUpdateTaskState('isImportant') }}>
                     <FontAwesomeIcon icon={task.isImportant ? solidStar : regStar} />
                 </button>
                 {pageName === 'my day' &&

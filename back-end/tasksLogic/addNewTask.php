@@ -21,5 +21,7 @@ if (isset($data)) {
         (`name` , `date` , `isImportant`)
         VALUES ('$name' , '$date' , $isImportant)
     ");
-    echo 'New task added';
+    $newTaskId = mysqli_insert_id($db);
+
+    echo json_encode(['newTaskId' => $newTaskId, 'msg' => 'New task added']);
 }

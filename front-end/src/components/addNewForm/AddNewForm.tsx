@@ -30,13 +30,11 @@ export default function AddNewForm({ onCloseForm }: { onCloseForm: (val: boolean
             },
             body: JSON.stringify(body)
         })
-            .then(res => {
-                if (res.ok) {
-                    setTasks((prev) => [...prev, { name: taskName, date: taskDate, isImportant: isTaskImportant, isDone: false }])
-                    return res.text()
-                }
+            .then(res => res.json())
+            .then(data => {
+                setTasks((prev) => [...prev, { id: data.newTaskId, name: taskName, date: taskDate, isImportant: isTaskImportant, isDone: false }])
+                toast.success(data.msg)
             })
-            .then(data => toast.success(data))
 
         onCloseForm(false)
     }

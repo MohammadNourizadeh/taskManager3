@@ -1,12 +1,11 @@
 import { useEffect } from 'react'
+import AddNewForm from '../../components/addNewForm/AddNewForm'
 import ConfirmModal from '../../components/confirmModal/ConfirmModal'
 import TaskBox from '../../components/taskBox/TaskBox'
-import type { TasksType } from '../../contexts/mainContext/MainContext'
 import { useMyContext } from '../../contexts/mainContext/useMyContext'
+import useToggle from '../../customHooks/useToggle/useToggle'
 import AddNewTaskBtn from './components/addNewTaskBtn/AddNewTaskBtn'
 import styles from './myDayPage.module.scss'
-import AddNewForm from '../../components/addNewForm/AddNewForm'
-import useToggle from '../../customHooks/useToggle/useToggle'
 
 export default function MyDayPage() {
     // context
@@ -26,12 +25,6 @@ export default function MyDayPage() {
 
     }, [setTasks])
 
-    // func
-    const changeTasksState = (val: TasksType[]) => {
-        setTasks(val)
-    }
-
-
     return (
         <div className={styles.king}>
             {tasks?.map(task => (
@@ -39,14 +32,13 @@ export default function MyDayPage() {
                     key={task.id}
                     task={task}
                     tasks={tasks}
-                    onMakeTaskImportant={changeTasksState}
-                    onCheckTask={changeTasksState}
+                    onUpdateTaskState={(val) => { setTasks(val) }}
                 />
             ))}
             <AddNewTaskBtn onOpenForm={(val) => { setIsFormOpen(val) }} />
 
             {/* confirm modal */}
-            {confirmModalInfo.isModalOpen && <ConfirmModal onConfirm={changeTasksState} />}
+            {confirmModalInfo.isModalOpen && <ConfirmModal onConfirm={(val) => { setTasks(val) }} />}
 
             {/* add new task form */}
             {isFormOpen && <AddNewForm onCloseForm={(val) => { setIsFormOpen(val) }} />}
