@@ -21,7 +21,7 @@ type ModalValueType<T> = {
 
 
 export type TasksType = {
-    id: number,
+    id?: number,
     name: string,
     date: string,
     isImportant: boolean,
