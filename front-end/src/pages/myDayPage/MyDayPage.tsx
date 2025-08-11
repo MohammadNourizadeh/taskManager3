@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import AddNewForm from '../../components/addNewForm/AddNewForm'
+import AddNewForm from './components/addNewForm/AddNewForm'
 import ConfirmModal from '../../components/confirmModal/ConfirmModal'
 import TaskBox from '../../components/taskBox/TaskBox'
 import { useMyContext } from '../../contexts/mainContext/useMyContext'

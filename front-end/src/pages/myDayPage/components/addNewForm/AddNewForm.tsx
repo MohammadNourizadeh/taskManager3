@@ -2,7 +2,7 @@ import { faMultiply } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState, type FormEvent } from 'react'
 import { toast } from 'react-toastify'
-import { useMyContext } from '../../contexts/mainContext/useMyContext'
+import { useMyContext } from '../../../../contexts/mainContext/useMyContext'
 import styles from './AddNewForm.module.scss'
 
 export default function AddNewForm({ onCloseForm }: { onCloseForm: (val: boolean) => void }) {
