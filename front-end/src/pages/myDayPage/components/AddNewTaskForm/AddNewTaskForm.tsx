@@ -3,9 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState, type FormEvent } from 'react'
 import { toast } from 'react-toastify'
 import { useMyContext } from '../../../../contexts/mainContext/useMyContext'
-import styles from './AddNewForm.module.scss'
+import styles from './AddNewTaskForm.module.scss'
 
-export default function AddNewForm({ onCloseForm }: { onCloseForm: (val: boolean) => void }) {
+export default function AddNewTaskForm({ onCloseForm }: { onCloseForm: (val: boolean) => void }) {
     // context
     const { setTasks } = useMyContext();
 
@@ -41,7 +41,7 @@ export default function AddNewForm({ onCloseForm }: { onCloseForm: (val: boolean
 
     return (
         <div className={styles.king}>
-            <form className={styles.addNewForm} onSubmit={handleAdd}>
+            <form className={styles.AddNewTaskForm} onSubmit={handleAdd}>
                 <div className={styles.inputsAndSelectContainer}>
                     <label htmlFor="taskName" className={styles.inputsLabel}>Enter the task :</label>
                     <input type="text" id='taskName' value={taskName} onChange={(e) => { setTaskName(e.target.value) }} />
