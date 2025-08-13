@@ -13,14 +13,24 @@ export default function ConfirmModal({ onConfirm }: ConfirmModalPropsType) {
 
     // func
     const handleDelete = () => {
-        fetch(`http://localhost:8000/tasks/${confirmModalInfo.arrayItem.id}`, {
-            method: "DELETE"
+        fetch(`http://localhost:8080/php/task_manager/deleteTask.php`, {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ taskId: confirmModalInfo.arrayItem.id })
         }).then(res => {
             if (res.ok) {
                 const temp = confirmModalInfo.array.filter(item => item.id !== confirmModalInfo.arrayItem.id)
                 onConfirm(temp)
+                const tempConfirmModalInfo = { ...confirmModalInfo }
+                tempConfirmModalInfo.isModalOpen = false
+                setConfirmModalInfo(tempConfirmModalInfo)
+                return res.text()
             }
         })
+            .then(data => console.log(data)
+            )
     }
 
     return (
