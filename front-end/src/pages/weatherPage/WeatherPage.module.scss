@@ -1,0 +1,11 @@
+.king {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  .weatherBoxContainer {
+    flex-basis: 360px;
+    flex-grow: 1;
+    flex-shrink: 1;
+  }
+}
