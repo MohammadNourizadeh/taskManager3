@@ -10,22 +10,18 @@ export default function ImportantTasksPage() {
 
     // side effect
     useEffect(() => {
-        fetch("http://localhost:8000/tasks")
+        fetch("http://localhost:8080/php/task_manager/showTasks.php")
             .then(res => res.json())
             .then(data => setTasks(data.filter((item: TasksType) => item.isImportant)))
     }, [setTasks])
 
-    // func
-    const changeTasksState = (val: TasksType[]) => {
-        setTasks(val)
-    }
 
 
     return (
         tasks.length !== 0 ?
             <div>
                 {tasks.map(task => (
-                    <TaskBox tasks={tasks} task={task} onCheckTask={changeTasksState} onMakeTaskImportant={changeTasksState} key={task.id} />
+                    <TaskBox tasks={tasks} task={task} onUpdateTaskState={(val) => { setTasks(val) }} key={task.id} />
                 ))}
             </div>
             :

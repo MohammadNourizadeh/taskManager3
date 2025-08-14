@@ -23,6 +23,12 @@ $tasks = mysqli_query($db, "
 $userTasks = [];
 
 while ($task = mysqli_fetch_assoc($tasks)) {
-    $userTasks[] = $task;
+    $userTasks[] = [
+        'id' => $task['id'],
+        'name' => $task['name'],
+        'date' => $task['date'],
+        'isImportant' => $task['isImportant'] === 1 ? true : false,
+        'isDone' => $task['isDone'] === 1 ? true : false,
+    ];
 }
 echo json_encode($userTasks);
