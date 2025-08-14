@@ -1,14 +1,9 @@
+import type { WeatherType } from '../../../../types/types';
 import styles from './WeatherBox.module.scss';
 
-type WeatherBoxProps = {
-    cityName: string,
-    countryName: string,
-    weatherImg: string,
-    temp: number,
-    lastUpdate: string
-}
 
-export default function WeatherBox({ cityName, countryName, lastUpdate, temp, weatherImg }: WeatherBoxProps) {
+
+export default function WeatherBox({ cityName, countryName, lastUpdate, temp, weatherImg }: WeatherType) {
     return (
         <div className={styles.king}>
 

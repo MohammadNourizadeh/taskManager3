@@ -1,4 +1,3 @@
-import type { JSX } from "react";
 import { Navigate } from "react-router-dom";
 import Admin from "./layout/admin/Admin";
 import Auth from "./layout/auth/Auth";
@@ -8,12 +7,9 @@ import LogInPage from "./pages/logInPage/LogInPage";
 import MyDayPage from "./pages/myDayPage/MyDayPage";
 import SignUpPage from "./pages/signUpPage/SignUpPage";
 import WeatherPage from "./pages/weatherPage/WeatherPage";
+import type { RoutesType } from "./types/types";
 
-type RoutesType = {
-    path: string,
-    element: JSX.Element,
-    children?: RoutesType[]
-}
+
 
 export const routes: RoutesType[] = [
     {

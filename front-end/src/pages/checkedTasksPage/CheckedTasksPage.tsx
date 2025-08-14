@@ -1,8 +1,8 @@
 import { useEffect } from "react"
-import type { TasksType } from "../../contexts/mainContext/MainContext"
-import { useMyContext } from "../../contexts/mainContext/useMyContext"
-import TaskBox from "../../components/taskBox/TaskBox"
 import NotFoundMessage from "../../components/notFoundMessage/NotFoundMessage"
+import TaskBox from "../../components/taskBox/TaskBox"
+import { useMyContext } from "../../contexts/mainContext/useMyContext"
+import type { TasksType } from "../../types/types"
 
 export default function CheckedTasksPage() {
     // context

@@ -1,10 +1,8 @@
-import type { TasksType } from '../../contexts/mainContext/MainContext'
 import { useMyContext } from '../../contexts/mainContext/useMyContext'
+import type { ConfirmModalPropsType } from '../../types/types'
 import styles from './ConfirmModal.module.scss'
 
-type ConfirmModalPropsType = {
-    onConfirm: (val: TasksType[]) => void
-}
+
 
 export default function ConfirmModal({ onConfirm }: ConfirmModalPropsType) {
     // context

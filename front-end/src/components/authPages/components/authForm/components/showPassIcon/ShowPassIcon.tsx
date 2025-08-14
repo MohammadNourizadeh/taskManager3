@@ -1,11 +1,9 @@
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import type { ShowPassIconPropsType } from "../../../../../../types/types";
 import styles from './ShowPassIcon.module.scss';
 
-type ShowPassIconPropsType = {
-    showPass: boolean,
-    onToggle: ((val: boolean) => void)
-}
+
 
 export default function ShowPassIcon({ showPass, onToggle }: ShowPassIconPropsType) {
     return (

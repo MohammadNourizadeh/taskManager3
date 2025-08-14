@@ -1,15 +1,11 @@
 import { faTrashCan, faStar as regStar } from '@fortawesome/free-regular-svg-icons'
 import { faStar as solidStar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import type { TasksType } from '../../contexts/mainContext/MainContext'
 import { useMyContext } from '../../contexts/mainContext/useMyContext'
+import type { TaskBoxType } from '../../types/types'
 import styles from './TaskBox.module.scss'
 
-type TaskBoxType = {
-    task: TasksType,
-    tasks: TasksType[],
-    onUpdateTaskState: (val: TasksType[]) => void,
-}
+
 
 
 export default function TaskBox({ task, tasks, onUpdateTaskState }: TaskBoxType) {

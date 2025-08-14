@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
+import type { WeatherType } from "../../types/types";
 import WeatherBox from "./components/weatherBox/WeatherBox";
 import styles from './WeatherPage.module.scss';
 
 export default function WeatherPage() {
     // state
-    const [weathers, setWeathers] = useState([])
+    const [weathers, setWeathers] = useState<WeatherType[]>([])
 
     // side effect
     useEffect(() => {
@@ -15,9 +16,9 @@ export default function WeatherPage() {
 
     return (
         <div className={styles.king}>
-            {weathers.map(weather => (
+            {weathers.map((weather, index) => (
                 <div className={styles.weatherBoxContainer}>
-                    <WeatherBox cityName={weather.city_name} countryName={weather.country_name} lastUpdate={weather.last_update} temp={weather.temp_c} weatherImg={weather.img} />
+                    <WeatherBox key={index} cityName={weather.cityName} countryName={weather.countryName} lastUpdate={weather.lastUpdate} temp={weather.temp} weatherImg={weather.weatherImg} />
                 </div>
             ))}
         </div>

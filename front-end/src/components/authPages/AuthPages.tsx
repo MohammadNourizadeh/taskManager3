@@ -1,17 +1,10 @@
-import type { IconDefinition } from "@fortawesome/free-solid-svg-icons";
+import type { AuthPagesPropsType } from '../../types/types';
+import styles from './AuthPages.module.scss';
 import AuthForm from "./components/authForm/AuthForm";
 import AuthSwitchLink from "./components/authSwitchLink/AuthSwitchLink";
 import AuthTitle from "./components/authTitle/AuthTitle";
-import styles from './AuthPages.module.scss';
 
-type AuthPagesPropsType = {
-    pageTitle: string,
-    titleIcon: IconDefinition,
-    switchLinkText: string,
-    switchLinkName: string,
-    switchLinkAddress: string,
-    isSignUp?: boolean
-}
+
 
 export default function AuthPages({ pageTitle, titleIcon, switchLinkText, switchLinkName, switchLinkAddress, isSignUp }: AuthPagesPropsType) {
     return (

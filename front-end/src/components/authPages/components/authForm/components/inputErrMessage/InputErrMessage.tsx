@@ -1,12 +1,9 @@
 import { faCheckCircle, faWarning } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import type { InputErrMessageProps } from '../../../../../../types/types'
 import styles from './InputErrMessage.module.scss'
 
-type InputErrMessageProps = {
-    errMessage: string,
-    conditionState1: string,
-    conditionState2?: string
-}
+
 
 export default function InputErrMessage({ errMessage, conditionState1, conditionState2 }: InputErrMessageProps) {
 

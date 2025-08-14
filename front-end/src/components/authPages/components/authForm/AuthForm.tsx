@@ -2,28 +2,12 @@ import { useState, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import useToggle from '../../../../customHooks/useToggle/useToggle';
+import type { ErrorType, logInFetchBodyContentType, signUpFetchBodyContentType } from '../../../../types/types';
 import styles from './AuthForm.module.scss';
 import InputErrMessage from './components/inputErrMessage/InputErrMessage';
 import ShowPassIcon from './components/showPassIcon/ShowPassIcon';
 
-type signUpFetchBodyContentType = {
-    email: string,
-    username: string,
-    password: string,
-    confirmPassword: string
-}
 
-type logInFetchBodyContentType = {
-    username: string,
-    password: string,
-}
-
-type ErrorType = {
-    emailErr: string,
-    usernameErr: string,
-    passwordErr: string,
-    confirmPasswordErr: string
-}
 
 export default function AuthForm({ signUp = false }: { signUp?: boolean }) {
     // useNavigate
