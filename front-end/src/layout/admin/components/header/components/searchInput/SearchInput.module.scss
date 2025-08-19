@@ -12,7 +12,7 @@
     color: index.$darkMode_text_color;
 
     &:focus {
-      outline: 2px solid index.$green_accepted_color;
+      outline: 2px solid index.$search_input_focus_color;
     }
   }
 
