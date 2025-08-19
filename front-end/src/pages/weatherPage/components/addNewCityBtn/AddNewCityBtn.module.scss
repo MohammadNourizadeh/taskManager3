@@ -1,0 +1,34 @@
+@use "../../../../assets/styles/index.scss";
+
+.king {
+  border-radius: 10px;
+  position: relative;
+  margin-bottom: 10px;
+  width: 300px;
+  padding: 20px;
+  text-align: center;
+  transition: 0.2s ease-in-out;
+  background: linear-gradient(135deg, #4a90e2, #9013fe);
+
+  &:hover {
+    background: linear-gradient(135deg, #6ec6ff, #c471ed);
+  }
+
+  span {
+    margin-left: 10px;
+  }
+
+  select {
+    cursor: pointer;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    opacity: 0;
+
+    option {
+      font-size: 1.1em;
+    }
+  }
+}

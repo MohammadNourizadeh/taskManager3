@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import type { WeatherType } from "../../types/types";
 import WeatherBox from "./components/weatherBox/WeatherBox";
 import styles from './WeatherPage.module.scss';
+import AddNewCityBtn from "./components/addNewCityBtn/AddNewCityBtn";
 
 export default function WeatherPage() {
     // state
@@ -16,11 +17,14 @@ export default function WeatherPage() {
 
     return (
         <div className={styles.king}>
-            {weathers.map((weather, index) => (
-                <div className={styles.weatherBoxContainer}>
-                    <WeatherBox key={index} cityName={weather.cityName} countryName={weather.countryName} lastUpdate={weather.lastUpdate} temp={weather.temp} weatherImg={weather.weatherImg} />
-                </div>
-            ))}
+            <AddNewCityBtn />
+            <div className={styles.weatherBoxContainer}>
+                {weathers.map((weather, index) => (
+                    <div className={styles.weatherBox}>
+                        <WeatherBox key={index} cityName={weather.cityName} countryName={weather.countryName} lastUpdate={weather.lastUpdate} temp={weather.temp} weatherImg={weather.weatherImg} />
+                    </div>
+                ))}
+            </div>
         </div>
     )
 }
