@@ -8,10 +8,10 @@
   padding: 20px;
   text-align: center;
   transition: 0.2s ease-in-out;
-  background: linear-gradient(135deg, #4a90e2, #9013fe);
+  background: index.$btn_color;
 
   &:hover {
-    background: linear-gradient(135deg, #6ec6ff, #c471ed);
+    background: index.$btn_hover;
   }
 
   span {

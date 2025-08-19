@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import type { WeatherType } from "../../types/types";
+import AddNewCityBtn from "./components/addNewCityBtn/AddNewCityBtn";
 import WeatherBox from "./components/weatherBox/WeatherBox";
 import styles from './WeatherPage.module.scss';
-import AddNewCityBtn from "./components/addNewCityBtn/AddNewCityBtn";
 
 export default function WeatherPage() {
     // state

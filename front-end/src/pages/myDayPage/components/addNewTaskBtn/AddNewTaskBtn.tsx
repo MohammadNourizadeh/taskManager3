@@ -8,7 +8,7 @@ export default function AddNewTaskBtn({ onOpenForm }: { onOpenForm: (val: boolea
             <span>
                 <FontAwesomeIcon icon={faAdd} />
             </span>
-            add new task
+            Add New Task
         </button>
     )
 }
