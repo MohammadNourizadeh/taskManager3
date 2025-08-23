@@ -1,13 +1,14 @@
 import { faMultiply } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState, type FormEvent } from 'react'
+import { useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
-import { useMyContext } from '../../../../contexts/mainContext/useMyContext'
+import { add } from '../../../../store/slices/tasks'
 import styles from './AddNewTaskForm.module.scss'
 
 export default function AddNewTaskForm({ onCloseForm }: { onCloseForm: (val: boolean) => void }) {
-    // context
-    const { setTasks } = useMyContext();
+    // redux
+    const dispatch = useDispatch()
 
     // state
     const [taskName, setTaskName] = useState('')
@@ -32,7 +33,7 @@ export default function AddNewTaskForm({ onCloseForm }: { onCloseForm: (val: boo
         })
             .then(res => res.json())
             .then(data => {
-                setTasks((prev) => [...prev, { id: data.newTaskId, name: taskName, date: taskDate, isImportant: isTaskImportant, isDone: false }])
+                dispatch(add({ id: data.newTaskId, taskName, taskDate, isImportant: isTaskImportant }))
                 toast.success(data.msg)
             })
 

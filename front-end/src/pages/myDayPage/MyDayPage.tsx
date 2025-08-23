@@ -1,15 +1,22 @@
 import { useEffect } from 'react'
-import ConfirmModal from '../../components/confirmModal/ConfirmModal'
+import { useDispatch, useSelector } from 'react-redux'
 import TaskBox from '../../components/taskBox/TaskBox'
-import { useMyContext } from '../../contexts/mainContext/useMyContext'
 import useToggle from '../../customHooks/useToggle/useToggle'
+import { setAll } from '../../store/slices/tasks'
+import type { RootState } from '../../store/store'
 import AddNewTaskForm from './components/AddNewTaskForm/AddNewTaskForm'
 import AddNewTaskBtn from './components/addNewTaskBtn/AddNewTaskBtn'
 import styles from './myDayPage.module.scss'
 
 export default function MyDayPage() {
+    // redux
+    const tasks = useSelector((state: RootState) => state.tasks.tasks)
+    const dispatch = useDispatch()
+
     // context
-    const { setTasks, tasks, confirmModalInfo } = useMyContext()
+    // const { setTasks, tasks, confirmModalInfo } = useMyContext()
+    // const { confirmModalInfo } = useMyContext()
+
 
     // state
     const [isFormOpen, setIsFormOpen] = useToggle()
@@ -21,24 +28,23 @@ export default function MyDayPage() {
             credentials: 'include'
         })
             .then(res => res.json())
-            .then(data => setTasks(data))
+            .then(data => dispatch(setAll(data)))
 
-    }, [setTasks])
+    }, [dispatch])
 
     return (
         <div className={styles.king}>
-            {tasks?.map(task => (
+            {tasks?.map((task, index) => (
                 <TaskBox
                     key={task.id}
                     task={task}
-                    tasks={tasks}
-                    onUpdateTaskState={(val) => { setTasks(val) }}
+                    index={index}
                 />
             ))}
             <AddNewTaskBtn onOpenForm={(val) => { setIsFormOpen(val) }} />
 
             {/* confirm modal */}
-            {confirmModalInfo.isModalOpen && <ConfirmModal onConfirm={(val) => { setTasks(val) }} />}
+            {/* {confirmModalInfo.isModalOpen && <ConfirmModal onConfirm={(val) => { setTasks(val) }} />} */}
 
             {/* add new task form */}
             {isFormOpen && <AddNewTaskForm onCloseForm={(val) => { setIsFormOpen(val) }} />}

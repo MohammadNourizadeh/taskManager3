@@ -89,8 +89,7 @@ type ConfirmModalPropsType = {
 
 type TaskBoxType = {
   task: TasksType;
-  tasks: TasksType[];
-  onUpdateTaskState: (val: TasksType[]) => void;
+  index: number;
 };
 
 type sidebarItemsInfoType = {
@@ -113,6 +112,13 @@ type TasksSliceInitialStateType = {
   tasks: TasksType[];
 };
 
+type TasksSliceAddPayloadType = {
+  id: number;
+  taskName: string;
+  taskDate: string;
+  isImportant: boolean;
+};
+
 export {
   MainContextProviderPropsType,
   MainContextProviderValueType,
@@ -132,4 +138,5 @@ export {
   sidebarItemsInfoType,
   WeatherType,
   TasksSliceInitialStateType,
+  TasksSliceAddPayloadType
 };

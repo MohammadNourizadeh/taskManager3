@@ -1,14 +1,22 @@
 import { faTrashCan, faStar as regStar } from '@fortawesome/free-regular-svg-icons'
 import { faStar as solidStar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useDispatch, useSelector } from 'react-redux'
 import { useMyContext } from '../../contexts/mainContext/useMyContext'
+import { handleDone, handleImportant } from '../../store/slices/tasks'
+import type { RootState } from '../../store/store'
 import type { TaskBoxType } from '../../types/types'
 import styles from './TaskBox.module.scss'
 
 
 
 
-export default function TaskBox({ task, tasks, onUpdateTaskState }: TaskBoxType) {
+
+export default function TaskBox({ task, index }: TaskBoxType) {
+    // redux
+    const tasks = useSelector((state: RootState) => state.tasks.tasks)
+    const dispatch = useDispatch()
+
     // context
     const { setConfirmModalInfo, pageName } = useMyContext()
 
@@ -29,23 +37,16 @@ export default function TaskBox({ task, tasks, onUpdateTaskState }: TaskBoxType)
         })
             .then(res => {
                 if (res.ok) {
-                    const changedTaskIndex = tasks.findIndex(item => item.id === task.id)
-                    const temp = [...tasks]
-                    const changedTask = temp[changedTaskIndex];
-
                     switch (state) {
                         case 'isImportant':
-                            changedTask.isImportant = !changedTask.isImportant
+                            dispatch(handleImportant(index))
                             break;
                         case 'isDone':
-                            changedTask.isDone = !changedTask.isDone
+                            dispatch(handleDone(index))
                             break;
                         default:
                             break;
                     }
-
-                    temp[changedTaskIndex] = changedTask;
-                    onUpdateTaskState(temp);
                 }
             })
     }
