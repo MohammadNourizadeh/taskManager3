@@ -109,6 +109,10 @@ type WeatherType = {
   lastUpdate: string;
 };
 
+type TasksSliceInitialStateType = {
+  tasks: TasksType[];
+};
+
 export {
   MainContextProviderPropsType,
   MainContextProviderValueType,
@@ -127,4 +131,5 @@ export {
   TaskBoxType,
   sidebarItemsInfoType,
   WeatherType,
+  TasksSliceInitialStateType,
 };
