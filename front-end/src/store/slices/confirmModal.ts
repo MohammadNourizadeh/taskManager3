@@ -30,17 +30,12 @@ const confirmModalSlice = createSlice({
       state.list = action.payload;
     },
 
-    deleteItem: (state, action: PayloadAction<number>) => {
-      state.list = state.list.filter((item) => item.id !== action.payload);
-      state.isModalOpen = false;      
-    },
-
     closeModal: (state) => {
       state.isModalOpen = false;
     },
   },
 });
 
-export const { deleteItem, closeModal, openModal, setList, setTargetItemId } =
+export const { closeModal, openModal, setList, setTargetItemId } =
   confirmModalSlice.actions;
 export default confirmModalSlice.reducer;

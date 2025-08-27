@@ -9,10 +9,6 @@ import type { RootState } from '../../store/store'
 import type { TaskBoxType } from '../../types/types'
 import styles from './TaskBox.module.scss'
 
-
-
-
-
 export default function TaskBox({ task, index }: TaskBoxType) {
     // redux
     const tasks = useSelector((state: RootState) => state.tasks.tasks)
@@ -25,7 +21,7 @@ export default function TaskBox({ task, index }: TaskBoxType) {
     const handleRemoveTask = () => {
         dispatch(openModal())
         dispatch(setList(tasks))
-        dispatch(setTargetItemId(task.id))
+        if (task.id) dispatch(setTargetItemId(task.id))
     }
 
     const handleUpdateTaskState = (state: string) => {

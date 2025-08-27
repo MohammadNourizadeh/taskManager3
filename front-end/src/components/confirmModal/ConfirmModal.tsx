@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { closeModal, deleteItem } from '../../store/slices/confirmModal'
+import { closeModal } from '../../store/slices/confirmModal'
 import type { RootState } from '../../store/store'
+import type { ConfirmModalPropsType } from '../../types/types'
 import styles from './ConfirmModal.module.scss'
 
 
-
-export default function ConfirmModal({ onSetNewListOfDeletedItem }) {
+export default function ConfirmModal<T>({ onSetNewListOfDeletedItem }: ConfirmModalPropsType<T>) {
     // redux
-    const list = useSelector((state: RootState) => state.confirmModal.list)
+    const list = useSelector((state: RootState) => state.confirmModal.list) 
     const targetItemId = useSelector((state: RootState) => state.confirmModal.targetItemId)
     const dispatch = useDispatch()
 
@@ -26,7 +26,7 @@ export default function ConfirmModal({ onSetNewListOfDeletedItem }) {
         }).then(res => {
             if (res.ok) {
                 const newList = list.filter(item => item.id !== targetItemId)
-                dispatch(deleteItem(targetItemId))
+                dispatch(closeModal())
                 onSetNewListOfDeletedItem(newList)
             }
         })
@@ -36,7 +36,7 @@ export default function ConfirmModal({ onSetNewListOfDeletedItem }) {
         <div className={styles.king}>
             <div className={styles.modal}>
                 <div className={styles.modalText}>
-                    Are you sure you want to delete the task ({targetItem.name})?
+                    Are you sure you want to delete the task ( {targetItem.name} )?
                 </div>
                 <div className={styles.btnsContainer}>
                     <button className={styles.yesBtn} onClick={handleDelete}>yes</button>

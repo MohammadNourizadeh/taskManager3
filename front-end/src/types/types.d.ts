@@ -83,10 +83,6 @@ type AuthTitlePropsType = {
   icon: IconDefinition;
 };
 
-type ConfirmModalPropsType = {
-  onConfirm: (val: TasksType[]) => void;
-};
-
 type TaskBoxType = {
   task: TasksType;
   index: number;
@@ -119,6 +115,12 @@ type TasksSliceAddPayloadType = {
   isImportant: boolean;
 };
 
+type ConfirmModalPropsType<T> = {
+  onSetNewListOfDeletedItem: (val: T[]) => void;
+  list: T[];
+  targetItemId: number;
+};
+
 export {
   MainContextProviderPropsType,
   MainContextProviderValueType,
@@ -133,10 +135,10 @@ export {
   ShowPassIconPropsType,
   AuthSwitchLinkProps,
   AuthTitlePropsType,
-  ConfirmModalPropsType,
   TaskBoxType,
   sidebarItemsInfoType,
   WeatherType,
   TasksSliceInitialStateType,
-  TasksSliceAddPayloadType
+  TasksSliceAddPayloadType,
+  ConfirmModalPropsType,
 };
