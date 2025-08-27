@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import ConfirmModal from '../../components/confirmModal/ConfirmModal'
 import TaskBox from '../../components/taskBox/TaskBox'
 import useToggle from '../../customHooks/useToggle/useToggle'
 import { setAll } from '../../store/slices/tasks'
@@ -10,13 +11,9 @@ import styles from './myDayPage.module.scss'
 
 export default function MyDayPage() {
     // redux
+    const isModalOpen = useSelector((state: RootState) => state.confirmModal.isModalOpen)
     const tasks = useSelector((state: RootState) => state.tasks.tasks)
     const dispatch = useDispatch()
-
-    // context
-    // const { setTasks, tasks, confirmModalInfo } = useMyContext()
-    // const { confirmModalInfo } = useMyContext()
-
 
     // state
     const [isFormOpen, setIsFormOpen] = useToggle()
@@ -44,7 +41,7 @@ export default function MyDayPage() {
             <AddNewTaskBtn onOpenForm={(val) => { setIsFormOpen(val) }} />
 
             {/* confirm modal */}
-            {/* {confirmModalInfo.isModalOpen && <ConfirmModal onConfirm={(val) => { setTasks(val) }} />} */}
+            {isModalOpen && <ConfirmModal onSetNewListOfDeletedItem={(val) => { dispatch(setAll(val)) }} />}
 
             {/* add new task form */}
             {isFormOpen && <AddNewTaskForm onCloseForm={(val) => { setIsFormOpen(val) }} />}

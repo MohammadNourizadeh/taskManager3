@@ -1,13 +1,19 @@
-import { useMyContext } from '../../contexts/mainContext/useMyContext'
-import type { ConfirmModalPropsType } from '../../types/types'
+import { useDispatch, useSelector } from 'react-redux'
+import { closeModal, deleteItem } from '../../store/slices/confirmModal'
+import type { RootState } from '../../store/store'
 import styles from './ConfirmModal.module.scss'
 
 
 
-export default function ConfirmModal({ onConfirm }: ConfirmModalPropsType) {
-    // context
-    const { confirmModalInfo, setConfirmModalInfo } = useMyContext()
+export default function ConfirmModal({ onSetNewListOfDeletedItem }) {
+    // redux
+    const list = useSelector((state: RootState) => state.confirmModal.list)
+    const targetItemId = useSelector((state: RootState) => state.confirmModal.targetItemId)
+    const dispatch = useDispatch()
 
+    // var
+    const targetItemIndex = list.findIndex(item => item.id === targetItemId)
+    const targetItem = list[targetItemIndex]
 
     // func
     const handleDelete = () => {
@@ -16,38 +22,29 @@ export default function ConfirmModal({ onConfirm }: ConfirmModalPropsType) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ taskId: confirmModalInfo.arrayItem.id })
+            body: JSON.stringify({ taskId: targetItemId })
         }).then(res => {
             if (res.ok) {
-                const temp = confirmModalInfo.array.filter(item => item.id !== confirmModalInfo.arrayItem.id)
-                onConfirm(temp)
-                const tempConfirmModalInfo = { ...confirmModalInfo }
-                tempConfirmModalInfo.isModalOpen = false
-                setConfirmModalInfo(tempConfirmModalInfo)
-                return res.text()
+                const newList = list.filter(item => item.id !== targetItemId)
+                dispatch(deleteItem(targetItemId))
+                onSetNewListOfDeletedItem(newList)
             }
         })
-            .then(data => console.log(data)
-            )
     }
 
     return (
         <div className={styles.king}>
             <div className={styles.modal}>
                 <div className={styles.modalText}>
-                    Are you sure you want to delete the task ({confirmModalInfo.arrayItem.name})?
+                    Are you sure you want to delete the task ({targetItem.name})?
                 </div>
                 <div className={styles.btnsContainer}>
                     <button className={styles.yesBtn} onClick={handleDelete}>yes</button>
                     <button className={styles.noBtn} onClick={() => {
-                        const temp = { ...confirmModalInfo }
-                        temp.isModalOpen = false
-                        setConfirmModalInfo(temp)
+                        dispatch(closeModal())
                     }}>no</button>
                 </div>
             </div>
         </div>
     )
 }
-
-// handleDelete

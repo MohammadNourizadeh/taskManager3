@@ -3,6 +3,7 @@ import { faStar as solidStar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useDispatch, useSelector } from 'react-redux'
 import { useMyContext } from '../../contexts/mainContext/useMyContext'
+import { openModal, setList, setTargetItemId } from '../../store/slices/confirmModal'
 import { handleDone, handleImportant } from '../../store/slices/tasks'
 import type { RootState } from '../../store/store'
 import type { TaskBoxType } from '../../types/types'
@@ -18,9 +19,15 @@ export default function TaskBox({ task, index }: TaskBoxType) {
     const dispatch = useDispatch()
 
     // context
-    const { setConfirmModalInfo, pageName } = useMyContext()
+    const { pageName } = useMyContext()
 
     // func
+    const handleRemoveTask = () => {
+        dispatch(openModal())
+        dispatch(setList(tasks))
+        dispatch(setTargetItemId(task.id))
+    }
+
     const handleUpdateTaskState = (state: string) => {
         const body = {
             id: task.id,
@@ -70,9 +77,7 @@ export default function TaskBox({ task, index }: TaskBoxType) {
                     <FontAwesomeIcon icon={task.isImportant ? solidStar : regStar} />
                 </button>
                 {pageName === 'my day' &&
-                    <button className={styles.trashBtn} onClick={() => {
-                        setConfirmModalInfo({ isModalOpen: true, array: tasks, arrayItem: task })
-                    }}>
+                    <button className={styles.trashBtn} onClick={handleRemoveTask}>
                         <FontAwesomeIcon icon={faTrashCan} />
                     </button>}
             </div>
