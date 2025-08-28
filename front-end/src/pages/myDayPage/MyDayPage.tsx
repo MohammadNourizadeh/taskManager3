@@ -5,7 +5,6 @@ import TaskBox from '../../components/taskBox/TaskBox'
 import useToggle from '../../customHooks/useToggle/useToggle'
 import { setAll } from '../../store/slices/tasks'
 import type { RootState } from '../../store/store'
-import type { TasksType } from '../../types/types'
 import AddNewTaskForm from './components/AddNewTaskForm/AddNewTaskForm'
 import AddNewTaskBtn from './components/addNewTaskBtn/AddNewTaskBtn'
 import styles from './myDayPage.module.scss'
@@ -42,7 +41,7 @@ export default function MyDayPage() {
             <AddNewTaskBtn onOpenForm={(val) => { setIsFormOpen(val) }} />
 
             {/* confirm modal */}
-            {isModalOpen && <ConfirmModal onSetNewListOfDeletedItem={(val: TasksType[]) => { dispatch(setAll(val)) }} />}
+            {isModalOpen && <ConfirmModal onSetNewListOfDeletedItem={(val) => { dispatch(setAll(val)) }} />}
 
             {/* add new task form */}
             {isFormOpen && <AddNewTaskForm onCloseForm={(val) => { setIsFormOpen(val) }} />}

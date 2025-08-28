@@ -5,9 +5,9 @@ import type { ConfirmModalPropsType } from '../../types/types'
 import styles from './ConfirmModal.module.scss'
 
 
-export default function ConfirmModal<T>({ onSetNewListOfDeletedItem }: ConfirmModalPropsType<T>) {
+export default function ConfirmModal({ onSetNewListOfDeletedItem }: ConfirmModalPropsType) {
     // redux
-    const list = useSelector((state: RootState) => state.confirmModal.list) 
+    const list = useSelector((state: RootState) => state.confirmModal.list)
     const targetItemId = useSelector((state: RootState) => state.confirmModal.targetItemId)
     const dispatch = useDispatch()
 

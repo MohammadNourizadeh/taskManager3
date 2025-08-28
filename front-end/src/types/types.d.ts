@@ -115,10 +115,8 @@ type TasksSliceAddPayloadType = {
   isImportant: boolean;
 };
 
-type ConfirmModalPropsType<T> = {
-  onSetNewListOfDeletedItem: (val: T[]) => void;
-  list: T[];
-  targetItemId: number;
+type ConfirmModalPropsType = {
+  onSetNewListOfDeletedItem: (val: TasksType[]) => void;
 };
 
 export {
