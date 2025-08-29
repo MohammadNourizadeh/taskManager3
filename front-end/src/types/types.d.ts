@@ -5,12 +5,6 @@ type MainContextProviderPropsType = {
 type MainContextProviderValueType = {
   pageName: string;
   setPageName: React.Dispatch<React.SetStateAction<string>>;
-  tasks: TasksType[];
-  setTasks: React.Dispatch<React.SetStateAction<TasksType[]>>;
-  confirmModalInfo: ModalValueType<TasksType>;
-  setConfirmModalInfo: React.Dispatch<
-    React.SetStateAction<ModalValueType<TasksType>>
-  >;
 };
 
 type ModalValueType<T> = {
@@ -42,19 +36,19 @@ type AuthPagesPropsType = {
   isSignUp?: boolean;
 };
 
-type signUpFetchBodyContentType = {
+type SignUpFetchBodyContentType = {
   email: string;
   username: string;
   password: string;
   confirmPassword: string;
 };
 
-type logInFetchBodyContentType = {
+type LogInFetchBodyContentType = {
   username: string;
   password: string;
 };
 
-type ErrorType = {
+type AuthenticationErrorType = {
   emailErr: string;
   usernameErr: string;
   passwordErr: string;
@@ -126,9 +120,9 @@ export {
   TasksType,
   RoutesType,
   AuthPagesPropsType,
-  signUpFetchBodyContentType,
-  logInFetchBodyContentType,
-  ErrorType,
+  SignUpFetchBodyContentType,
+  LogInFetchBodyContentType,
+  AuthenticationErrorType,
   InputErrMessageProps,
   ShowPassIconPropsType,
   AuthSwitchLinkProps,

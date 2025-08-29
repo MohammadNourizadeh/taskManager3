@@ -2,7 +2,7 @@ import { useState, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import useToggle from '../../../../customHooks/useToggle/useToggle';
-import type { ErrorType, logInFetchBodyContentType, signUpFetchBodyContentType } from '../../../../types/types';
+import type { AuthenticationErrorType, LogInFetchBodyContentType, SignUpFetchBodyContentType } from '../../../../types/types';
 import styles from './AuthForm.module.scss';
 import InputErrMessage from './components/inputErrMessage/InputErrMessage';
 import ShowPassIcon from './components/showPassIcon/ShowPassIcon';
@@ -22,7 +22,7 @@ export default function AuthForm({ signUp = false }: { signUp?: boolean }) {
     const [usernameInput, setUsernameInput] = useState<string>('')
     const [passwordInput, setPasswordInput] = useState<string>('')
     const [confirmPasswordInput, setConfirmPasswordInput] = useState<string>('')
-    const [errors, setErrors] = useState<ErrorType>({
+    const [errors, setErrors] = useState<AuthenticationErrorType>({
         emailErr: '',
         usernameErr: '',
         passwordErr: '',
@@ -32,7 +32,7 @@ export default function AuthForm({ signUp = false }: { signUp?: boolean }) {
 
 
     // func
-    const handleFetch = (url: string, bodyContent: signUpFetchBodyContentType | logInFetchBodyContentType, navigationUrl: string) => {
+    const handleFetch = (url: string, bodyContent: SignUpFetchBodyContentType | LogInFetchBodyContentType, navigationUrl: string) => {
         fetch(url, {
             method: 'POST',
             headers: {
@@ -51,7 +51,7 @@ export default function AuthForm({ signUp = false }: { signUp?: boolean }) {
             })
     }
 
-    const handleInputErr = (inputName: keyof ErrorType, errMessage: string) => {
+    const handleInputErr = (inputName: keyof AuthenticationErrorType, errMessage: string) => {
         setErrors(prev => ({
             ...prev,
             [inputName]: errMessage
