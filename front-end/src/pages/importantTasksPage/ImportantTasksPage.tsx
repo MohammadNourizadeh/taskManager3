@@ -1,12 +1,10 @@
 import { useEffect } from "react"
 import NotFoundMessage from "../../components/notFoundMessage/NotFoundMessage"
 import TaskBox from "../../components/taskBox/TaskBox"
-import { useMyContext } from "../../contexts/mainContext/useMyContext"
 import type { TasksType } from "../../types/types"
 
 export default function ImportantTasksPage() {
-    // context
-    const { tasks, setTasks } = useMyContext()
+
 
     // side effect
     useEffect(() => {
