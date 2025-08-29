@@ -1,12 +1,3 @@
-type MainContextProviderPropsType = {
-  children: ReactNode;
-};
-
-type MainContextProviderValueType = {
-  pageName: string;
-  setPageName: React.Dispatch<React.SetStateAction<string>>;
-};
-
 type ModalValueType<T> = {
   isModalOpen: boolean;
   array: T[];
@@ -113,9 +104,11 @@ type ConfirmModalPropsType = {
   onSetNewListOfDeletedItem: (val: TasksType[]) => void;
 };
 
+type PageNameSliceInitialStateType = {
+  pageName: string;
+};
+
 export {
-  MainContextProviderPropsType,
-  MainContextProviderValueType,
   ModalValueType,
   TasksType,
   RoutesType,
@@ -133,4 +126,5 @@ export {
   TasksSliceInitialStateType,
   TasksSliceAddPayloadType,
   ConfirmModalPropsType,
+  PageNameSliceInitialStateType
 };

@@ -2,7 +2,6 @@ import { faTrashCan, faStar as regStar } from '@fortawesome/free-regular-svg-ico
 import { faStar as solidStar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useDispatch, useSelector } from 'react-redux'
-import { useMyContext } from '../../contexts/mainContext/useMyContext'
 import { openModal, setList, setTargetItemId } from '../../store/slices/confirmModal'
 import { handleDone, handleImportant } from '../../store/slices/tasks'
 import type { RootState } from '../../store/store'
@@ -11,11 +10,9 @@ import styles from './TaskBox.module.scss'
 
 export default function TaskBox({ task, index }: TaskBoxType) {
     // redux
+    const pageName = useSelector((state: RootState) => state.pageName.pageName)
     const tasks = useSelector((state: RootState) => state.tasks.tasks)
     const dispatch = useDispatch()
-
-    // context
-    const { pageName } = useMyContext()
 
     // func
     const handleRemoveTask = () => {
