@@ -3,6 +3,7 @@
 // CORS headers
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+header("Access-Control-Allow-Credentials: true");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
 session_start();
@@ -11,21 +12,19 @@ $fetchedData = file_get_contents("php://input");
 $data = json_decode($fetchedData, true);
 
 if (isset($data)) {
-    $db = mysqli_connect('localhost', 'root', '', 'task_manager');
     $username = $data['username'];
     $password = $data['password'];
 
-    $userFromDb = mysqli_query($db, "
-        SELECT * FROM `users`
-        WHERE `username` = '$username' AND `password` = '$password'
-    ");
+    $db = mysqli_connect('localhost', 'root', '', 'task_manager');
+    $userFromDb = mysqli_prepare($db, "SELECT * FROM `users` WHERE `username` = ? AND `password` = ?");
+    mysqli_stmt_bind_param($userFromDb, 'ss', $username, $password);
+    mysqli_stmt_execute($userFromDb);
+    $userFromDb = mysqli_stmt_get_result($userFromDb );
 
     if ($userInfo = mysqli_fetch_assoc($userFromDb)) {
         $_SESSION['userId'] = $userInfo['id'];
-        $dataSend = ['error' => false, 'msg' => 'welcome'];
-        echo json_encode($dataSend);
+        echo json_encode(['error' => false, 'msg' => 'welcome']);
     } else {
-        $dataSend = ['error' => true, 'msg' => 'user not found'];
-        echo json_encode($dataSend);
+        echo json_encode(['error' => true, 'msg' => 'user not found']);
     }
 }
