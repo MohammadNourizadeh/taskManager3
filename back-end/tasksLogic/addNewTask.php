@@ -7,6 +7,11 @@ header("Access-Control-Allow-Headers: Content-Type");
 
 session_start();
 
+if (!isset($_SESSION['userId'])) {
+    echo json_encode(['err' => true, 'msg' => 'please log in']);
+    exit;
+}
+
 $fetchedData = file_get_contents("php://input");
 $data = json_decode($fetchedData, true);
 

@@ -2,11 +2,15 @@ import { faMultiply } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState, type FormEvent } from 'react'
 import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { add } from '../../../../store/slices/tasks'
 import styles from './AddNewTaskForm.module.scss'
 
 export default function AddNewTaskForm({ onCloseForm }: { onCloseForm: (val: boolean) => void }) {
+    // var
+    const navigate = useNavigate()
+
     // redux
     const dispatch = useDispatch()
 
@@ -33,8 +37,13 @@ export default function AddNewTaskForm({ onCloseForm }: { onCloseForm: (val: boo
         })
             .then(res => res.json())
             .then(data => {
-                dispatch(add({ id: data.newTaskId, taskName, taskDate, isImportant: isTaskImportant }))
-                toast.success(data.msg)
+                if (data.err) {
+                    navigate('/auth/login')
+                    toast.error(data.msg)
+                } else {
+                    dispatch(add({ id: data.newTaskId, taskName, taskDate, isImportant: isTaskImportant }))
+                    toast.success(data.msg)
+                }
             })
 
         onCloseForm(false)

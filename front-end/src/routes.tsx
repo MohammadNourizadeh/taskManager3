@@ -14,7 +14,7 @@ import type { RoutesType } from "./types/types";
 export const routes: RoutesType[] = [
     {
         path: '/',
-        element: <Navigate to={'/auth/signup'} />
+        element: <Navigate to={'/auth/login'} />
     },
     {
         path: '/admin',
