@@ -32,13 +32,28 @@ export default function AuthForm({ signUp = false }: { signUp?: boolean }) {
 
 
     // func
-    const handleFetch = (url: string, bodyContent: SignUpFetchBodyContentType | LogInFetchBodyContentType, navigationUrl: string) => {
+    const handleFetch = (isSignUp: boolean = false) => {
+        let url: string;
+        let bodyContent: SignUpFetchBodyContentType | LogInFetchBodyContentType;
+        let navigationUrl: string;
+
+        if (isSignUp) {
+            url = 'http://localhost:8080/php/task_manager/signup.php';
+            bodyContent = { email: emailInput, username: usernameInput, password: passwordInput };
+            navigationUrl = '/auth/login';
+        } else {
+            url = 'http://localhost:8080/php/task_manager/login.php';
+            bodyContent = { username: usernameInput, password: passwordInput };
+            navigationUrl = '/admin/my_day';
+        }
+
         fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(bodyContent)
+            body: JSON.stringify(bodyContent),
+            credentials: !isSignUp ? "include" : "omit"
         })
             .then(res => res.json())
             .then(data => {
@@ -90,11 +105,11 @@ export default function AuthForm({ signUp = false }: { signUp?: boolean }) {
 
         if (signUp) {
             if (confirmPasswordInput === passwordInput && emailInput !== '' && usernameInput !== '' && passwordInput !== '' && confirmPasswordInput !== '') {
-                handleFetch('http://localhost:8080/php/task_manager/signup.php', { email: emailInput, username: usernameInput, password: passwordInput }, '/auth/login')
+                handleFetch(signUp)
             }
         } else {
             if (usernameInput !== '' && passwordInput !== '') {
-                handleFetch('http://localhost:8080/php/task_manager/login.php', { username: usernameInput, password: passwordInput }, '/admin/my_day')
+                handleFetch()
             }
         }
     }

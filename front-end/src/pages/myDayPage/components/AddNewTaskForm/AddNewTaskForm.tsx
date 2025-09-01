@@ -33,7 +33,8 @@ export default function AddNewTaskForm({ onCloseForm }: { onCloseForm: (val: boo
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(body)
+            body: JSON.stringify(body),
+            credentials: 'include'
         })
             .then(res => res.json())
             .then(data => {
