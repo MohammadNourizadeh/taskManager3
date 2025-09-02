@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import ConfirmModal from '../../components/confirmModal/ConfirmModal'
+import LoadingIcon from '../../components/loadingIcon/LoadingIcon'
 import TaskBox from '../../components/taskBox/TaskBox'
 import useToggle from '../../customHooks/useToggle/useToggle'
 import { setAll } from '../../store/slices/tasks'
@@ -20,6 +21,7 @@ export default function MyDayPage() {
 
     // sideEffect
     useEffect(() => {
+        dispatch(setAll(null))
         fetch('http://localhost:8080/php/task_manager/showTasks.php', {
             method: 'GET',
             credentials: 'include'
@@ -29,9 +31,11 @@ export default function MyDayPage() {
 
     }, [dispatch])
 
+    if (tasks === null) return <LoadingIcon />
+
     return (
         <div className={styles.king}>
-            {tasks?.map((task, index) => (
+            {tasks.map((task, index) => (
                 <TaskBox
                     key={task.id}
                     task={task}

@@ -90,7 +90,7 @@ type WeatherType = {
 };
 
 type TasksSliceInitialStateType = {
-  tasks: TasksType[];
+  tasks: TasksType[] | null;
 };
 
 type TasksSliceAddPayloadType = {

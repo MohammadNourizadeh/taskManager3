@@ -6,7 +6,7 @@ import type {
 } from "../../types/types";
 
 const initialState: TasksSliceInitialStateType = {
-  tasks: [],
+  tasks: null,
 };
 
 const tasksSlice = createSlice({
@@ -14,10 +14,13 @@ const tasksSlice = createSlice({
   initialState,
 
   reducers: {
-    setAll: (state, action: PayloadAction<TasksType[]>) => {
+    setAll: (state, action: PayloadAction<TasksType[] | null>) => {
       state.tasks = action.payload;
     },
     add: (state, action: PayloadAction<TasksSliceAddPayloadType>) => {
+      if (state.tasks === null) {
+        state.tasks = [];
+      }
       state.tasks.push({
         id: action.payload.id,
         name: action.payload.taskName,
@@ -27,15 +30,15 @@ const tasksSlice = createSlice({
       });
     },
     remove: (state, action: PayloadAction<number>) => {
-      state.tasks = state.tasks.filter((task) => task.id !== action.payload);
+      if (state.tasks !== null) state.tasks = state.tasks.filter((task) => task.id !== action.payload);
     },
     handleImportant: (state, action: PayloadAction<number>) => {
       const index = action.payload;
-      state.tasks[index].isImportant = !state.tasks[index].isImportant;
+      if (state.tasks !== null) state.tasks[index].isImportant = !state.tasks[index].isImportant;
     },
     handleDone: (state, action: PayloadAction<number>) => {
       const index = action.payload;
-      state.tasks[index].isDone = !state.tasks[index].isDone;
+      if (state.tasks !== null) state.tasks[index].isDone = !state.tasks[index].isDone;
     },
   },
 });
