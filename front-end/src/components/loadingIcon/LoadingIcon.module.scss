@@ -9,10 +9,11 @@
     border: 2px solid index.$darkMode_text_color;
     border-right: 0px;
     border-left: 0px;
+    border-top: 0px;
     border-radius: 50%;
     height: 100%;
-    opacity: 1;
-    animation: rotateAnimation 2s infinite linear;
+    animation: rotateAnimation 2s infinite linear,
+      opacityAnimation 1s infinite linear alternate;
   }
 
   .loadingContainer {
@@ -30,7 +31,10 @@
 }
 
 @keyframes opacityAnimation {
-  100% {
+  from {
+    opacity: 1;
+  }
+  to {
     opacity: 0.5;
   }
 }

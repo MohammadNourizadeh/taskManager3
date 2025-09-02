@@ -31,17 +31,20 @@ export default function MyDayPage() {
 
     }, [dispatch])
 
-    if (tasks === null) return <LoadingIcon />
 
     return (
         <div className={styles.king}>
-            {tasks.map((task, index) => (
-                <TaskBox
-                    key={task.id}
-                    task={task}
-                    index={index}
-                />
-            ))}
+            {tasks === null ?
+                <LoadingIcon />
+                :
+                tasks.map((task, index) => (
+                    <TaskBox
+                        key={task.id}
+                        task={task}
+                        index={index}
+                    />
+                ))
+            }
             <AddNewTaskBtn onOpenForm={(val) => { setIsFormOpen(val) }} />
 
             {/* confirm modal */}
