@@ -10,10 +10,11 @@ export default function SidebarItems() {
     // redux
     const pageName = useSelector((state: RootState) => state.pageName.pageName)
     const dispatch = useDispatch()
+    const setting = useSelector((state: RootState) => state.setting.setting)
 
 
     return (
-        <ul className={styles.king}>
+        <ul className={styles.king} id={setting.mode === 'dark' ? styles.darkMode : styles.lightMode}>
             {sidebarItemsInfo.map((sidebarItem, index) => (
                 sidebarItem.disable ?
                     <li key={index} className={styles.disableItem}>

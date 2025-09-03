@@ -23,8 +23,33 @@
 
   li {
     a {
-      color: index.$darkMode_text_color;
       text-decoration: none;
+    }
+  }
+}
+
+// light mode
+#lightMode {
+  li {
+    a {
+      color: index.$lightMode_text_color;
+
+      &:hover {
+        background-color: index.$lightMode_border_color;
+      }
+    }
+
+    #chosenItem {
+      background-color: index.$lightMode_border_color;
+    }
+  }
+}
+
+// dark mode
+#darkMode {
+  li {
+    a {
+      color: index.$darkMode_text_color;
 
       &:hover {
         background-color: index.$darkMode_border_color;
