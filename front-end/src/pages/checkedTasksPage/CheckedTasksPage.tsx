@@ -1,9 +1,11 @@
 import { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import LoadingIcon from "../../components/loadingIcon/LoadingIcon"
 import NotFoundMessage from "../../components/notFoundMessage/NotFoundMessage"
 import TaskBox from "../../components/taskBox/TaskBox"
-import type { TasksType } from "../../types/types"
-import { useDispatch, useSelector } from "react-redux"
 import type { RootState } from "../../store/store"
+import type { TasksType } from "../../types/types"
+import styles from './CheckedTasksPage.module.scss'
 
 export default function CheckedTasksPage() {
     // redux 
@@ -19,6 +21,12 @@ export default function CheckedTasksPage() {
             .then(res => res.json())
             .then(data => dispatch(data.filter((item: TasksType) => item.isDone === true)))
     }, [dispatch])
+
+    if (tasks === null) return (
+        <div className={styles.loadingIconContainer}>
+            <LoadingIcon />
+        </div>
+    )
 
     return (
         tasks?.length !== 0 ?

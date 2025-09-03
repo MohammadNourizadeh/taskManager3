@@ -35,7 +35,9 @@ export default function MyDayPage() {
     return (
         <div className={styles.king}>
             {tasks === null ?
-                <LoadingIcon />
+                <div className={styles.loadingIconContainer}>
+                    <LoadingIcon />
+                </div>
                 :
                 tasks.map((task, index) => (
                     <TaskBox

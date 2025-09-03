@@ -1,11 +1,12 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import LoadingIcon from "../../components/loadingIcon/LoadingIcon"
 import NotFoundMessage from "../../components/notFoundMessage/NotFoundMessage"
 import TaskBox from "../../components/taskBox/TaskBox"
 import { setAll } from "../../store/slices/tasks"
 import type { RootState } from "../../store/store"
 import type { TasksType } from "../../types/types"
-import LoadingIcon from "../../components/loadingIcon/LoadingIcon"
+import styles from './ImportantTasksPage.module.scss'
 
 export default function ImportantTasksPage() {
     // redux
@@ -25,8 +26,12 @@ export default function ImportantTasksPage() {
                 dispatch(setAll(importantTasks))
             })
     }, [dispatch])
- 
-    if (tasks === null) return <LoadingIcon />
+
+    if (tasks === null) return (
+        <div className={styles.loadingIconContainer}>
+            <LoadingIcon />
+        </div>
+    )
 
     return (
         tasks?.length !== 0 ?
