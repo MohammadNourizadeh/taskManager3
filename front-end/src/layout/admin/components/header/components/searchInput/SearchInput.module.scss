@@ -7,9 +7,8 @@
     padding: 18px 10px;
     width: 250px;
     border-radius: 10px;
-    border: 2px solid index.$darkMode_border_color;
-    background-color: index.$darkMode_part_bg_color;
-    color: index.$darkMode_text_color;
+    border-width: 1px;
+    border-style: solid;
 
     &:focus {
       outline: 2px solid index.$search_input_focus_color;
@@ -30,5 +29,23 @@
     &:active {
       opacity: 0.6;
     }
+  }
+}
+
+// light mode
+#lightMode {
+  input {
+    border-color: index.$lightMode_border_color;
+    background-color: index.$lightMode_part_bg_color;
+    color: index.$lightMode_text_color;
+  }
+}
+
+// dark mode
+#darkMode {
+  input {
+    border-color: index.$darkMode_border_color;
+    background-color: index.$darkMode_part_bg_color;
+    color: index.$darkMode_text_color;
   }
 }
