@@ -1,10 +1,20 @@
 @use "../../assets/styles/index.scss";
 
 .king {
-  background-color: index.$darkMode_main_bg_color;
-  color: index.$darkMode_text_color;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+// light mode
+#lightMode {
+  background-color: index.$lightMode_main_bg_color;
+  color: index.$lightMode_text_color;
+}
+
+// dark mode
+#darkMode {
+  background-color: index.$darkMode_main_bg_color;
+  color: index.$darkMode_text_color;
 }
