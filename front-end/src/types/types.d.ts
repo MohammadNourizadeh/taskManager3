@@ -108,6 +108,14 @@ type PageNameSliceInitialStateType = {
   pageName: string;
 };
 
+type SettingType = {
+  mode: string;
+};
+
+type SettingSliceInitialStateType = {
+  setting: SettingType;
+};
+
 export {
   ModalValueType,
   TasksType,
@@ -126,5 +134,7 @@ export {
   TasksSliceInitialStateType,
   TasksSliceAddPayloadType,
   ConfirmModalPropsType,
-  PageNameSliceInitialStateType
+  PageNameSliceInitialStateType,
+  SettingType,
+  SettingSliceInitialStateType,
 };

@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import confirmModalSlice from "./slices/confirmModal";
 import pageNameSlice from "./slices/pageName";
+import settingSlice from "./slices/setting";
 import tasksSlice from "./slices/tasks";
 
 const store = configureStore({
@@ -8,6 +9,7 @@ const store = configureStore({
     tasks: tasksSlice,
     confirmModal: confirmModalSlice,
     pageName: pageNameSlice,
+    setting: settingSlice,
   },
 });
 
