@@ -1,0 +1,41 @@
+@use "../../../../../../../../assets/styles/index.scss";
+
+.king {
+  a {
+    padding: 22px 10px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    text-decoration: none;
+  }
+}
+
+// light mode
+#lightMode {
+  a {
+    color: index.$lightMode_text_color;
+
+    &:hover {
+      background-color: index.$lightMode_border_color;
+    }
+  }
+
+  #chosenItem {
+    background-color: index.$lightMode_border_color;
+  }
+}
+
+// dark mode
+#darkMode {
+  a {
+    color: index.$darkMode_text_color;
+
+    &:hover {
+      background-color: index.$darkMode_border_color;
+    }
+  }
+
+  #chosenItem {
+    background-color: index.$darkMode_border_color;
+  }
+}

@@ -126,6 +126,13 @@ type DisableItemPropsType = {
   itemName: string;
 };
 
+type LinkItemPropsType = {
+  linkAddress: string;
+  iconColor: string | undefined;
+  icon: IconDefinition;
+  itemName: string;
+};
+
 export {
   ModalValueType,
   TasksType,
@@ -148,4 +155,5 @@ export {
   SettingType,
   SettingSliceInitialStateType,
   DisableItemPropsType,
+  LinkItemPropsType,
 };
