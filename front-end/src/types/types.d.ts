@@ -79,6 +79,10 @@ type sidebarItemsInfoType = {
   name: string;
   linkAddress?: string;
   disable?: boolean;
+  children?: {
+    childName: string;
+    childType: string;
+  }[];
 };
 
 type WeatherType = {
@@ -116,6 +120,12 @@ type SettingSliceInitialStateType = {
   setting: SettingType;
 };
 
+type DisableItemPropsType = {
+  iconColor: string | undefined;
+  icon: IconDefinition;
+  itemName: string;
+};
+
 export {
   ModalValueType,
   TasksType,
@@ -137,4 +147,5 @@ export {
   PageNameSliceInitialStateType,
   SettingType,
   SettingSliceInitialStateType,
+  DisableItemPropsType,
 };

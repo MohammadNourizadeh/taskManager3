@@ -42,6 +42,11 @@ export const sidebarItemsInfo: sidebarItemsInfoType[] = [
         icon: faCog,
         name: 'setting',
         linkAddress: '',
-        disable: true
+        children: [
+            {
+                childName: 'theme',
+                childType: "select"
+            }
+        ]
     },
 ]
