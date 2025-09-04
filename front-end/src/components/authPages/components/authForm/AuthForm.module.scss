@@ -1,15 +1,14 @@
 @use "../../../../assets/styles/index.scss";
 
 .authForm {
-  border: 1px solid index.$darkMode_border_color;
-  background-color: index.$darkMode_part_bg_color;
+  border-width: 1px;
+  border-style: solid;
   padding: 20px;
   border-radius: 5px;
   width: 320px;
 
   input,
   button {
-    color: index.$darkMode_text_color;
     border-radius: 8px;
   }
 
@@ -22,8 +21,8 @@
     }
 
     input {
-      background-color: index.$darkMode_main_bg_color;
-      border: 1px solid index.$darkMode_border_color;
+      border-width: 1px;
+      border-style: solid;
       width: 100%;
       padding: 8px;
       margin-bottom: 7px;
@@ -79,6 +78,42 @@
       &:active {
         background-color: rgba(35, 134, 55, 0.672);
       }
+    }
+  }
+}
+
+// light mode
+#lightMode {
+  border-color: index.$lightMode_border_color;
+  background-color: index.$lightMode_part_bg_color;
+
+  input,
+  button {
+    color: index.$lightMode_text_color;
+  }
+
+  .inputsContainer {
+    input {
+      background-color: index.$lightMode_main_bg_color;
+      border-color: index.$lightMode_border_color;
+    }
+  }
+}
+
+// dark mode
+#darkMode {
+  border-color: index.$darkMode_border_color;
+  background-color: index.$darkMode_part_bg_color;
+
+  input,
+  button {
+    color: index.$darkMode_text_color;
+  }
+
+  .inputsContainer {
+    input {
+      background-color: index.$darkMode_main_bg_color;
+      border-color: index.$darkMode_border_color;
     }
   }
 }

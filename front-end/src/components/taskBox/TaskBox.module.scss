@@ -54,7 +54,7 @@
 
 // light mode
 #lightMode {
-  border: 3px solid index.$lightMode_border_color;
+  border-color: index.$lightMode_border_color;
   background-color: rgba(163, 169, 177, 0.333);
 
   .taskInfoContainer {
@@ -96,7 +96,7 @@
 // dark mode
 #darkMode {
   background-color: rgba(48, 54, 61, 0.333);
-  border: 3px solid index.$darkMode_border_color;
+  border-color: index.$darkMode_border_color;
 
   .taskInfoContainer {
     .taskDate {

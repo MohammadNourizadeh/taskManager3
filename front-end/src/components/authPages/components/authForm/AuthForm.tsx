@@ -1,7 +1,9 @@
 import { useState, type FormEvent } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import useToggle from '../../../../customHooks/useToggle/useToggle';
+import type { RootState } from '../../../../store/store';
 import type { AuthenticationErrorType, LogInFetchBodyContentType, SignUpFetchBodyContentType } from '../../../../types/types';
 import styles from './AuthForm.module.scss';
 import InputErrMessage from './components/inputErrMessage/InputErrMessage';
@@ -12,6 +14,9 @@ import ShowPassIcon from './components/showPassIcon/ShowPassIcon';
 export default function AuthForm({ signUp = false }: { signUp?: boolean }) {
     // useNavigate
     const navigate = useNavigate()
+
+    // redux
+    const setting = useSelector((state: RootState) => state.setting.setting)
 
     // custom hook
     const [showPass, setShowPass] = useToggle();
@@ -115,7 +120,7 @@ export default function AuthForm({ signUp = false }: { signUp?: boolean }) {
     }
 
     return (
-        <form className={styles.authForm} onSubmit={handleFormSubmit}>
+        <form className={styles.authForm} onSubmit={handleFormSubmit} id={setting.mode === 'dark' ? styles.darkMode : styles.lightMode}>
             {
                 signUp &&
                 <div className={styles.inputsContainer}>

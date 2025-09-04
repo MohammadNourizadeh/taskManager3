@@ -8,6 +8,7 @@ import styles from './ConfirmModal.module.scss'
 export default function ConfirmModal({ onSetNewListOfDeletedItem }: ConfirmModalPropsType) {
     // redux
     const list = useSelector((state: RootState) => state.confirmModal.list)
+    const setting = useSelector((state: RootState) => state.setting.setting)
     const targetItemId = useSelector((state: RootState) => state.confirmModal.targetItemId)
     const dispatch = useDispatch()
 
@@ -33,7 +34,7 @@ export default function ConfirmModal({ onSetNewListOfDeletedItem }: ConfirmModal
     }
 
     return (
-        <div className={styles.king}>
+        <div className={styles.king} id={setting.mode === 'dark' ? styles.darkMode : styles.lightMode}>
             <div className={styles.modal}>
                 <div className={styles.modalText}>
                     Are you sure you want to delete the task ( {targetItem.name} )?
