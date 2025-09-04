@@ -1,9 +1,9 @@
 import { faCalendarAlt, faCloud, faCog, faNoteSticky, faStar, faSun, faTasks } from "@fortawesome/free-solid-svg-icons";
-import type { sidebarItemsInfoType } from "../../../../../../types/types";
+import type { sidebarItemInfoType } from "../../../../../../types/types";
 
 
 
-export const sidebarItemsInfo: sidebarItemsInfoType[] = [
+export const sidebarItemsInfo: sidebarItemInfoType[] = [
     {
         icon: faSun,
         name: 'my day',

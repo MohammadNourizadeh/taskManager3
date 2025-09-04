@@ -1,12 +1,18 @@
 @use "../../../../../../../../assets/styles/index.scss";
 
-.king {
-  a {
+li {
+  margin: 1px 0px;
+  a,
+  .disableItemIconAndNameContainer {
     padding: 22px 10px;
     display: flex;
     gap: 20px;
     align-items: center;
     text-decoration: none;
+  }
+
+  .disableItemIconAndNameContainer {
+    opacity: 0.4;
   }
 }
 

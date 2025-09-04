@@ -73,7 +73,7 @@ type TaskBoxType = {
   index: number;
 };
 
-type sidebarItemsInfoType = {
+type sidebarItemInfoType = {
   icon: IconDefinition;
   iconColor?: string;
   name: string;
@@ -120,19 +120,6 @@ type SettingSliceInitialStateType = {
   setting: SettingType;
 };
 
-type DisableItemPropsType = {
-  iconColor: string | undefined;
-  icon: IconDefinition;
-  itemName: string;
-};
-
-type LinkItemPropsType = {
-  linkAddress: string;
-  iconColor: string | undefined;
-  icon: IconDefinition;
-  itemName: string;
-};
-
 export {
   ModalValueType,
   TasksType,
@@ -146,7 +133,7 @@ export {
   AuthSwitchLinkProps,
   AuthTitlePropsType,
   TaskBoxType,
-  sidebarItemsInfoType,
+  sidebarItemInfoType,
   WeatherType,
   TasksSliceInitialStateType,
   TasksSliceAddPayloadType,
@@ -154,6 +141,4 @@ export {
   PageNameSliceInitialStateType,
   SettingType,
   SettingSliceInitialStateType,
-  DisableItemPropsType,
-  LinkItemPropsType,
 };
