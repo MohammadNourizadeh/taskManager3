@@ -13,27 +13,32 @@ export default function SidebarItem({ disable, children, linkAddress, name, icon
     const dispatch = useDispatch()
 
     return (
-        <>
-            {/* .................... disable item .................. */}
-            {disable &&
-                <li className={styles.disableItem}>
-                    <div className={styles.disableItemIconAndNameContainer}>
-                        <span style={{ color: iconColor ?? 'rgb(51, 139, 246)' }}>
-                            <FontAwesomeIcon icon={icon} />
-                        </span>
-                        {name}
-                    </div>
-                </li>}
-
-            {!disable && !children &&
-                <li className={styles.linkItem} id={setting.mode === 'dark' ? styles.darkMode : styles.lightMode}>
+        disable ?
+            <li>
+                <div className={styles.disableItem}>
+                    <span style={{ color: iconColor ?? 'rgb(51, 139, 246)' }}>
+                        <FontAwesomeIcon icon={icon} />
+                    </span>
+                    {name}
+                </div>
+            </li> :
+            !children ?
+                <li id={setting.mode === 'dark' ? styles.darkMode : styles.lightMode}>
                     <Link to={linkAddress ?? '#'} onClick={() => { dispatch(changePageName(name)) }} id={pageName === name ? styles.chosenItem : ''}>
                         <span style={{ color: iconColor ?? 'rgb(51, 139, 246)' }}>
                             <FontAwesomeIcon icon={icon} />
                         </span>
                         {name}
                     </Link>
-                </li>}
-        </>
+                </li>
+                :
+                <li>
+                    <div className={styles.itemWithChildren}>
+                        <span style={{ color: iconColor ?? 'rgb(51, 139, 246)' }}>
+                            <FontAwesomeIcon icon={icon} />
+                        </span>
+                        {name}
+                    </div>
+                </li>
     )
 }

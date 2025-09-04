@@ -6,7 +6,7 @@ import type {
 
 const initialState: SettingSliceInitialStateType = {
   setting: {
-    mode: "light", // light or dark mode
+    mode: "dark", // light or dark mode
   },
 };
 
