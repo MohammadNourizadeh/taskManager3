@@ -12,6 +12,7 @@ export default function TaskBox({ task, index }: TaskBoxType) {
     // redux
     const pageName = useSelector((state: RootState) => state.pageName.pageName)
     const tasks = useSelector((state: RootState) => state.tasks.tasks)
+    const setting = useSelector((state: RootState) => state.setting.setting)
     const dispatch = useDispatch()
 
     // func
@@ -52,7 +53,7 @@ export default function TaskBox({ task, index }: TaskBoxType) {
     }
 
     return (
-        <div className={styles.king}>
+        <div className={styles.king} id={setting.mode === 'dark' ? styles.darkMode : styles.lightMode}>
             <div className={styles.checkboxInputContainer}>
                 <input type="checkbox" checked={task.isDone ? true : false} onChange={() => { handleUpdateTaskState('isDone') }} />
             </div>

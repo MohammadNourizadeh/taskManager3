@@ -1,9 +1,9 @@
 @use "../../assets/styles/index.scss";
 
 .king {
-  background-color: #30363d55;
   width: 100%;
-  border: 3px solid index.$darkMode_border_color;
+  border-width: 3px;
+  border-style: solid;
   border-radius: 10px;
   padding: 23px;
   border-right: 0px;
@@ -39,17 +39,76 @@
       padding: 8px 15px;
       border-width: 0px 3px 3px 3px;
       border-style: solid;
-      border-color: index.$darkMode_border_color;
       border-end-start-radius: 10px;
       border-end-end-radius: 10px;
       background: none;
-      color: index.$darkMode_text_color;
       transition: 0.3s ease-in-out;
       cursor: pointer;
 
       &:hover {
         padding: 13px 15px;
       }
+    }
+  }
+}
+
+// light mode
+#lightMode {
+  border: 3px solid index.$lightMode_border_color;
+  background-color: rgba(163, 169, 177, 0.333);
+
+  .taskInfoContainer {
+    .taskDate {
+      color: rgba(0, 0, 0, 0.482);
+    }
+  }
+
+  .starAndBasketBtnContainer {
+    .trashBtn,
+    .starBtn {
+      border-color: index.$lightMode_border_color;
+      color: index.$lightMode_text_color;
+    }
+
+    .starBtn {
+      &:hover {
+        color: index.$blue_color;
+        border-color: index.$blue_color;
+      }
+    }
+
+    #turnedOnStar {
+      color: index.$blue_color;
+      padding: 18px 15px;
+      border-color: index.$blue_color;
+      background-color: rgba(51, 139, 246, 0.107);
+    }
+
+    .trashBtn {
+      &:hover {
+        color: index.$red_error_color;
+        border-color: index.$red_error_color;
+      }
+    }
+  }
+}
+
+// dark mode
+#darkMode {
+  background-color: rgba(48, 54, 61, 0.333);
+  border: 3px solid index.$darkMode_border_color;
+
+  .taskInfoContainer {
+    .taskDate {
+      color: rgba(255, 255, 255, 0.482);
+    }
+  }
+
+  .starAndBasketBtnContainer {
+    .trashBtn,
+    .starBtn {
+      border-color: index.$darkMode_border_color;
+      color: index.$darkMode_text_color;
     }
 
     .starBtn {

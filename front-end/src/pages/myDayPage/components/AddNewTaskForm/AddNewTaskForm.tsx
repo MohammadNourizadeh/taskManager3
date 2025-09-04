@@ -1,10 +1,11 @@
 import { faMultiply } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState, type FormEvent } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { add } from '../../../../store/slices/tasks'
+import type { RootState } from '../../../../store/store'
 import styles from './AddNewTaskForm.module.scss'
 
 export default function AddNewTaskForm({ onCloseForm }: { onCloseForm: (val: boolean) => void }) {
@@ -12,6 +13,7 @@ export default function AddNewTaskForm({ onCloseForm }: { onCloseForm: (val: boo
     const navigate = useNavigate()
 
     // redux
+    const setting = useSelector((state: RootState) => state.setting.setting)
     const dispatch = useDispatch()
 
     // state
@@ -51,7 +53,7 @@ export default function AddNewTaskForm({ onCloseForm }: { onCloseForm: (val: boo
     }
 
     return (
-        <div className={styles.king}>
+        <div className={styles.king} id={setting.mode === 'dark' ? styles.darkMode : styles.lightMode}>
             <form className={styles.AddNewTaskForm} onSubmit={handleAdd}>
                 <div className={styles.inputsAndSelectContainer}>
                     <label htmlFor="taskName" className={styles.inputsLabel}>Enter the task :</label>
