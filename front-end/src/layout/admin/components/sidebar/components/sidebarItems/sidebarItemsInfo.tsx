@@ -44,8 +44,13 @@ export const sidebarItemsInfo: sidebarItemInfoType[] = [
         linkAddress: '',
         children: [
             {
-                childName: 'theme',
-                childType: "select"
+                name: 'theme',
+                selectOp: [
+                    {
+                        value: 'dark',
+                        name: 'dark'
+                    }
+                ]
             }
         ]
     },

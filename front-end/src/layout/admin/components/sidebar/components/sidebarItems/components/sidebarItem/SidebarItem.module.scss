@@ -1,7 +1,7 @@
 @use "../../../../../../../../assets/styles/index.scss";
 
 li {
-  margin: 1px 0px;
+  margin-top: 1px;
   a,
   .disableItem,
   .itemWithChildren {
@@ -12,8 +12,25 @@ li {
     text-decoration: none;
   }
 
+  .itemWithChildren {
+    cursor: pointer;
+  }
+
   .disableItem {
     opacity: 0.4;
+  }
+
+  .dropDown {
+    ul {
+      list-style: none;
+
+      .childItem {
+        display: flex;
+        padding: 22px 10px;
+        justify-content: space-between;
+        margin-top: 0px;
+      }
+    }
   }
 }
 
@@ -27,6 +44,10 @@ li {
     &:hover {
       background-color: index.$lightMode_border_color;
     }
+  }
+
+  .dropDown {
+    background-color: index.$lightMode_border_color;
   }
 
   #chosenItem {
@@ -44,6 +65,10 @@ li {
     &:hover {
       background-color: index.$darkMode_border_color;
     }
+  }
+
+  .dropDown {
+    background-color: index.$darkMode_border_color;
   }
 
   #chosenItem {

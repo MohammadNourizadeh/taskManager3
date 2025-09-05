@@ -80,8 +80,12 @@ type sidebarItemInfoType = {
   linkAddress?: string;
   disable?: boolean;
   children?: {
-    childName: string;
-    childType: string;
+    name: string;
+    inputType?: string;
+    selectOp?: {
+      value: string;
+      name: string;
+    }[];
   }[];
 };
 
