@@ -53,7 +53,7 @@ export default function TaskBox({ task, index }: TaskBoxType) {
     }
 
     return (
-        <div className={styles.king} id={setting.mode === 'dark' ? styles.darkMode : styles.lightMode}>
+        <div className={styles.king} id={setting.theme === 'dark' ? styles.darkMode : styles.lightMode}>
             <div className={styles.checkboxInputContainer}>
                 <input type="checkbox" checked={task.isDone ? true : false} onChange={() => { handleUpdateTaskState('isDone') }} />
             </div>

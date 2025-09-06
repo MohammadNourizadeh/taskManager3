@@ -1,12 +1,9 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import type {
-  SettingSliceInitialStateType,
-  SettingType,
-} from "../../types/types";
+import type { SettingSliceInitialStateType } from "../../types/types";
 
 const initialState: SettingSliceInitialStateType = {
   setting: {
-    mode: "light", // light or dark mode
+    theme: "dark", // light or dark mode
   },
 };
 
@@ -15,8 +12,14 @@ const settingSlice = createSlice({
   initialState,
 
   reducers: {
-    setSetting: (state, action: PayloadAction<SettingType>) => {
-      state.setting = action.payload;
+    setSetting: (
+      state,
+      action: PayloadAction<{
+        settingItem: keyof typeof state.setting;
+        newSettingValue: string;
+      }>
+    ) => {
+      state.setting[action.payload.settingItem] = action.payload.newSettingValue;
     },
   },
 });

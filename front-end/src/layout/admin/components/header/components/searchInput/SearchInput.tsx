@@ -9,7 +9,7 @@ export default function SearchInput() {
     const setting = useSelector((state: RootState) => state.setting.setting)
 
     return (
-        <div className={styles.inputContainer} id={setting.mode === 'dark' ? styles.darkMode : styles.lightMode}>
+        <div className={styles.inputContainer} id={setting.theme === 'dark' ? styles.darkMode : styles.lightMode}>
             <input type="text" placeholder='search' />
             <div className={styles.searchIcon}>
                 <FontAwesomeIcon icon={faSearch} />

@@ -2,9 +2,9 @@
 
 li {
   margin-top: 1px;
+  
   a,
-  .disableItem,
-  .itemWithChildren {
+  .disableItem {
     padding: 22px 10px;
     display: flex;
     gap: 20px;
@@ -12,63 +12,26 @@ li {
     text-decoration: none;
   }
 
-  .itemWithChildren {
-    cursor: pointer;
-  }
-
   .disableItem {
     opacity: 0.4;
-  }
-
-  .dropDown {
-    ul {
-      list-style: none;
-
-      .childItem {
-        display: flex;
-        padding: 22px 10px;
-        justify-content: space-between;
-        margin-top: 0px;
-      }
-    }
   }
 }
 
 // light mode
 #lightMode {
-  a,
-  .itemWithChildren,
-  .disableItem {
+  a {
     color: index.$lightMode_text_color;
-
-    &:hover {
-      background-color: index.$lightMode_border_color;
-    }
-  }
-
-  .dropDown {
-    background-color: index.$lightMode_border_color;
-  }
-
-  #chosenItem {
-    background-color: index.$lightMode_border_color;
   }
 }
 
 // dark mode
 #darkMode {
-  a,
-  .itemWithChildren,
-  .disableItem {
+  a {
     color: index.$darkMode_text_color;
 
     &:hover {
       background-color: index.$darkMode_border_color;
     }
-  }
-
-  .dropDown {
-    background-color: index.$darkMode_border_color;
   }
 
   #chosenItem {

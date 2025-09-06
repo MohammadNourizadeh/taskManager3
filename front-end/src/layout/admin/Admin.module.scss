@@ -10,6 +10,7 @@ $headerHeight: 35vh;
   .sidebarPart {
     border-right-width: 1px;
     border-right-style: solid;
+    overflow: scroll;
     width: $sidebarWidth;
   }
 

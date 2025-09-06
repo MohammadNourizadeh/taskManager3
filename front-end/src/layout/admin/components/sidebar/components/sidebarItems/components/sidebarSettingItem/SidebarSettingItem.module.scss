@@ -1,0 +1,97 @@
+@use "../../../../../../../../assets/styles/index.scss";
+
+li {
+  .settingItem {
+    padding: 22px 10px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .dropDown {
+    height: 0px;
+    overflow: scroll;
+    transition: height 0.5s ease-in-out;
+
+    &.open {
+      height: 200px;
+    }
+
+    .settingForm {
+      .inputAndLabelContainer {
+        padding: 22px 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        label {
+          span {
+            margin-right: 10px;
+          }
+        }
+
+        select {
+          cursor: pointer;
+          padding: 5px 10px;
+          width: 50%;
+          border: 0px;
+          border-radius: 5px;
+        }
+      }
+    }
+  }
+}
+
+// light mode
+#lightMode {
+  background-color: index.$lightMode_border_color;
+
+  .settingItem {
+    &:hover {
+      background-color: index.$lightMode_border_color;
+    }
+  }
+
+  .dropDown {
+    .settingForm {
+      .inputAndLabelContainer {
+        select {
+          background-color: index.$lightMode_main_bg_color;
+          color: index.$lightMode_text_color;
+        }
+      }
+    }
+  }
+
+  #chosenItem {
+    background-color: index.$lightMode_border_color;
+  }
+}
+
+// dark mode
+#darkMode {
+  background-color: index.$darkMode_border_color;
+
+  .settingItem {
+    &:hover {
+      background-color: index.$darkMode_border_color;
+    }
+  }
+
+  .dropDown {
+    .settingForm {
+      .inputAndLabelContainer {
+        select {
+          background-color: index.$darkMode_main_bg_color;
+          color: index.$darkMode_text_color;
+        }
+      }
+    }
+  }
+
+  #chosenItem {
+    background-color: index.$darkMode_border_color;
+  }
+}

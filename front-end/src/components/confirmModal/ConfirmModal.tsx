@@ -34,7 +34,7 @@ export default function ConfirmModal({ onSetNewListOfDeletedItem }: ConfirmModal
     }
 
     return (
-        <div className={styles.king} id={setting.mode === 'dark' ? styles.darkMode : styles.lightMode}>
+        <div className={styles.king} id={setting.theme === 'dark' ? styles.darkMode : styles.lightMode}>
             <div className={styles.modal}>
                 <div className={styles.modalText}>
                     Are you sure you want to delete the task ( {targetItem.name} )?

@@ -8,7 +8,7 @@ export default function Auth() {
     const setting = useSelector((state: RootState) => state.setting.setting)
 
     return (
-        <div className={styles.king} id={setting.mode === 'dark' ? styles.darkMode : styles.lightMode}>
+        <div className={styles.king} id={setting.theme === 'dark' ? styles.darkMode : styles.lightMode}>
             <Outlet />
         </div>
     )

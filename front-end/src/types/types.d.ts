@@ -79,14 +79,6 @@ type sidebarItemInfoType = {
   name: string;
   linkAddress?: string;
   disable?: boolean;
-  children?: {
-    name: string;
-    inputType?: string;
-    selectOp?: {
-      value: string;
-      name: string;
-    }[];
-  }[];
 };
 
 type WeatherType = {
@@ -116,12 +108,10 @@ type PageNameSliceInitialStateType = {
   pageName: string;
 };
 
-type SettingType = {
-  mode: string;
-};
-
 type SettingSliceInitialStateType = {
-  setting: SettingType;
+  setting: {
+    theme: string;
+  };
 };
 
 export {

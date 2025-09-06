@@ -53,7 +53,7 @@ export default function AddNewTaskForm({ onCloseForm }: { onCloseForm: (val: boo
     }
 
     return (
-        <div className={styles.king} id={setting.mode === 'dark' ? styles.darkMode : styles.lightMode}>
+        <div className={styles.king} id={setting.theme === 'dark' ? styles.darkMode : styles.lightMode}>
             <form className={styles.AddNewTaskForm} onSubmit={handleAdd}>
                 <div className={styles.inputsAndSelectContainer}>
                     <label htmlFor="taskName" className={styles.inputsLabel}>Enter the task :</label>

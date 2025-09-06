@@ -120,7 +120,7 @@ export default function AuthForm({ signUp = false }: { signUp?: boolean }) {
     }
 
     return (
-        <form className={styles.authForm} onSubmit={handleFormSubmit} id={setting.mode === 'dark' ? styles.darkMode : styles.lightMode}>
+        <form className={styles.authForm} onSubmit={handleFormSubmit} id={setting.theme === 'dark' ? styles.darkMode : styles.lightMode}>
             {
                 signUp &&
                 <div className={styles.inputsContainer}>

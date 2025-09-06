@@ -11,7 +11,7 @@ export default function AuthSwitchLink({ text, linkAddress, linkName }: AuthSwit
     const setting = useSelector((state: RootState) => state.setting.setting)
 
     return (
-        <div className={styles.authSwitchLink} id={setting.mode === 'dark' ? styles.darkMode : styles.lightMode}>
+        <div className={styles.authSwitchLink} id={setting.theme === 'dark' ? styles.darkMode : styles.lightMode}>
             {text} ? <Link to={linkAddress}>{linkName}</Link>
         </div>
     )
