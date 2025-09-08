@@ -2,7 +2,7 @@ import { faMoon, type IconDefinition } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState, type ChangeEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setSetting } from '../../../../../../../../store/slices/setting'
+import { setPartOfSetting } from '../../../../../../../../store/slices/setting'
 import type { RootState } from '../../../../../../../../store/store'
 import styles from './SidebarSettingItem.module.scss'
 
@@ -13,13 +13,29 @@ export default function SidebarSettingItem({ icon, name }: { icon: IconDefinitio
 
     // state
     const [isDropDownOpen, setIsDropDownOpen] = useState<boolean>(false)
-    const [theme, setTheme] = useState<string>('dark')
-
+    
     // func
-    const changeSetting = (e: ChangeEvent<HTMLSelectElement>, changedStateName: keyof typeof setting, changedStateSetter: (value: React.SetStateAction<string>) => void) => {
-        const newSettingValue = e.target.value
-        changedStateSetter(e.target.value)
-        dispatch(setSetting({ settingItem: changedStateName, newSettingValue }))
+    const changeSetting = (e: ChangeEvent<HTMLSelectElement>, changedStateName: keyof typeof setting) => {
+        const body = {
+            settingItem: changedStateName,
+            newValue: e.target.value
+        }
+
+        fetch('http://localhost:8080/php/task_manager/setSetting.php', {
+            method: "PATCH",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+            body: JSON.stringify(body)
+        })
+            .then(res => {
+                if (res.ok) {
+                    const newSettingValue = e.target.value
+                    dispatch(setPartOfSetting({ settingItem: changedStateName, newSettingValue }))
+                }
+            })
+            .catch(err => console.error(err))
     }
 
     return (
@@ -39,7 +55,7 @@ export default function SidebarSettingItem({ icon, name }: { icon: IconDefinitio
                             </span>
                             theme
                         </label>
-                        <select value={theme} onChange={(e) => { changeSetting(e, 'theme', setTheme) }}>
+                        <select value={setting.theme} onChange={(e) => { changeSetting(e, 'theme') }}>
                             <option value="dark">dark</option>
                             <option value="light">light</option>
                         </select>

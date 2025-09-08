@@ -5,9 +5,8 @@ header("Access-Control-Allow-Credentials: true");
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 
-session_start();
 
-if (!isset($_SESSION['userId'])) {
+if (!isset($_COOKIE['userId'])) {
     echo json_encode(['err' => true, 'msg' => 'please log in']);
     exit;
 }
@@ -19,12 +18,13 @@ if (isset($data)) {
     $name = $data['name'];
     $date = $data['date'];
     $isImportant = $data['isImportant'] ? 1 : 0;
+    $userId = $_COOKIE['userId'];
 
     $db = mysqli_connect('localhost', 'root', '', 'task_manager');
     mysqli_query($db, "
         INSERT INTO `tasks` 
-        (`name` , `date` , `isImportant`)
-        VALUES ('$name' , '$date' , $isImportant)
+        (`name` , `date` , `isImportant` , `user_id`)
+        VALUES ('$name' , '$date' , $isImportant , $userId)
     ");
     $newTaskId = mysqli_insert_id($db);
 

@@ -15,10 +15,20 @@ if (isset($data)) {
     $username = $data['username'];
     $password = $data['password'];
 
+    // set user to db
     mysqli_query($db, "
         INSERT INTO `users`
         (`email` , `username` , `password`)
-        values ('$email' , '$username' , '$password')
+        VALUES ('$email' , '$username' , '$password')
+    ");
+
+
+    // set user setting to db
+    $newUserId = mysqli_insert_id($db);
+    mysqli_query($db, "
+        INSERT INTO `user_setting`
+        (`user_id`)
+        VALUES ($newUserId)
     ");
 
     $dataSend = ['error' => false, 'msg' => 'registration was successful'];

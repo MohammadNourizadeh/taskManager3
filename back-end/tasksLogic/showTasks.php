@@ -5,13 +5,13 @@ header("Access-Control-Allow-Credentials: true");
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 
-session_start();
-if (!isset($_SESSION['userId'])) {
+
+if (!isset($_COOKIE['userId'])) {
     echo json_encode([]);
     exit;
 }
 
-$userId = $_SESSION['userId'];
+$userId = $_COOKIE['userId'];
 
 
 $db = mysqli_connect('localhost', 'root', '', 'task_manager');
