@@ -1,16 +1,18 @@
-@use "../../assets/styles/index.scss";
+@use "../../../assets/styles/index.scss";
 
 $sidebarWidth: 20%;
 $headerHeight: 35vh;
 
 .king {
   display: flex;
-  height: 100vh;
+  overflow: hidden;
+  height: 100dvh;
 
   .sidebarPart {
     border-right-width: 1px;
     border-right-style: solid;
-    overflow: scroll;
+    overflow-y: auto;
+    overflow-x: hidden;
     width: $sidebarWidth;
   }
 
@@ -21,7 +23,7 @@ $headerHeight: 35vh;
       height: $headerHeight;
     }
 
-    .pagePart {
+    .outletPart {
       height: calc(100vh - $headerHeight);
       overflow: auto;
       padding: 20px;

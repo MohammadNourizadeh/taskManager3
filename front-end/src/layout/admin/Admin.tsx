@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Outlet } from 'react-router-dom'
 import { setSetting } from '../../store/slices/setting'
 import type { RootState } from '../../store/store'
-import styles from './Admin.module.scss'
+import styles from './styles/Admin.module.scss'
 import Header from './components/header/Header'
 import Sidebar from './components/sidebar/Sidebar'
 
@@ -33,7 +33,7 @@ export default function Admin() {
                 <div className={styles.headerPart}>
                     <Header />
                 </div>
-                <div className={styles.pagePart}>
+                <div className={styles.outletPart}>
                     <Outlet />
                 </div>
             </div>

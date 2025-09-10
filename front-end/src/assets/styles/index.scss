@@ -18,6 +18,13 @@ $red_error_color: rgb(204, 6, 6);
 $blue_color: rgb(51, 139, 246);
 $modal_blur: blur(15px);
 
+// break points
+$breakpoint_xs: 360px; // موبایل خیلی کوچیک
+$breakpoint_sm: 480px; // موبایل معمولی
+$breakpoint_md: 768px; // تبلت
+$breakpoint_lg: 1024px; // لپتاپ
+$breakpoint_xl: 1280px; // دسکتاپ بزرگ
+
 * {
   margin: 0px;
   padding: 0px;
