@@ -13,12 +13,14 @@ export default function SidebarSettingItem({ icon, name }: { icon: IconDefinitio
 
     // state
     const [isDropDownOpen, setIsDropDownOpen] = useState<boolean>(false)
-    
+
     // func
     const changeSetting = (e: ChangeEvent<HTMLSelectElement>, changedStateName: keyof typeof setting) => {
+        const newSettingValue = e.target.value
+
         const body = {
             settingItem: changedStateName,
-            newValue: e.target.value
+            newValue: newSettingValue
         }
 
         fetch('http://localhost:8080/php/task_manager/setSetting.php', {
@@ -26,16 +28,14 @@ export default function SidebarSettingItem({ icon, name }: { icon: IconDefinitio
             headers: {
                 'Content-Type': 'application/json',
             },
-            credentials: 'include',
-            body: JSON.stringify(body)
+            body: JSON.stringify(body),
+            credentials: 'include'
         })
             .then(res => {
                 if (res.ok) {
-                    const newSettingValue = e.target.value
-                    dispatch(setPartOfSetting({ settingItem: changedStateName, newSettingValue }))
+                    dispatch(setPartOfSetting({ settingItem: changedStateName, newSettingValue }))  
                 }
             })
-            .catch(err => console.error(err))
     }
 
     return (
