@@ -6,5 +6,9 @@ $headerHeight: 35vh;
     .sidebarPart {
       width: $sidebarWidth;
     }
+
+    .headerAndOutletPart {
+      width: calc(100% - $sidebarWidth);
+    }
   }
 }
