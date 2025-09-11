@@ -1,0 +1,21 @@
+$sidebarWidth: 250px;
+
+@media (max-width: 950px) {
+  .king {
+    position: relative;
+
+    .sidebarPart {
+      position: absolute;
+      height: 100%;
+      top: 0px;
+      left: 0px;
+      width: $sidebarWidth;
+      z-index: 999;
+      backdrop-filter: blur(50px);
+    }
+
+    .headerAndOutletPart {
+      width: 100%;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 @use "../../../assets/styles/index.scss";
 
-$sidebarWidth: 20%;
+$sidebarWidth: 307px;
 $headerHeight: 35vh;
 
 .king {
@@ -62,3 +62,6 @@ $headerHeight: 35vh;
     }
   }
 }
+
+@import "./lgBreakPoint";
+@import "./mdBreakPoint";

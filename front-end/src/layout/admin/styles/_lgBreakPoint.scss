@@ -1,0 +1,10 @@
+$sidebarWidth: 250px;
+$headerHeight: 35vh;
+
+@media (max-width: 1100px) {
+  .king {
+    .sidebarPart {
+      width: $sidebarWidth;
+    }
+  }
+}
