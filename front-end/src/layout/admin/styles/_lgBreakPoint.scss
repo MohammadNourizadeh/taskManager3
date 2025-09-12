@@ -1,14 +1,7 @@
-$sidebarWidth: 250px;
-$headerHeight: 35vh;
-
 @media (max-width: 1100px) {
   .king {
     .sidebarPart {
-      width: $sidebarWidth;
-    }
-
-    .headerAndOutletPart {
-      width: calc(100% - $sidebarWidth);
+      width: 250px;
     }
   }
 }

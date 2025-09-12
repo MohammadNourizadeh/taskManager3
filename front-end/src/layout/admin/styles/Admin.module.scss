@@ -1,26 +1,29 @@
 @use "../../../assets/styles/index.scss";
 
-$sidebarWidth: 307px;
 $headerHeight: 35vh;
 
 .king {
   display: flex;
   overflow: hidden;
-  height: 100dvh;
+  height: 100vh;
   position: relative;
 
   .sidebarPart {
     border-right-width: 1px;
     border-right-style: solid;
     overflow-y: auto;
-    width: $sidebarWidth;
+    width: 307px;
+    transition: width 0.5s ease-in-out;
   }
 
   .sidebarToggleBtn {
     position: absolute;
+    left: 0px;
+    z-index: 999;
     top: 50%;
     transform: translateY(-50%);
     display: none;
+    transition: left 0.5s ease-in-out;
 
     button {
       cursor: pointer;
@@ -46,7 +49,7 @@ $headerHeight: 35vh;
   }
 
   .headerAndOutletPart {
-    width: calc(100% - $sidebarWidth);
+    flex-grow: 1;
 
     .headerPart {
       height: $headerHeight;
