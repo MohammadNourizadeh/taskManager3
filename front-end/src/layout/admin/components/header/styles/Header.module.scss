@@ -4,8 +4,18 @@
   align-items: flex-end;
   padding: 20px;
   text-transform: capitalize;
+  overflow: auto;
+
+  .pageNameAndDateContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 1em;
+  }
 
   .searchInputContainer {
     margin-left: auto;
   }
 }
+
+@import "./smBreakPoint";

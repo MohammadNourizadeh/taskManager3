@@ -1,0 +1,19 @@
+@media (max-width: 655px) {
+  .king {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 30px;
+
+    .pageNameAndDateContainer {
+      align-items: center;
+      width: 100%;
+      font-size: 0.8em;
+      gap: 0px;
+    }
+
+    .searchInputContainer {
+      margin: auto;
+    }
+  }
+}
