@@ -1,0 +1,13 @@
+@media (max-width: 650px) {
+  .king {
+    font-size: .9em;
+
+    .description {
+      color: index.$darkMode_border_color;
+      width: 90%;
+      font-size: 1.5em;
+      text-align: center;
+      line-height: 35px;
+    }
+  }
+}

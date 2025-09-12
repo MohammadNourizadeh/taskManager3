@@ -1,6 +1,6 @@
 import { faClipboard } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import styles from './NotFoundMessage.module.scss'
+import styles from './styles/NotFoundMessage.module.scss'
 
 export default function NotFoundMessage({ notFoundItem, description }: { notFoundItem: string, description: string }) {
     return (
