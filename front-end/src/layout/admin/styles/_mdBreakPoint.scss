@@ -29,5 +29,11 @@ $sidebarWidth: 250px;
     .headerAndOutletPart {
       width: 100%;
     }
+
+    .headerAndOutletPart {
+      .outletPart {
+        padding: 20px 5px;
+      }
+    }
   }
 }

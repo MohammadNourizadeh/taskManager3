@@ -1,0 +1,29 @@
+@media (max-width: 650px) {
+  .king {
+    .taskInfoContainer {
+      .taskName {
+        width: 200px;
+      }
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .king {
+    .starAndBasketBtnContainer {
+      flex-direction: column-reverse;
+      justify-content: space-between;
+      height: 100%;
+      gap: 0px;
+
+      .starBtn {
+        border-width: 3px 3px 0px 3px;
+        border-radius: 10px 10px 0px 0px;
+      }
+
+      #turnedOnStar {
+        padding: 8px 15px;
+      }
+    }
+  }
+}

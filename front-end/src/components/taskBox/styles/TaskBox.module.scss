@@ -1,4 +1,4 @@
-@use "../../assets/styles/index.scss";
+@use "../../../assets/styles/index.scss";
 
 .king {
   width: 100%;
@@ -17,6 +17,8 @@
     .taskName {
       margin-bottom: 10px;
       font-size: 1.1em;
+      width: 350px;
+      line-height: 1.4;
     }
 
     .taskDate {
@@ -49,6 +51,11 @@
         padding: 13px 15px;
       }
     }
+
+    #turnedOnStar {
+      padding: 18px 15px;
+      background-color: rgba(51, 139, 246, 0.107);
+    }
   }
 }
 
@@ -79,9 +86,7 @@
 
     #turnedOnStar {
       color: index.$blue_color;
-      padding: 18px 15px;
       border-color: index.$blue_color;
-      background-color: rgba(51, 139, 246, 0.107);
     }
 
     .trashBtn {
@@ -120,9 +125,7 @@
 
     #turnedOnStar {
       color: index.$blue_color;
-      padding: 18px 15px;
       border-color: index.$blue_color;
-      background-color: rgba(51, 139, 246, 0.107);
     }
 
     .trashBtn {
@@ -133,3 +136,5 @@
     }
   }
 }
+
+@import "./smBreakPoint";

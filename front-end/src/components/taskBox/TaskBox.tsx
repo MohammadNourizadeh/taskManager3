@@ -6,7 +6,7 @@ import { openModal, setList, setTargetItemId } from '../../store/slices/confirmM
 import { handleDone, handleImportant } from '../../store/slices/tasks'
 import type { RootState } from '../../store/store'
 import type { TaskBoxType } from '../../types/types'
-import styles from './TaskBox.module.scss'
+import styles from './styles/TaskBox.module.scss'
 
 export default function TaskBox({ task, index }: TaskBoxType) {
     // redux
