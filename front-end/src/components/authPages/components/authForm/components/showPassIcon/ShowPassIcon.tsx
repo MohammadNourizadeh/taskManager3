@@ -7,7 +7,7 @@ import styles from './ShowPassIcon.module.scss';
 
 export default function ShowPassIcon({ showPass, onToggle }: ShowPassIconPropsType) {
     return (
-        <button className={styles.showPassIcon} onClick={() => { onToggle(!showPass) }}>
+        <button className={styles.showPassIcon} onClick={() => { onToggle() }}>
             <FontAwesomeIcon icon={showPass ? faEyeSlash : faEye} />
         </button>
     )

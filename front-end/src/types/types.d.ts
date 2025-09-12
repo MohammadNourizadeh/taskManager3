@@ -54,7 +54,7 @@ type InputErrMessageProps = {
 
 type ShowPassIconPropsType = {
   showPass: boolean;
-  onToggle: (val: boolean) => void;
+  onToggle: () => void;
 };
 
 type AuthSwitchLinkProps = {

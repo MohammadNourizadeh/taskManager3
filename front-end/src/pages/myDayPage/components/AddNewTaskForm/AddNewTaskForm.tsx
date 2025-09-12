@@ -8,7 +8,7 @@ import { add } from '../../../../store/slices/tasks'
 import type { RootState } from '../../../../store/store'
 import styles from './AddNewTaskForm.module.scss'
 
-export default function AddNewTaskForm({ onCloseForm }: { onCloseForm: (val: boolean) => void }) {
+export default function AddNewTaskForm({ onCloseForm }: { onCloseForm: () => void }) {
     // var
     const navigate = useNavigate()
 
@@ -49,7 +49,7 @@ export default function AddNewTaskForm({ onCloseForm }: { onCloseForm: (val: boo
                 }
             })
 
-        onCloseForm(false)
+        onCloseForm()
     }
 
     return (
@@ -77,7 +77,7 @@ export default function AddNewTaskForm({ onCloseForm }: { onCloseForm: (val: boo
                     <button type='submit'>Add</button>
                 </div>
                 <div className={styles.cancelBtn}>
-                    <button onClick={() => { onCloseForm(false) }}>
+                    <button onClick={() => { onCloseForm() }}>
                         <FontAwesomeIcon icon={faMultiply} />
                     </button>
                 </div>

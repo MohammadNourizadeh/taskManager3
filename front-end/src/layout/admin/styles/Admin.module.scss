@@ -11,9 +11,9 @@ $headerHeight: 35vh;
   .sidebarPart {
     border-right-width: 1px;
     border-right-style: solid;
-    overflow-y: auto;
+    overflow: hidden;
     width: 307px;
-    transition: width 0.5s ease-in-out;
+    transition: width 0.2s ease-in;
   }
 
   .sidebarToggleBtn {
@@ -23,7 +23,7 @@ $headerHeight: 35vh;
     top: 50%;
     transform: translateY(-50%);
     display: none;
-    transition: left 0.5s ease-in-out;
+    transition: left 0.2s ease-in-out;
 
     button {
       cursor: pointer;

@@ -138,7 +138,7 @@ export default function AuthForm({ signUp = false }: { signUp?: boolean }) {
                 <label htmlFor="password">password :</label>
                 <div className={styles.passwordInput}>
                     <input type={showPass ? 'text' : "password"} id='password' value={passwordInput} onChange={(e) => { setPasswordInput(e.target.value) }} className={errors.passwordErr !== '' && passwordInput === '' ? styles.inputWithError : ''} />
-                    <ShowPassIcon showPass={showPass} onToggle={(val) => { setShowPass(val) }} />
+                    <ShowPassIcon showPass={showPass} onToggle={() => { setShowPass() }} />
                 </div>
                 {errors.passwordErr !== '' && <InputErrMessage errMessage={errors.passwordErr} conditionState1={passwordInput} />}
             </div>
@@ -148,7 +148,7 @@ export default function AuthForm({ signUp = false }: { signUp?: boolean }) {
                     <label htmlFor="confirmPassword">confirm your password :</label>
                     <div className={styles.passwordInput}>
                         <input type={showConfirmPass ? 'text' : "password"} id='confirmPassword' value={confirmPasswordInput} onChange={(e) => { setConfirmPasswordInput(e.target.value) }} className={(errors.confirmPasswordErr === 'Confirm your password' && confirmPasswordInput === '') || (errors.confirmPasswordErr === 'Passwords do not match' && passwordInput !== confirmPasswordInput) ? styles.inputWithError : ''} />
-                        <ShowPassIcon showPass={showConfirmPass} onToggle={(val) => { setShowConfirmPass(val) }} />
+                        <ShowPassIcon showPass={showConfirmPass} onToggle={() => { setShowConfirmPass() }} />
                     </div>
                     {errors.confirmPasswordErr !== '' && <InputErrMessage conditionState1={confirmPasswordInput} errMessage={errors.confirmPasswordErr} conditionState2={passwordInput} />}
                 </div>

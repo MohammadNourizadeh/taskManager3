@@ -47,13 +47,13 @@ export default function MyDayPage() {
                     />
                 ))
             }
-            <AddNewTaskBtn onOpenForm={(val) => { setIsFormOpen(val) }} />
+            <AddNewTaskBtn onOpenForm={() => { setIsFormOpen() }} />
 
             {/* confirm modal */}
             {isModalOpen && <ConfirmModal onSetNewListOfDeletedItem={(val) => { dispatch(setAll(val)) }} />}
 
             {/* add new task form */}
-            {isFormOpen && <AddNewTaskForm onCloseForm={(val) => { setIsFormOpen(val) }} />}
+            {isFormOpen && <AddNewTaskForm onCloseForm={() => { setIsFormOpen() }} />}
         </div>
     )
 }

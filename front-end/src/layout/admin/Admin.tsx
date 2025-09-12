@@ -1,8 +1,9 @@
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Outlet } from 'react-router-dom'
+import useToggle from '../../customHooks/useToggle/useToggle'
 import { setSetting } from '../../store/slices/setting'
 import type { RootState } from '../../store/store'
 import Header from './components/header/Header'
@@ -15,7 +16,7 @@ export default function Admin() {
     const dispatch = useDispatch()
 
     // state
-    const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false)
+    const [isSidebarOpen, setIsSidebarOpen] = useToggle()
 
     // side effect
     useEffect(() => {
@@ -35,7 +36,7 @@ export default function Admin() {
                 <Sidebar />
             </div>
             <div className={`${styles.sidebarToggleBtn} ${isSidebarOpen ? styles.open : undefined}`}>
-                <button onClick={() => { setIsSidebarOpen(prev => !prev) }}>
+                <button onClick={() => { setIsSidebarOpen() }}>
                     <FontAwesomeIcon icon={isSidebarOpen ? faArrowLeft : faArrowRight} />
                 </button>
             </div>
