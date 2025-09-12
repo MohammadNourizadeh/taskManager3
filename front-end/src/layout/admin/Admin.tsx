@@ -1,11 +1,13 @@
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Outlet } from 'react-router-dom'
 import { setSetting } from '../../store/slices/setting'
 import type { RootState } from '../../store/store'
-import styles from './styles/Admin.module.scss'
 import Header from './components/header/Header'
 import Sidebar from './components/sidebar/Sidebar'
+import styles from './styles/Admin.module.scss'
 
 export default function Admin() {
     // redux
@@ -28,6 +30,11 @@ export default function Admin() {
         <div className={styles.king} id={setting.theme === 'dark' ? styles.darkMode : styles.lightMode}>
             <div className={styles.sidebarPart}>
                 <Sidebar />
+            </div>
+            <div className={styles.sidebarToggleBtn}>
+                <button>
+                    <FontAwesomeIcon icon={faArrowRight} />
+                </button>
             </div>
             <div className={styles.headerAndOutletPart}>
                 <div className={styles.headerPart}>

@@ -7,13 +7,42 @@ $headerHeight: 35vh;
   display: flex;
   overflow: hidden;
   height: 100dvh;
+  position: relative;
 
   .sidebarPart {
     border-right-width: 1px;
     border-right-style: solid;
     overflow-y: auto;
-    overflow-x: hidden;
     width: $sidebarWidth;
+  }
+
+  .sidebarToggleBtn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+
+    button {
+      cursor: pointer;
+      border: 0px;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+      padding: 10px;
+      height: 200px;
+      font-size: 1.2em;
+      color: index.$darkMode_text_color;
+      background-color: index.$darkMode_border_color;
+      opacity: 0.2;
+      transition: 0.1s ease-in-out;
+
+      &:hover {
+        opacity: 0.5;
+      }
+
+      &:active {
+        opacity: 0.5;
+      }
+    }
   }
 
   .headerAndOutletPart {
