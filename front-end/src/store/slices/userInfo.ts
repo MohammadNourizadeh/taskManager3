@@ -1,7 +1,7 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: { username: string } = {
-  username: `user-${crypto.randomUUID}`,
+  username: `Guest User`,
 };
 
 const userInfoSlice = createSlice({
