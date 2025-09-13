@@ -11,20 +11,12 @@ li {
   }
 
   .dropDown {
-    height: 0px;
-    overflow: scroll;
-    transition: height 0.5s ease-in-out;
-
-    &.open {
-      height: 200px;
-    }
-
     .settingForm {
       .inputAndLabelContainer {
         padding: 22px 30px;
         display: flex;
-        align-items: center;
-        justify-content: space-between;
+        flex-direction: column;
+        gap: 20px;
 
         label {
           span {
@@ -35,7 +27,7 @@ li {
         select {
           cursor: pointer;
           padding: 5px 10px;
-          width: 50%;
+          width: 100%;
           border: 0px;
           border-radius: 5px;
         }
@@ -46,8 +38,10 @@ li {
 
 // light mode
 #lightMode {
-  background-color: index.$lightMode_border_color;
-
+  &.chosenItem {
+    background-color: index.$lightMode_border_color;
+  }
+  
   .settingItem {
     &:hover {
       background-color: index.$lightMode_border_color;
@@ -64,15 +58,13 @@ li {
       }
     }
   }
-
-  #chosenItem {
-    background-color: index.$lightMode_border_color;
-  }
 }
 
 // dark mode
 #darkMode {
-  background-color: index.$darkMode_border_color;
+  &.chosenItem {
+    background-color: index.$darkMode_border_color;
+  }
 
   .settingItem {
     &:hover {
@@ -89,9 +81,5 @@ li {
         }
       }
     }
-  }
-
-  #chosenItem {
-    background-color: index.$darkMode_border_color;
   }
 }
