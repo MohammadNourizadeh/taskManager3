@@ -3,6 +3,7 @@ import confirmModalSlice from "./slices/confirmModal";
 import pageNameSlice from "./slices/pageName";
 import settingSlice from "./slices/setting";
 import tasksSlice from "./slices/tasks";
+import userInfoSlice from "./slices/userInfo";
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     confirmModal: confirmModalSlice,
     pageName: pageNameSlice,
     setting: settingSlice,
+    userInfo: userInfoSlice,
   },
 });
 
