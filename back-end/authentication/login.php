@@ -22,7 +22,9 @@ if (isset($data)) {
     if ($userInfo = mysqli_fetch_assoc($userFromDb)) {
         $userId = $userInfo['id'];
         setcookie('userId', $userId, time() + 86400, '/');
-        echo json_encode(['error' => false, 'msg' => 'welcome']);
+
+        $userInfo = ['username' => $userInfo['username']];
+        echo json_encode(['error' => false, 'msg' => 'welcome', 'userInfo' => $userInfo]);
     } else {
         echo json_encode(['error' => true, 'msg' => 'user not found']);
     }
