@@ -109,9 +109,7 @@ type PageNameSliceInitialStateType = {
 };
 
 type SettingSliceInitialStateType = {
-  setting: {
-    theme: string;
-  };
+  theme: string;
 };
 
 export {

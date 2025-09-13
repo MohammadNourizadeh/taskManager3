@@ -8,7 +8,7 @@ import styles from './ConfirmModal.module.scss'
 export default function ConfirmModal({ onSetNewListOfDeletedItem }: ConfirmModalPropsType) {
     // redux
     const list = useSelector((state: RootState) => state.confirmModal.list)
-    const setting = useSelector((state: RootState) => state.setting.setting)
+    const setting = useSelector((state: RootState) => state.setting)
     const targetItemId = useSelector((state: RootState) => state.confirmModal.targetItemId)
     const dispatch = useDispatch()
 

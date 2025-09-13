@@ -17,7 +17,7 @@ export default function AuthForm({ signUp = false }: { signUp?: boolean }) {
     const navigate = useNavigate()
 
     // redux
-    const setting = useSelector((state: RootState) => state.setting.setting)
+    const setting = useSelector((state: RootState) => state.setting)
     const dispatch = useDispatch()
 
     // custom hook

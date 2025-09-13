@@ -10,7 +10,7 @@ import styles from './SidebarSettingItem.module.scss'
 
 export default function SidebarSettingItem({ icon, name }: { icon: IconDefinition, name: string }) {
     // redux
-    const setting = useSelector((state: RootState) => state.setting.setting)
+    const setting = useSelector((state: RootState) => state.setting)
     const dispatch = useDispatch()
 
     // state

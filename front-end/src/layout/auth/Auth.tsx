@@ -5,7 +5,7 @@ import styles from './Auth.module.scss';
 
 export default function Auth() {
     // redux
-    const setting = useSelector((state: RootState) => state.setting.setting)
+    const setting = useSelector((state: RootState) => state.setting)
 
     return (
         <div className={styles.king} id={setting.theme === 'dark' ? styles.darkMode : styles.lightMode}>

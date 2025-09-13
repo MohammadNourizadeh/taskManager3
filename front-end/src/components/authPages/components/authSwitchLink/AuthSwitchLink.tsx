@@ -8,7 +8,7 @@ import styles from './AuthSwitchLink.module.scss';
 
 export default function AuthSwitchLink({ text, linkAddress, linkName }: AuthSwitchLinkProps) {
     // redux
-    const setting = useSelector((state: RootState) => state.setting.setting)
+    const setting = useSelector((state: RootState) => state.setting)
 
     return (
         <div className={styles.authSwitchLink} id={setting.theme === 'dark' ? styles.darkMode : styles.lightMode}>

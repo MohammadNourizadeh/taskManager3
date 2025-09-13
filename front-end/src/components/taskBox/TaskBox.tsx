@@ -12,7 +12,7 @@ export default function TaskBox({ task, index }: TaskBoxType) {
     // redux
     const pageName = useSelector((state: RootState) => state.pageName.pageName)
     const tasks = useSelector((state: RootState) => state.tasks.tasks)
-    const setting = useSelector((state: RootState) => state.setting.setting)
+    const setting = useSelector((state: RootState) => state.setting)
     const dispatch = useDispatch()
 
     // func

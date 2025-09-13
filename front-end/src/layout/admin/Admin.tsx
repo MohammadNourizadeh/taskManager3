@@ -12,7 +12,7 @@ import styles from './styles/Admin.module.scss'
 
 export default function Admin() {
     // redux
-    const setting = useSelector((state: RootState) => state.setting.setting)
+    const setting = useSelector((state: RootState) => state.setting)
     const dispatch = useDispatch()
 
     // state

@@ -8,7 +8,7 @@ import styles from './SidebarItem.module.scss'
 
 export default function SidebarItem({ disable, linkAddress, name, icon, iconColor }: sidebarItemInfoType) {
     // redux
-    const setting = useSelector((state: RootState) => state.setting.setting)
+    const setting = useSelector((state: RootState) => state.setting)
     const pageName = useSelector((state: RootState) => state.pageName.pageName)
     const dispatch = useDispatch()
 
