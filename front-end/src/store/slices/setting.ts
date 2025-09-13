@@ -11,7 +11,7 @@ const settingSlice = createSlice({
 
   reducers: {
     setSetting: (state, action: PayloadAction<typeof state>) => {
-      state = action.payload;
+      return state = action.payload;
     },
     setPartOfSetting: (
       state,
