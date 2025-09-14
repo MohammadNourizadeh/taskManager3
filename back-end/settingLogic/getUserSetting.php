@@ -12,14 +12,17 @@ if (isset($_COOKIE['userId'])) {
 
     $db = mysqli_connect('localhost', 'root', '', 'task_manager');
     $query = mysqli_query($db, "
-    SELECT * FROM `user_setting`
-    WHERE `user_id` = $userId
+    SELECT `user_setting`.`theme` , `users`.`username` , `users`.`password`
+    FROM `users` 
+    INNER JOIN `user_setting` ON `user_setting`.`user_id` = $userId; 
 ");
 
     $result = mysqli_fetch_assoc($query);
 
     echo json_encode([
-        'theme' => $result['theme']
+        'theme' => $result['theme'],
+        'username' => $result['username'],
+        'password' => $result['password']
     ]);
 
 }
