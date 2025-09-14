@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import useToggle from '../../../../customHooks/useToggle/useToggle';
@@ -8,7 +8,6 @@ import type { AuthenticationErrorType, LogInFetchBodyContentType, SignUpFetchBod
 import styles from './AuthForm.module.scss';
 import InputErrMessage from './components/inputErrMessage/InputErrMessage';
 import ShowPassIcon from './components/showPassIcon/ShowPassIcon';
-import { setUsername } from '../../../../store/slices/userInfo';
 
 
 
@@ -18,7 +17,6 @@ export default function AuthForm({ signUp = false }: { signUp?: boolean }) {
 
     // redux
     const setting = useSelector((state: RootState) => state.setting)
-    const dispatch = useDispatch()
 
     // custom hook
     const [showPass, setShowPass] = useToggle();
@@ -69,7 +67,6 @@ export default function AuthForm({ signUp = false }: { signUp?: boolean }) {
                 } else {
                     toast.success(data.msg)
                     navigate(navigationUrl)
-                    dispatch(setUsername(data.userInfo.username))
                 }
             })
     }

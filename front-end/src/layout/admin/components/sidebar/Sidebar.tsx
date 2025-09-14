@@ -6,7 +6,7 @@ import type { RootState } from '../../../../store/store'
 
 export default function Sidebar() {
     // redux
-    const username = useSelector((state: RootState) => state.userInfo.username)
+    const username = useSelector((state: RootState) => state.setting.username)
 
     return (
         <div className={styles.king}>
