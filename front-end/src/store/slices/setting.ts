@@ -3,6 +3,8 @@ import type { SettingSliceInitialStateType } from "../../types/types";
 
 const initialState: SettingSliceInitialStateType = {
   theme: "dark", // light or dark mode
+  username: "guest user",
+  password: "",
 };
 
 const settingSlice = createSlice({
@@ -11,7 +13,7 @@ const settingSlice = createSlice({
 
   reducers: {
     setSetting: (state, action: PayloadAction<typeof state>) => {
-      return state = action.payload;
+      return (state = action.payload);
     },
     setPartOfSetting: (
       state,
@@ -20,8 +22,7 @@ const settingSlice = createSlice({
         newSettingValue: string;
       }>
     ) => {
-      state[action.payload.settingItem] =
-        action.payload.newSettingValue;
+      state[action.payload.settingItem] = action.payload.newSettingValue;
     },
   },
 });

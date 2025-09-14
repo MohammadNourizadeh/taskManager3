@@ -110,6 +110,8 @@ type PageNameSliceInitialStateType = {
 
 type SettingSliceInitialStateType = {
   theme: string;
+  username: string;
+  password: string;
 };
 
 export {
