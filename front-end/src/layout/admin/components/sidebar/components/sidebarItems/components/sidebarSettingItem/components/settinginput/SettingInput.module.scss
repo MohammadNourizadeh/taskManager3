@@ -1,0 +1,79 @@
+@use "../../../../../../../../../../assets/styles/index.scss";
+
+.inputAndLabelContainer {
+  padding: 22px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  label {
+    span {
+      margin-right: 10px;
+    }
+  }
+
+  select,
+  input {
+    cursor: pointer;
+    padding: 5px 10px;
+    width: 100%;
+    border: 0px;
+    border-radius: 5px;
+  }
+
+  .inputContainer {
+    input {
+      margin-bottom: 10px;
+      &:focus {
+        outline: 2px solid index.$input_focus_color;
+      }
+    }
+
+    .confirmAndCancelBtnContainer {
+      display: flex;
+      justify-content: space-around;
+
+      button {
+        padding: 7px;
+        width: 80px;
+        border-radius: 5px;
+        border: 0px;
+        cursor: pointer;
+        color: index.$darkMode_text_color;
+
+        &:hover {
+          opacity: 0.8;
+        }
+        &:active {
+          opacity: 0.7;
+        }
+
+        &.confirmBtn {
+          background-color: index.$green_accepted_color;
+        }
+
+        &.cancelBtn {
+          background-color: index.$red_error_color;
+        }
+      }
+    }
+  }
+}
+
+// light mode
+#lightMode {
+  select,
+  input {
+    background-color: index.$lightMode_main_bg_color;
+    color: index.$lightMode_text_color;
+  }
+}
+
+// dark mode
+#darkMode {
+  select,
+  input {
+    background-color: index.$darkMode_main_bg_color;
+    color: index.$darkMode_text_color;
+  }
+}

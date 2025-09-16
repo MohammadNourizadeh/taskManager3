@@ -1,5 +1,5 @@
-import { faSun } from '@fortawesome/free-regular-svg-icons'
-import { faMoon, type IconDefinition } from '@fortawesome/free-solid-svg-icons'
+import { faSun, faUser } from '@fortawesome/free-regular-svg-icons'
+import { faLock, type IconDefinition } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { type ChangeEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -7,6 +7,7 @@ import useToggle from '../../../../../../../../customHooks/useToggle/useToggle'
 import { setPartOfSetting } from '../../../../../../../../store/slices/setting'
 import type { RootState } from '../../../../../../../../store/store'
 import styles from './SidebarSettingItem.module.scss'
+import SettingInput from './components/settinginput/SettingInput'
 
 export default function SidebarSettingItem({ icon, name }: { icon: IconDefinition, name: string }) {
     // redux
@@ -15,6 +16,18 @@ export default function SidebarSettingItem({ icon, name }: { icon: IconDefinitio
 
     // state
     const [isDropDownOpen, setIsDropDownOpen] = useToggle()
+
+    // var
+    const selectOptions = [
+        {
+            value: 'dark',
+            name: 'dark'
+        },
+        {
+            value: 'light',
+            name: 'light'
+        }
+    ]
 
     // func
     const changeSetting = (e: ChangeEvent<HTMLSelectElement>, changedStateName: keyof typeof setting) => {
@@ -51,18 +64,24 @@ export default function SidebarSettingItem({ icon, name }: { icon: IconDefinitio
             {isDropDownOpen &&
                 <div className={styles.dropDown}>
                     <div className={styles.settingForm}>
-                        <div className={styles.inputAndLabelContainer}>
-                            <label htmlFor="theme">
-                                <span>
-                                    <FontAwesomeIcon icon={setting.theme === 'light' ? faSun : faMoon} />
-                                </span>
-                                theme :
-                            </label>
-                            <select value={setting.theme} onChange={(e) => { changeSetting(e, 'theme') }}>
-                                <option value="dark">dark</option>
-                                <option value="light">light</option>
-                            </select>
-                        </div>
+                        <SettingInput
+                            icon={faSun}
+                            label='theme'
+                            selectValue={setting.theme}
+                            selectOptions={selectOptions}
+                        />
+                        <SettingInput
+                            icon={faUser}
+                            label='username'
+                            inputType='text'
+                            inputValue={setting.username}
+                        />
+                        <SettingInput
+                            icon={faLock}
+                            label='password'
+                            inputType='text'
+                            inputValue={setting.password}
+                        />
                     </div>
                 </div>}
         </li>
