@@ -38,7 +38,7 @@ export default function SidebarSettingItem({ icon, name }: { icon: IconDefinitio
             newValue: newSettingValue
         }
 
-        fetch('http://localhost:8080/php/task_manager/setSetting.php', {
+        fetch('http://localhost:8080/php/task_manager/changeSetting.php', {
             method: "PATCH",
             headers: {
                 'Content-Type': 'application/json',
