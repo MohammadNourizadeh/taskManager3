@@ -30,11 +30,11 @@ export default function SidebarSettingItem({ icon, name }: { icon: IconDefinitio
     ]
 
     // func
-    const changeSetting = (e: ChangeEvent<HTMLSelectElement>, changedStateName: keyof typeof setting) => {
+    const changeSetting = (e: ChangeEvent<HTMLSelectElement>, settingItemName: keyof typeof setting) => {
         const newSettingValue = e.target.value
 
         const body = {
-            settingItem: changedStateName,
+            settingItem: settingItemName,
             newValue: newSettingValue
         }
 
@@ -48,7 +48,7 @@ export default function SidebarSettingItem({ icon, name }: { icon: IconDefinitio
         })
             .then(res => {
                 if (res.ok) {
-                    dispatch(setPartOfSetting({ settingItem: changedStateName, newSettingValue }))
+                    dispatch(setPartOfSetting({ settingItem: settingItemName, newSettingValue }))
                 }
             })
     }
@@ -69,18 +69,21 @@ export default function SidebarSettingItem({ icon, name }: { icon: IconDefinitio
                             label='theme'
                             selectValue={setting.theme}
                             selectOptions={selectOptions}
+                            onChangeSetting={(e, settingItemName) => { changeSetting(e, settingItemName) }}
                         />
                         <SettingInput
                             icon={faUser}
                             label='username'
                             inputType='text'
                             inputValue={setting.username}
+                            onChangeSetting={(e, settingItemName) => { changeSetting(e, settingItemName) }}
                         />
                         <SettingInput
                             icon={faLock}
                             label='password'
                             inputType='text'
                             inputValue={setting.password}
+                            onChangeSetting={(e, settingItemName) => { changeSetting(e, settingItemName) }}
                         />
                     </div>
                 </div>}

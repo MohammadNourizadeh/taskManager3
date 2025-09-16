@@ -1,6 +1,7 @@
 import type { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useState } from 'react';
+import { useState, type ChangeEvent } from 'react';
+import type { SettingSliceInitialStateType } from '../../../../../../../../../../types/types';
 import styles from './SettingInput.module.scss';
 
 type SettingInputsPropsType = {
@@ -13,9 +14,10 @@ type SettingInputsPropsType = {
         value: string
         name: string
     }[]
+    onChangeSetting: (inputEvent: ChangeEvent<HTMLSelectElement>, settingItemName: keyof SettingSliceInitialStateType) => void
 }
 
-export default function SettingInput({ label, icon, inputType, inputValue: propInputValue, selectOptions, selectValue }: SettingInputsPropsType) {
+export default function SettingInput({ label, icon, inputType, inputValue: propInputValue, selectOptions, selectValue, onChangeSetting }: SettingInputsPropsType) {
     // state
     const [inputVal, setInputVal] = useState(propInputValue)
 
@@ -28,7 +30,7 @@ export default function SettingInput({ label, icon, inputType, inputValue: propI
                 {label} :
             </label>
             {!inputType ?
-                <select value={selectValue} onChange={(e) => { changeSetting(e, 'theme') }}>
+                <select value={selectValue} onChange={(e) => { onChangeSetting(e, 'theme') }}>
                     {selectOptions?.map((op, index) => (
                         <option key={index} value={op.value}>{op.name}</option>
                     ))}
@@ -38,11 +40,11 @@ export default function SettingInput({ label, icon, inputType, inputValue: propI
                     <input type={inputType} value={inputVal} onChange={(e) => { setInputVal(e.target.value) }} />
                     {inputVal !== propInputValue &&
                         <div className={styles.confirmAndCancelBtnContainer}>
-                            <button className={styles.confirmBtn}>confirm</button>
+                            <button className={styles.confirmBtn} onClick={(e) => { onChangeSetting(e, 'theme') }}>confirm</button>
                             <button className={styles.cancelBtn} onClick={() => { setInputVal(propInputValue) }}>cancel</button>
                         </div>}
                 </div>
             }
-        </div>
+        </div >
     )
 }
