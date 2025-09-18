@@ -2,12 +2,10 @@
 
 .king {
   width: 100%;
-  border-width: 3px;
+  border-width: 0 0 0 8px;
   border-style: solid;
-  border-radius: 10px;
+  border-radius: 3px 10px 10px 3px;
   padding: 23px;
-  border-right: 0px;
-  border-left: 0px;
   display: flex;
   align-items: center;
   gap: 20px;
@@ -61,8 +59,9 @@
 
 // light mode
 #lightMode {
+  background-color: index.$lightMode_TasksBox_color;
   border-color: index.$lightMode_border_color;
-  background-color: rgba(163, 169, 177, 0.333);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 
   .taskInfoContainer {
     .taskDate {
@@ -100,8 +99,9 @@
 
 // dark mode
 #darkMode {
-  background-color: rgba(48, 54, 61, 0.333);
+  background-color: index.$darkMode_TasksBox_color;
   border-color: index.$darkMode_border_color;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 
   .taskInfoContainer {
     .taskDate {

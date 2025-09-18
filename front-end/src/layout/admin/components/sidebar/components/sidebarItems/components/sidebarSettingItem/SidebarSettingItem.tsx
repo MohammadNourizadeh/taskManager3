@@ -70,6 +70,7 @@ export default function SidebarSettingItem({ icon, name }: { icon: IconDefinitio
                             label='theme'
                             selectValue={setting.theme}
                             selectOptions={selectOptions}
+                            settingKey='theme'
                             onChangeSetting={(newSettingValue, settingItemName) => { changeSetting(newSettingValue, settingItemName) }}
                         />
                         <SettingInput
@@ -77,12 +78,14 @@ export default function SidebarSettingItem({ icon, name }: { icon: IconDefinitio
                             label='username'
                             inputType='text'
                             inputValue={setting.username}
+                            settingKey='username'
                             onChangeSetting={(newSettingValue, settingItemName) => { changeSetting(newSettingValue, settingItemName) }}
                         />
                         <SettingInput
                             icon={faLock}
                             label='password'
                             inputType='text'
+                            settingKey='password'
                             inputValue={setting.password}
                             onChangeSetting={(newSettingValue, settingItemName) => { changeSetting(newSettingValue, settingItemName) }}
                         />

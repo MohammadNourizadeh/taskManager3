@@ -7,6 +7,7 @@ import styles from './SettingInput.module.scss';
 type SettingInputsPropsType = {
     label: string
     icon: IconDefinition
+    settingKey: keyof SettingSliceInitialStateType
     inputType?: string
     inputValue?: string
     selectValue?: string
@@ -17,30 +18,30 @@ type SettingInputsPropsType = {
     onChangeSetting: (inputEvent: string, settingItemName: keyof SettingSliceInitialStateType) => void
 }
 
-export default function SettingInput({ label, icon, inputType, inputValue: propInputValue, selectOptions, selectValue, onChangeSetting }: SettingInputsPropsType) {
+export default function SettingInput({ label, icon, inputType, inputValue: propInputValue, selectOptions, selectValue, onChangeSetting, settingKey }: SettingInputsPropsType) {
     // state
     const [inputVal, setInputVal] = useState(propInputValue)
 
     return (
         <div className={styles.inputAndLabelContainer}>
-            <label htmlFor="theme">
+            <label htmlFor={settingKey}>
                 <span>
                     <FontAwesomeIcon icon={icon} />
                 </span>
                 {label} :
             </label>
             {!inputType ?
-                <select value={selectValue} onChange={(e) => { onChangeSetting(e.target.value, 'theme') }}>
+                <select value={selectValue} id={settingKey} onChange={(e) => { onChangeSetting(e.target.value, settingKey) }}>
                     {selectOptions?.map((op, index) => (
                         <option key={index} value={op.value}>{op.name}</option>
                     ))}
                 </select>
                 :
                 <div className={styles.inputContainer}>
-                    <input type={inputType} value={inputVal} onChange={(e) => { setInputVal(e.target.value) }} />
+                    <input type={inputType} id={settingKey} value={inputVal} onChange={(e) => { setInputVal(e.target.value) }} />
                     {inputVal && inputVal !== propInputValue &&
                         <div className={styles.confirmAndCancelBtnContainer}>
-                            <button className={styles.confirmBtn} onClick={() => { onChangeSetting(inputVal, 'theme') }}>confirm</button>
+                            <button className={styles.confirmBtn} onClick={() => { onChangeSetting(inputVal, settingKey) }}>confirm</button>
                             <button className={styles.cancelBtn} onClick={() => { setInputVal(propInputValue) }}>cancel</button>
                         </div>}
                 </div>

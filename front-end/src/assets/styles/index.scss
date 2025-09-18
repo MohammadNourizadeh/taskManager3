@@ -3,12 +3,14 @@ $darkMode_main_bg_color: #0d1117;
 $darkMode_part_bg_color: #1a1e25;
 $darkMode_border_color: #30363d;
 $darkMode_text_color: rgb(255, 255, 255);
+$darkMode_TasksBox_color: rgba(48, 54, 61, 0.192);
 
 // light mode colors
 $lightMode_main_bg_color: #d5d9de;
 $lightMode_part_bg_color: #e8ecf1;
 $lightMode_border_color: #c1c6ca;
 $lightMode_text_color: black;
+$lightMode_TasksBox_color: rgba(255, 255, 255, 0.192);
 
 $btn_color: linear-gradient(135deg, #4a90e2, #9013fe);
 $btn_hover: linear-gradient(135deg, #6ec6ff, #c471ed);
