@@ -14,8 +14,9 @@ if (isset($data)) {
 
     $db = mysqli_connect('localhost', 'root', '', 'task_manager');
     mysqli_query($db, "
-        UPDATE `user_setting`
+        UPDATE `user_setting` 
+        INNER JOIN `users` ON `user_setting`.`user_id` = `users`.`id`
         SET `$settingItem`  = '$newSettingValue'
-        WHERE user_id = $userId
+        WHERE user_id = $userId OR id = $userId
     ");
 }
