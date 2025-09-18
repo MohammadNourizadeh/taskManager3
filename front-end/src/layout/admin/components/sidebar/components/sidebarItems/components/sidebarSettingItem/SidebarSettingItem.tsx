@@ -1,7 +1,6 @@
 import { faSun, faUser } from '@fortawesome/free-regular-svg-icons'
 import { faLock, type IconDefinition } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { type ChangeEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import useToggle from '../../../../../../../../customHooks/useToggle/useToggle'
 import { setPartOfSetting } from '../../../../../../../../store/slices/setting'
@@ -30,9 +29,7 @@ export default function SidebarSettingItem({ icon, name }: { icon: IconDefinitio
     ]
 
     // func
-    const changeSetting = (e: ChangeEvent<HTMLSelectElement>, settingItemName: keyof typeof setting) => {
-        const newSettingValue = e.target.value
-
+    const fetchToChange = (settingItemName: keyof typeof setting, newSettingValue: string) => {
         const body = {
             settingItem: settingItemName,
             newValue: newSettingValue
@@ -53,6 +50,10 @@ export default function SidebarSettingItem({ icon, name }: { icon: IconDefinitio
             })
     }
 
+    const changeSetting = (inputValue: string, settingItemName: keyof typeof setting) => {
+        fetchToChange(settingItemName, inputValue)
+    }
+
     return (
         <li className={`${styles.settingItem} ${isDropDownOpen ? styles.chosenItem : undefined}`} id={setting.theme === 'dark' ? styles.darkMode : styles.lightMode}>
             <div className={styles.settingItem} onClick={() => { setIsDropDownOpen() }} >
@@ -69,21 +70,21 @@ export default function SidebarSettingItem({ icon, name }: { icon: IconDefinitio
                             label='theme'
                             selectValue={setting.theme}
                             selectOptions={selectOptions}
-                            onChangeSetting={(e, settingItemName) => { changeSetting(e, settingItemName) }}
+                            onChangeSetting={(newSettingValue, settingItemName) => { changeSetting(newSettingValue, settingItemName) }}
                         />
                         <SettingInput
                             icon={faUser}
                             label='username'
                             inputType='text'
                             inputValue={setting.username}
-                            onChangeSetting={(e, settingItemName) => { changeSetting(e, settingItemName) }}
+                            onChangeSetting={(newSettingValue, settingItemName) => { changeSetting(newSettingValue, settingItemName) }}
                         />
                         <SettingInput
                             icon={faLock}
                             label='password'
                             inputType='text'
                             inputValue={setting.password}
-                            onChangeSetting={(e, settingItemName) => { changeSetting(e, settingItemName) }}
+                            onChangeSetting={(newSettingValue, settingItemName) => { changeSetting(newSettingValue, settingItemName) }}
                         />
                     </div>
                 </div>}
