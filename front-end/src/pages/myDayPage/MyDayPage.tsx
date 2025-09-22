@@ -9,6 +9,7 @@ import type { RootState } from '../../store/store'
 import AddNewTaskForm from './components/AddNewTaskForm/AddNewTaskForm'
 import AddNewTaskBtn from './components/addNewTaskBtn/AddNewTaskBtn'
 import styles from './myDayPage.module.scss'
+import { toast } from 'react-toastify'
 
 export default function MyDayPage() {
     // redux
@@ -26,8 +27,16 @@ export default function MyDayPage() {
             method: 'GET',
             credentials: 'include'
         })
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(res.statusText)
+                }
+                return res.json()
+            })
             .then(data => dispatch(setAll(data)))
+            .catch((err) => {
+                toast.error(err.message)
+            })
 
     }, [dispatch])
 
