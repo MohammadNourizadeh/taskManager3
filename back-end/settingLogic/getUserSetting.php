@@ -5,6 +5,9 @@ header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 header("Access-Control-Allow-Credentials: true");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
+// JSON header
+header("Content-Type: application/json; charset=UTF-8");
+
 if (isset($_COOKIE['userId'])) {
 
     $userId = $_COOKIE['userId'];
@@ -14,7 +17,8 @@ if (isset($_COOKIE['userId'])) {
     $query = mysqli_query($db, "
     SELECT `user_setting`.`theme` , `users`.`username` , `users`.`password`
     FROM `users` 
-    INNER JOIN `user_setting` ON `user_setting`.`user_id` = $userId; 
+    INNER JOIN `user_setting` ON `user_setting`.`user_id` = `users`.`id`
+    WHERE `user_setting`.`user_id` = $userId; 
 ");
 
     $result = mysqli_fetch_assoc($query);
