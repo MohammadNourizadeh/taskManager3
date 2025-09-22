@@ -9,6 +9,7 @@ import type { RootState } from '../../store/store'
 import Header from './components/header/Header'
 import Sidebar from './components/sidebar/Sidebar'
 import styles from './styles/Admin.module.scss'
+import { toast } from 'react-toastify'
 
 export default function Admin() {
     // redux
@@ -24,9 +25,18 @@ export default function Admin() {
             method: "GET",
             credentials: 'include'
         })
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(String(res.statusText))
+                }
+
+                return res.json()
+            })
             .then(data => {
                 dispatch(setSetting(data))
+            })
+            .catch((err) => {
+                toast.error(err.message)
             })
     }, [dispatch])
 
