@@ -1,4 +1,16 @@
 .king {
+  display: flex;
+  gap: 20px;
+  height: 100%;
+  overflow: auto;
+
+  .addNewBtnAndCitiesListContainer {
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 1px;
+  }
+
   .weatherBoxContainer {
     display: flex;
     flex-wrap: wrap;

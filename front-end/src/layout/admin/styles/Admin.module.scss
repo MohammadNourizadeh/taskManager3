@@ -56,7 +56,6 @@ $headerHeight: 35vh;
 
     .outletPart {
       height: calc(100vh - $headerHeight);
-      overflow: auto;
       padding: 20px;
     }
   }

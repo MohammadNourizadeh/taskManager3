@@ -1,0 +1,83 @@
+@use "../../../../assets/styles/index.scss";
+
+.citiesListContainer {
+  flex-grow: 1;
+  overflow: auto;
+
+  .citiesList {
+    height: 100%;
+    border-radius: 10px;
+    text-transform: capitalize;
+    list-style: none;
+
+    li {
+      width: 100%;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .citiesInfoContainer {
+        .cityName {
+          font-size: 1.1em;
+          display: block;
+          margin-bottom: 10px;
+          font-weight: bold;
+        }
+      }
+
+      button {
+        padding: 5px 15px;
+        color: index.$red_error_color;
+        border-radius: 5px;
+        border: 1px solid index.$red_error_color;
+        font-size: 1em;
+        background: none;
+        cursor: pointer;
+        transition: 0.1s ease-in-out;
+
+        &:hover {
+          color: index.$darkMode_text_color;
+          background-color: index.$red_error_color;
+        }
+
+        &:active {
+          background-color: index.$red_error_color;
+          color: index.$darkMode_text_color;
+        }
+      }
+    }
+  }
+}
+
+// light mode
+#lightMode {
+  background-color: index.$lightMode_border_color;
+  .citiesList {
+    li {
+      border-bottom: 2px solid index.$lightMode_part_bg_color;
+
+      .citiesInfoContainer {
+        .countryName {
+          color: rgba(0, 0, 0, 0.482);
+        }
+      }
+    }
+  }
+}
+
+// dark mode
+#darkMode {
+  background-color: index.$darkMode_border_color;
+  .citiesList {
+    li {
+      border-bottom: 2px solid index.$darkMode_part_bg_color;
+
+      .citiesInfoContainer {
+        .countryName {
+          color: rgba(255, 255, 255, 0.482);
+        }
+      }
+    }
+  }
+}

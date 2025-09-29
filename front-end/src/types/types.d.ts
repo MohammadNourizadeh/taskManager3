@@ -114,6 +114,11 @@ type SettingSliceInitialStateType = {
   password: string;
 };
 
+type CitiesInfoType = {
+  cityName: string;
+  countryName: string;
+};
+
 export {
   ModalValueType,
   TasksType,
@@ -135,4 +140,5 @@ export {
   PageNameSliceInitialStateType,
   SettingType,
   SettingSliceInitialStateType,
+  CitiesInfoType,
 };
