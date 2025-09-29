@@ -1,28 +1,31 @@
 <?php
 // CORS headers
-header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Origin: http://localhost:5173");
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
+header("Access-Control-Allow-Credentials: true");
 
+$userId = $_COOKIE["userId"];
 
 $weatherURL = 'https://api.weatherapi.com/v1/current.json?key=2219e611ea0c4fe0834220540212709&q=';
-$cities = ['London', 'paris'];
-
-$db = mysqli_connect('localhost', 'root', '', 'task_manager');
-$userCitiesData = mysqli_query($db, '
-    SELECT city FROM `city_weather`
-    WHERE user_id = 7
-');
-
-while ($cityData = mysqli_fetch_assoc($userCitiesData)) {
-    $cities[] = $cityData['city'];
-}
-
+$cities = ['London', 'Paris'];
 $citiesInfo = [];
 
+if (isset($userId)) {
+    $db = mysqli_connect('localhost', 'root', '', 'task_manager');
+    $userChosenCities = mysqli_query($db, "
+        SELECT `city_weather`.`city` FROM `city_weather`
+         WHERE `city_weather`.`user_id` = $userId; 
+    ");
+
+    while ($cityName = mysqli_fetch_assoc($userChosenCities)) {
+        $cities[] = $cityName['city'];
+    }
+}
+
 foreach ($cities as $city) {
-    $getData = file_get_contents($weatherURL . $city);
-    $data = json_decode($getData, true);
+    $fetchedData = file_get_contents($weatherURL . $city);
+    $data = json_decode($fetchedData, true);
 
     $citiesInfo[] = [
         'cityName' => $data['location']['name'],

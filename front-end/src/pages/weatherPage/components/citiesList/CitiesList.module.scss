@@ -3,10 +3,10 @@
 .citiesListContainer {
   flex-grow: 1;
   overflow: auto;
+  border-radius: 10px;
 
   .citiesList {
     height: 100%;
-    border-radius: 10px;
     text-transform: capitalize;
     list-style: none;
 

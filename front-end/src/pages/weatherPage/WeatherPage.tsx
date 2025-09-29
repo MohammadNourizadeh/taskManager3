@@ -13,7 +13,10 @@ export default function WeatherPage() {
 
     // side effect
     useEffect(() => {
-        fetch('http://localhost:8080/php/task_manager/showWeather.php')
+        fetch('http://localhost:8080/php/task_manager/showWeather.php', {
+            method: "GET",
+            credentials: "include"
+        })
             .then(res => res.json())
             .then(data => {
                 setWeathers(data)
