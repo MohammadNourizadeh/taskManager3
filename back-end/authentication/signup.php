@@ -31,6 +31,17 @@ if (isset($data)) {
         VALUES ($newUserId)
     ");
 
+
+    // set initial cities for checking weathers
+    $initialCities = ['Tehran', 'London'];
+    foreach ($initialCities as $city) {
+        mysqli_query($db, "
+        INSERT INTO `city_weather` 
+        (`city`, `user_id`)
+        VALUES ('$city','$newUserId'); 
+    ");
+    }
+
     $dataSend = ['error' => false, 'msg' => 'registration was successful'];
     echo json_encode($dataSend);
 }

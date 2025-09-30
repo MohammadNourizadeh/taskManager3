@@ -5,11 +5,11 @@ header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Access-Control-Allow-Credentials: true");
 
-$userId = $_COOKIE["userId"];
+$userId = $_COOKIE["userId"] ?? null;
 
 $weatherURL = 'https://api.weatherapi.com/v1/current.json?key=2219e611ea0c4fe0834220540212709&q=';
-$cities = ['London', 'Paris'];
 $citiesInfo = [];
+$cities = [];
 
 if (isset($userId)) {
     $db = mysqli_connect('localhost', 'root', '', 'task_manager');
@@ -21,6 +21,8 @@ if (isset($userId)) {
     while ($cityName = mysqli_fetch_assoc($userChosenCities)) {
         $cities[] = $cityName['city'];
     }
+} else {
+    array_push($cities, 'paris', 'karaj');
 }
 
 foreach ($cities as $city) {

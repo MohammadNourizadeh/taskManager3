@@ -15,6 +15,8 @@
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    flex-grow: 1;
+    
     .weatherBox {
       flex-basis: 300px;
       flex-grow: 1;
