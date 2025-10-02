@@ -31,10 +31,16 @@ export default function WeatherPage() {
             })
     }, [])
 
+    // func
+    const handleAddNewCity = (newCityInfo: WeatherType) => {
+        setWeathers(prev => [newCityInfo, ...prev])
+        setCities(prev => [{ cityName: newCityInfo.cityName, countryName: newCityInfo.countryName }, ...prev])
+    }
+
     return (
         <div className={styles.king}>
             <div className={styles.addNewBtnAndCitiesListContainer}>
-                <AddNewCityBtn />
+                <AddNewCityBtn onAddNewCity={handleAddNewCity} />
                 <CitiesList cities={cities} />
             </div>
             <div className={styles.weatherBoxContainer}>
