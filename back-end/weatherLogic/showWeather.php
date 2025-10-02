@@ -38,4 +38,4 @@ foreach ($cities as $city) {
     ];
 }
 
-echo json_encode($citiesInfo);
+echo json_encode(array_reverse($citiesInfo));
