@@ -4,8 +4,12 @@ import { toast } from "react-toastify";
 import styles from './AddNewCityBtn.module.scss';
 import { cities } from "./cities";
 import type { WeatherType } from "../../../../types/types";
+import { useNavigate } from "react-router-dom";
 
 export default function AddNewCityBtn({ onAddNewCity }: { onAddNewCity: (newCityInfo: WeatherType) => void }) {
+    // navigation
+    const navigate = useNavigate()
+
     // func
     const handleAddNewCity = async (e: React.ChangeEvent<HTMLSelectElement>) => {
         try {
@@ -20,7 +24,15 @@ export default function AddNewCityBtn({ onAddNewCity }: { onAddNewCity: (newCity
             }
 
             const data = await res.json()
-            onAddNewCity(data)
+            console.log(data);
+            
+
+            if (data.err) {
+                navigate('/auth/login')
+                toast.error(data.msg)
+            } else {
+                onAddNewCity(data)
+            }
 
         } catch (err: unknown) {
             if (err instanceof Error) {

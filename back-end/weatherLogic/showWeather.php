@@ -21,21 +21,21 @@ if (isset($userId)) {
     while ($cityName = mysqli_fetch_assoc($userChosenCities)) {
         $cities[] = $cityName['city'];
     }
-} else {
-    array_push($cities, 'paris', 'karaj');
+
+    foreach ($cities as $city) {
+        $fetchedData = file_get_contents($weatherURL . $city);
+        $data = json_decode($fetchedData, true);
+
+        $citiesInfo[] = [
+            'cityName' => $data['location']['name'],
+            'countryName' => $data['location']['country'],
+            'lastUpdate' => $data['current']['last_updated'],
+            'temp' => $data['current']['temp_c'],
+            'weatherImg' => $data['current']['condition']['icon'],
+        ];
+    }
 }
 
-foreach ($cities as $city) {
-    $fetchedData = file_get_contents($weatherURL . $city);
-    $data = json_decode($fetchedData, true);
 
-    $citiesInfo[] = [
-        'cityName' => $data['location']['name'],
-        'countryName' => $data['location']['country'],
-        'lastUpdate' => $data['current']['last_updated'],
-        'temp' => $data['current']['temp_c'],
-        'weatherImg' => $data['current']['condition']['icon'],
-    ];
-}
 
 echo json_encode(array_reverse($citiesInfo));

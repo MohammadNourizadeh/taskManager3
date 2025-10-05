@@ -5,8 +5,13 @@ header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Access-Control-Allow-Credentials: true");
 
-$userId = $_COOKIE['userId'];
 
+if (!isset($_COOKIE['userId'])) {
+    echo json_encode(['err' => true, 'msg' => 'please log in']);
+    exit;
+}
+
+$userId = $_COOKIE['userId'];
 if (isset($userId)) {
     $newCityInfo = []; // for echo
 

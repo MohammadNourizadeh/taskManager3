@@ -5,11 +5,12 @@ import CitiesList from "./components/citiesList/CitiesList";
 import WeatherBox from "./components/weatherBox/WeatherBox";
 import styles from './WeatherPage.module.scss';
 import NotFoundMessage from "../../components/notFoundMessage/NotFoundMessage";
+import LoadingIcon from "../../components/loadingIcon/LoadingIcon";
 
 export default function WeatherPage() {
 
     // state
-    const [weathers, setWeathers] = useState<WeatherType[]>([])
+    const [weathers, setWeathers] = useState<WeatherType[] | null>(null)
     const [cities, setCities] = useState<CitiesInfoType[]>([])
 
     // side effect
@@ -34,7 +35,7 @@ export default function WeatherPage() {
 
     // func
     const handleAddNewCity = (newCityInfo: WeatherType) => {
-        setWeathers(prev => [newCityInfo, ...prev])
+        if (weathers !== null) setWeathers(prev => [newCityInfo, ...(prev ?? [])])
         setCities(prev => [{ cityName: newCityInfo.cityName, countryName: newCityInfo.countryName }, ...prev])
     }
 
@@ -45,14 +46,19 @@ export default function WeatherPage() {
                 <CitiesList cities={cities} />
             </div>
             <div className={styles.weatherBoxContainer}>
-                {weathers.length !== 0 ?
-                    weathers.map((weather, index) => (
-                        <div key={index} className={styles.weatherBox}>
-                            <WeatherBox cityName={weather.cityName} countryName={weather.countryName} lastUpdate={weather.lastUpdate} temp={weather.temp} weatherImg={weather.weatherImg} />
-                        </div>
-                    ))
+                {weathers === null ?
+                    <div className={styles.loadingIconContainer}>
+                        <LoadingIcon />
+                    </div>
                     :
-                    <NotFoundMessage notFoundItem="city" description="Please choose a city to see its weather, and the selected city will appear here ."/>}
+                    weathers.length !== 0 ?
+                        weathers.map((weather, index) => (
+                            <div key={index} className={styles.weatherBox}>
+                                <WeatherBox cityName={weather.cityName} countryName={weather.countryName} lastUpdate={weather.lastUpdate} temp={weather.temp} weatherImg={weather.weatherImg} />
+                            </div>
+                        ))
+                        :
+                        <NotFoundMessage notFoundItem="city" description="Please choose a city to see its weather, and the selected city will appear here ." />}
             </div>
         </div>
     )
