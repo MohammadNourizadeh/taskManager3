@@ -4,6 +4,7 @@ import AddNewCityBtn from "./components/addNewCityBtn/AddNewCityBtn";
 import CitiesList from "./components/citiesList/CitiesList";
 import WeatherBox from "./components/weatherBox/WeatherBox";
 import styles from './WeatherPage.module.scss';
+import NotFoundMessage from "../../components/notFoundMessage/NotFoundMessage";
 
 export default function WeatherPage() {
 
@@ -44,11 +45,14 @@ export default function WeatherPage() {
                 <CitiesList cities={cities} />
             </div>
             <div className={styles.weatherBoxContainer}>
-                {weathers.map((weather, index) => (
-                    <div key={index} className={styles.weatherBox}>
-                        <WeatherBox cityName={weather.cityName} countryName={weather.countryName} lastUpdate={weather.lastUpdate} temp={weather.temp} weatherImg={weather.weatherImg} />
-                    </div>
-                ))}
+                {weathers.length !== 0 ?
+                    weathers.map((weather, index) => (
+                        <div key={index} className={styles.weatherBox}>
+                            <WeatherBox cityName={weather.cityName} countryName={weather.countryName} lastUpdate={weather.lastUpdate} temp={weather.temp} weatherImg={weather.weatherImg} />
+                        </div>
+                    ))
+                    :
+                    <NotFoundMessage notFoundItem="city" description="Please choose a city to see its weather, and the selected city will appear here ."/>}
             </div>
         </div>
     )
