@@ -25,18 +25,14 @@ if (isset($userId)) {
         VALUES('$newCityFromUser' , $userId); 
     ");
 
-    $newCityId = mysqli_insert_id($db);
-    $newCityFromDb = mysqli_query($db, "
-        SELECT `city` FROM `city_weather`
-        WHERE `city_weather`.`id` = $newCityId; 
-    ");
 
     $weatherURL = 'https://api.weatherapi.com/v1/current.json?key=2219e611ea0c4fe0834220540212709&q=';
-    $newCityName = mysqli_fetch_assoc($newCityFromDb);
-    $fetchedCityWeatherInfo = file_get_contents($weatherURL . $newCityName['city']);
+    $fetchedCityWeatherInfo = file_get_contents($weatherURL . $newCityFromUser);
     $cityInfo = json_decode($fetchedCityWeatherInfo, true);
 
+    $newCityId = mysqli_insert_id($db);
     $newCityInfo = [
+        'id' => $newCityId,
         'cityName' => $cityInfo['location']['name'],
         'countryName' => $cityInfo['location']['country'],
         'lastUpdate' => $cityInfo['current']['last_updated'],

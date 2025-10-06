@@ -82,6 +82,15 @@ type sidebarItemInfoType = {
 };
 
 type WeatherType = {
+  id: number;
+  cityName: string;
+  countryName: string;
+  weatherImg: string;
+  temp: number;
+  lastUpdate: string;
+};
+
+type WeatherBoxProps = {
   cityName: string;
   countryName: string;
   weatherImg: string;
@@ -134,6 +143,7 @@ export {
   TaskBoxType,
   sidebarItemInfoType,
   WeatherType,
+  WeatherBoxProps,
   TasksSliceInitialStateType,
   TasksSliceAddPayloadType,
   ConfirmModalPropsType,

@@ -14,19 +14,23 @@ $cities = [];
 if (isset($userId)) {
     $db = mysqli_connect('localhost', 'root', '', 'task_manager');
     $userChosenCities = mysqli_query($db, "
-        SELECT `city_weather`.`city` FROM `city_weather`
-         WHERE `city_weather`.`user_id` = $userId; 
+        SELECT * FROM `city_weather`
+        WHERE `city_weather`.`user_id` = $userId; 
     ");
 
-    while ($cityName = mysqli_fetch_assoc($userChosenCities)) {
-        $cities[] = $cityName['city'];
+    while ($cityFromDb = mysqli_fetch_assoc($userChosenCities)) {
+        $cities[] = [
+            'id' => $cityFromDb['id'],
+            'city' => $cityFromDb['city']
+        ];
     }
 
     foreach ($cities as $city) {
-        $fetchedData = file_get_contents($weatherURL . $city);
+        $fetchedData = file_get_contents($weatherURL . $city['city']);
         $data = json_decode($fetchedData, true);
 
         $citiesInfo[] = [
+            'id' => $city['id'],
             'cityName' => $data['location']['name'],
             'countryName' => $data['location']['country'],
             'lastUpdate' => $data['current']['last_updated'],

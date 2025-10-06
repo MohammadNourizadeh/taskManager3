@@ -24,8 +24,7 @@ export default function AddNewCityBtn({ onAddNewCity }: { onAddNewCity: (newCity
             }
 
             const data = await res.json()
-            console.log(data);
-            
+
 
             if (data.err) {
                 navigate('/auth/login')

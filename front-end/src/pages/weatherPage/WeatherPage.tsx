@@ -52,8 +52,8 @@ export default function WeatherPage() {
                     </div>
                     :
                     weathers.length !== 0 ?
-                        weathers.map((weather, index) => (
-                            <div key={index} className={styles.weatherBox}>
+                        weathers.map((weather) => (
+                            <div key={weather.id} className={styles.weatherBox}>
                                 <WeatherBox cityName={weather.cityName} countryName={weather.countryName} lastUpdate={weather.lastUpdate} temp={weather.temp} weatherImg={weather.weatherImg} />
                             </div>
                         ))
