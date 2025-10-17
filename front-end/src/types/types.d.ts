@@ -124,6 +124,7 @@ type SettingSliceInitialStateType = {
 };
 
 type CitiesInfoType = {
+  id: number;
   cityName: string;
   countryName: string;
 };

@@ -18,7 +18,7 @@ export default function TaskBox({ task, index }: TaskBoxType) {
     // func
     const handleRemoveTask = () => {
         dispatch(openModal())
-        dispatch(setList(tasks))
+        if (tasks) dispatch(setList(tasks))
         if (task.id) dispatch(setTargetItemId(task.id))
     }
 

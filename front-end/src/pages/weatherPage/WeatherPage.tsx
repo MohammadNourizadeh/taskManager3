@@ -25,6 +25,7 @@ export default function WeatherPage() {
                 const cityInfoList: typeof cities = []
                 data.forEach((city: WeatherType) => {
                     cityInfoList.push({
+                        id: city.id,
                         cityName: city.cityName,
                         countryName: city.countryName
                     })
@@ -36,7 +37,7 @@ export default function WeatherPage() {
     // func
     const handleAddNewCity = (newCityInfo: WeatherType) => {
         if (weathers !== null) setWeathers(prev => [newCityInfo, ...(prev ?? [])])
-        setCities(prev => [{ cityName: newCityInfo.cityName, countryName: newCityInfo.countryName }, ...prev])
+        setCities(prev => [{ id: newCityInfo.id, cityName: newCityInfo.cityName, countryName: newCityInfo.countryName }, ...prev])
     }
 
     return (
