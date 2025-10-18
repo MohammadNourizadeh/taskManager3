@@ -44,7 +44,7 @@ export default function WeatherPage() {
         <div className={styles.king}>
             <div className={styles.addNewBtnAndCitiesListContainer}>
                 <AddNewCityBtn onAddNewCity={handleAddNewCity} />
-                <CitiesList cities={cities} />
+                <CitiesList cities={cities} onDelete={(val) => { setCities(val) }} />
             </div>
             <div className={styles.weatherBoxContainer}>
                 {weathers === null ?

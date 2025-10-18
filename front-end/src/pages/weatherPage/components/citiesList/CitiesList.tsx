@@ -2,10 +2,10 @@ import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../../../store/store";
-import styles from './CitiesList.module.scss';
 import type { CitiesInfoType } from "../../../../types/types";
+import styles from './CitiesList.module.scss';
 
-export default function CitiesList({ cities }: { cities: CitiesInfoType[] }) {
+export default function CitiesList({ cities, onDelete }: { cities: CitiesInfoType[], onDelete: (val: CitiesInfoType[]) => void }) {
     // redux
     const setting = useSelector((state: RootState) => state.setting)
 
@@ -14,6 +14,12 @@ export default function CitiesList({ cities }: { cities: CitiesInfoType[] }) {
         fetch('http://localhost:8080/php/task_manager/deleteCityWeather.php', {
             method: "DELETE",
             body: JSON.stringify({ cityId: itemId })
+        }).then(res => {
+            if (res.ok) {
+                const temp = [...cities]
+                const newCitiesList = temp.filter(city => city.id !== itemId)
+                onDelete(newCitiesList)
+            }
         })
     }
 
