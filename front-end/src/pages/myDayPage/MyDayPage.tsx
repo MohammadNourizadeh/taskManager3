@@ -8,7 +8,7 @@ import { setAll } from '../../store/slices/tasks'
 import type { RootState } from '../../store/store'
 import AddNewTaskForm from './components/AddNewTaskForm/AddNewTaskForm'
 import AddNewTaskBtn from './components/addNewTaskBtn/AddNewTaskBtn'
-import styles from './myDayPage.module.scss'
+import styles from './MyDayPage.module.scss'
 import { toast } from 'react-toastify'
 
 export default function MyDayPage() {
