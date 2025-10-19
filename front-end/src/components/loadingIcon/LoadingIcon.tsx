@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from './LoadingIcon.module.scss';
 
-export default function LoadingIcon() {
+export default function LoadingIcon({ width = 150, loadingText = true }: { width?: number, loadingText?: boolean }) {
     // state
     const [index, setIndex] = useState<number>(0)
 
@@ -26,11 +26,11 @@ export default function LoadingIcon() {
 
 
     return (
-        <div className={styles.king}>
+        <div className={styles.king} style={{ width: width, height: width }}>
             <div className={styles.spinner} />
-            <div className={styles.loadingContainer}>
+            {loadingText && <div className={styles.loadingContainer}>
                 {loadings[index]}
-            </div>
+            </div>}
         </div>
     )
 }

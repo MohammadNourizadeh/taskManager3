@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import styles from './HeaderDate.module.scss'
+import LoadingIcon from '../../../../../../components/loadingIcon/LoadingIcon'
 
 export default function HeaderDate() {
     // state
@@ -22,7 +23,10 @@ export default function HeaderDate() {
 
     return (
         <div className={styles.date}>
-            {date}
+            {date !== 'null' ?
+                <LoadingIcon width={24} loadingText={false} />
+                :
+                date}
         </div>
     )
 }
