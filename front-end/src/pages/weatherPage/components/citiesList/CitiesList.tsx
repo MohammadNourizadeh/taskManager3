@@ -5,7 +5,7 @@ import type { RootState } from "../../../../store/store";
 import type { CitiesInfoType } from "../../../../types/types";
 import styles from './CitiesList.module.scss';
 
-export default function CitiesList({ cities, onDelete }: { cities: CitiesInfoType[], onDelete: (val: CitiesInfoType[]) => void }) {
+export default function CitiesList({ cities, onDelete }: { cities: CitiesInfoType[], onDelete: (newCityList: CitiesInfoType[], itemId: number) => void }) {
     // redux
     const setting = useSelector((state: RootState) => state.setting)
 
@@ -18,7 +18,7 @@ export default function CitiesList({ cities, onDelete }: { cities: CitiesInfoTyp
             if (res.ok) {
                 const temp = [...cities]
                 const newCitiesList = temp.filter(city => city.id !== itemId)
-                onDelete(newCitiesList)
+                onDelete(newCitiesList, itemId)
             }
         })
     }

@@ -40,11 +40,16 @@ export default function WeatherPage() {
         setCities(prev => [{ id: newCityInfo.id, cityName: newCityInfo.cityName, countryName: newCityInfo.countryName }, ...prev])
     }
 
+    const onDeleteCity = (newCityList: typeof cities, itemId: number) => {
+        setCities(newCityList)
+        if (weathers) setWeathers(weathers.filter(item => item.id !== itemId))
+    }
+
     return (
         <div className={styles.king}>
             <div className={styles.addNewBtnAndCitiesListContainer}>
                 <AddNewCityBtn onAddNewCity={handleAddNewCity} />
-                <CitiesList cities={cities} onDelete={(val) => { setCities(val) }} />
+                <CitiesList cities={cities} onDelete={onDeleteCity} />
             </div>
             <div className={styles.weatherBoxContainer}>
                 {weathers === null ?
