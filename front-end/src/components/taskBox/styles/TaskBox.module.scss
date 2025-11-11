@@ -11,6 +11,12 @@
   gap: 20px;
   position: relative;
 
+  .checkboxInputContainer {
+    input {
+      cursor: pointer;
+    }
+  }
+
   .taskInfoContainer {
     .taskName {
       margin-bottom: 10px;

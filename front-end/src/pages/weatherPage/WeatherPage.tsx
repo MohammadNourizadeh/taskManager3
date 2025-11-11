@@ -36,7 +36,7 @@ export default function WeatherPage() {
 
     // func
     const handleAddNewCity = (newCityInfo: WeatherType) => {
-        if (weathers !== null) setWeathers(prev => [newCityInfo, ...(prev ?? [])])
+        setWeathers(prev => [newCityInfo, ...(prev ?? [])])
         setCities(prev => [{ id: newCityInfo.id, cityName: newCityInfo.cityName, countryName: newCityInfo.countryName }, ...prev])
     }
 

@@ -1,15 +1,15 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { toast } from 'react-toastify'
 import ConfirmModal from '../../components/confirmModal/ConfirmModal'
 import LoadingIcon from '../../components/loadingIcon/LoadingIcon'
 import TaskBox from '../../components/taskBox/TaskBox'
 import useToggle from '../../customHooks/useToggle/useToggle'
 import { setAll } from '../../store/slices/tasks'
 import type { RootState } from '../../store/store'
-import AddNewTaskForm from './components/AddNewTaskForm/AddNewTaskForm'
 import AddNewTaskBtn from './components/addNewTaskBtn/AddNewTaskBtn'
+import AddNewTaskForm from './components/AddNewTaskForm/AddNewTaskForm'
 import styles from './MyDayPage.module.scss'
-import { toast } from 'react-toastify'
 
 export default function MyDayPage() {
     // redux
