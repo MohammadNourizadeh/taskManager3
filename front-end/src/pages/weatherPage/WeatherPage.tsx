@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
+import LoadingIcon from "../../components/loadingIcon/LoadingIcon";
+import NotFoundMessage from "../../components/notFoundMessage/NotFoundMessage";
 import type { CitiesInfoType, WeatherType } from "../../types/types";
 import AddNewCityBtn from "./components/addNewCityBtn/AddNewCityBtn";
 import CitiesList from "./components/citiesList/CitiesList";
 import WeatherBox from "./components/weatherBox/WeatherBox";
 import styles from './WeatherPage.module.scss';
-import NotFoundMessage from "../../components/notFoundMessage/NotFoundMessage";
-import LoadingIcon from "../../components/loadingIcon/LoadingIcon";
 
 export default function WeatherPage() {
 
