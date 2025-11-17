@@ -1,5 +1,5 @@
 import { faTrashCan, faStar as regStar } from '@fortawesome/free-regular-svg-icons'
-import { faStar as solidStar } from '@fortawesome/free-solid-svg-icons'
+import { faEdit, faStar as solidStar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useDispatch, useSelector } from 'react-redux'
 import { openModal, setList, setTargetItemId } from '../../store/slices/confirmModal'
@@ -61,8 +61,15 @@ export default function TaskBox({ task, index }: TaskBoxType) {
                 <div className={styles.taskName}>
                     {task.name}
                 </div>
-                <div className={styles.taskDate}>
-                    {task.date}
+                <div className={styles.dateAndEditBtnContainer}>
+                    <div className={styles.taskDate}>
+                        {task.date}
+                    </div>
+                    <div className={styles.editBtnContainer}>
+                        <button>
+                            <FontAwesomeIcon icon={faEdit} />
+                        </button>
+                    </div>
                 </div>
             </div>
 

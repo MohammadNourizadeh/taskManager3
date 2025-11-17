@@ -30,15 +30,36 @@ const tasksSlice = createSlice({
       });
     },
     remove: (state, action: PayloadAction<number>) => {
-      if (state.tasks !== null) state.tasks = state.tasks.filter((task) => task.id !== action.payload);
+      if (state.tasks !== null)
+        state.tasks = state.tasks.filter((task) => task.id !== action.payload);
     },
     handleImportant: (state, action: PayloadAction<number>) => {
       const index = action.payload;
-      if (state.tasks !== null) state.tasks[index].isImportant = !state.tasks[index].isImportant;
+      if (state.tasks !== null)
+        state.tasks[index].isImportant = !state.tasks[index].isImportant;
     },
     handleDone: (state, action: PayloadAction<number>) => {
       const index = action.payload;
-      if (state.tasks !== null) state.tasks[index].isDone = !state.tasks[index].isDone;
+      if (state.tasks !== null)
+        state.tasks[index].isDone = !state.tasks[index].isDone;
+    },
+    handleEdit: (
+      state,
+      action: PayloadAction<{ id: number; name: string; date: string }>
+    ) => {
+      if (state.tasks !== null) {
+        const chosenTaskForEdit =
+          state.tasks[
+            state.tasks?.findIndex((task) => task.id === action.payload.id)
+          ];
+
+        chosenTaskForEdit.name = action.payload.name;
+        chosenTaskForEdit.date = action.payload.date;
+
+        state.tasks[
+          state.tasks?.findIndex((task) => task.id === action.payload.id)
+        ] = chosenTaskForEdit;
+      }
     },
   },
 });
