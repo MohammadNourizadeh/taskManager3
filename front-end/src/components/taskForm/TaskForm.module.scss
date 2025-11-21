@@ -1,4 +1,4 @@
-@use "../../../../assets/styles/index.scss";
+@use "../../assets/styles/index.scss";
 
 .king {
   position: absolute;
@@ -11,7 +11,7 @@
   justify-content: center;
   align-items: center;
 
-  .AddNewTaskForm {
+  .taskForm {
     padding: 30px;
     border-width: 1px;
     border-style: solid;
@@ -30,7 +30,7 @@
         border-style: solid;
 
         &:focus {
-          outline: 2px solid index.$green_accepted_color;
+          outline: 2px solid index.$input_focus_color;
         }
       }
 
@@ -64,27 +64,76 @@
       }
     }
 
-    .addBtnContainer {
+    .btnsContainer {
       display: flex;
       justify-content: center;
       margin-top: 35px;
-      
+
       button {
-        color: index.$darkMode_text_color;
         padding: 10px;
-        width: 65%;
-        border-radius: 20px;
+        border-radius: 10px;
         border: 0px;
+        color: index.$darkMode_text_color;
         cursor: pointer;
-        background-color: index.$green_accepted_color;
-        font-size: 1em;
-        transition: 0.1s ease-in-out;
+
+        &:active {
+          opacity: 0.8;
+        }
+      }
+
+      .addBtn {
+        width: 150px;
+        background: index.$btn_color_positive;
+        transition: width 0.2s ease-in-out;
 
         &:hover {
-          background-color: rgba(35, 134, 55, 0.8352941176);
+          background: index.$btn_hover_positive;
+          width: 175px;
         }
-        &:active {
-          background-color: rgba(35, 134, 55, 0.672);
+      }
+
+      .editingBtnsContainer {
+        display: flex;
+        align-items: end;
+        justify-content: space-evenly;
+        width: 100%;
+
+        .confirmBtn,
+        .cancelEditBtn,
+        .resetEditBtn {
+          width: 75px;
+
+          &:disabled {
+            opacity: 0.3;
+            cursor: default;
+          }
+        }
+
+        .confirmBtn {
+          background: index.$btn_color_positive;
+          &:hover {
+            background: index.$btn_hover_positive;
+          }
+
+          &:disabled {
+            &:hover {
+              background: index.$btn_color_positive;
+            }
+          }
+        }
+
+        .cancelEditBtn {
+          background: index.$btn_color_negative;
+
+          &:hover {
+            background: index.$btn_hover_negative;
+          }
+
+          &:disabled {
+            &:hover {
+              background: index.$btn_color_negative;
+            }
+          }
         }
       }
     }
@@ -119,7 +168,7 @@
 
 // light mode
 #lightMode {
-  .AddNewTaskForm {
+  .taskForm {
     background-color: index.$lightMode_main_bg_color;
     border-color: index.$lightMode_border_color;
 
@@ -129,6 +178,18 @@
         background-color: index.$lightMode_part_bg_color;
         border-color: index.$lightMode_border_color;
         color: index.$lightMode_text_color;
+      }
+    }
+
+    .btnsContainer {
+      .editingBtnsContainer {
+        .resetEditBtn {
+          background: index.$lightMode_btn_color_neutral;
+
+          &:hover {
+            background: index.$lightMode_btn_hover_neutral;
+          }
+        }
       }
     }
 
@@ -142,7 +203,7 @@
 
 // dark mode
 #darkMode {
-  .AddNewTaskForm {
+  .taskForm {
     background-color: index.$darkMode_main_bg_color;
     border-color: index.$darkMode_border_color;
 
@@ -152,6 +213,18 @@
         background-color: index.$darkMode_part_bg_color;
         border-color: index.$darkMode_border_color;
         color: index.$darkMode_text_color;
+      }
+    }
+
+    .btnsContainer {
+      .editingBtnsContainer {
+        .resetEditBtn {
+          background: index.$darkMode_btn_color_neutral;
+
+          &:hover {
+            background: index.$darkMode_btn_hover_neutral;
+          }
+        }
       }
     }
 

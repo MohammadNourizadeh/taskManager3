@@ -68,11 +68,6 @@ type AuthTitlePropsType = {
   icon: IconDefinition;
 };
 
-type TaskBoxType = {
-  task: TasksType;
-  index: number;
-};
-
 type sidebarItemInfoType = {
   icon: IconDefinition;
   iconColor?: string;
@@ -129,6 +124,12 @@ type CitiesInfoType = {
   countryName: string;
 };
 
+type TaskEditObjType = {
+  id: number;
+  name: string;
+  date: string;
+};
+
 export {
   ModalValueType,
   TasksType,
@@ -141,7 +142,6 @@ export {
   ShowPassIconPropsType,
   AuthSwitchLinkProps,
   AuthTitlePropsType,
-  TaskBoxType,
   sidebarItemInfoType,
   WeatherType,
   WeatherBoxProps,
@@ -149,7 +149,7 @@ export {
   TasksSliceAddPayloadType,
   ConfirmModalPropsType,
   PageNameSliceInitialStateType,
-  SettingType,
   SettingSliceInitialStateType,
   CitiesInfoType,
+  TaskEditObjType,
 };

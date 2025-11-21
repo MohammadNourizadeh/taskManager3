@@ -4,11 +4,17 @@ import { useState, type FormEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { add } from '../../../../store/slices/tasks'
-import type { RootState } from '../../../../store/store'
-import styles from './AddNewTaskForm.module.scss'
+import { add } from '../../store/slices/tasks'
+import type { RootState } from '../../store/store'
+import type { TaskEditObjType } from '../../types/types'
+import styles from './TaskForm.module.scss'
 
-export default function AddNewTaskForm({ onCloseForm }: { onCloseForm: () => void }) {
+type TaskFormType = {
+    onCloseForm: () => void,
+    editObj?: TaskEditObjType
+}
+
+export default function TaskForm({ onCloseForm, editObj }: TaskFormType) {
     // var
     const navigate = useNavigate()
 
@@ -17,11 +23,18 @@ export default function AddNewTaskForm({ onCloseForm }: { onCloseForm: () => voi
     const dispatch = useDispatch()
 
     // state
-    const [taskName, setTaskName] = useState('')
-    const [taskDate, setTaskDate] = useState('')
+    const [taskName, setTaskName] = useState(editObj ? editObj.name : '')
+    const [taskDate, setTaskDate] = useState(editObj ? editObj.date : '')
     const [isTaskImportant, setIsTaskImportant] = useState(false)
 
     // func
+    const handleReset = () => {
+        if (editObj) {
+            setTaskName(editObj.name)
+            setTaskDate(editObj.date)
+        }
+    }
+
     const handleAdd = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const body = {
@@ -54,7 +67,7 @@ export default function AddNewTaskForm({ onCloseForm }: { onCloseForm: () => voi
 
     return (
         <div className={styles.king} id={setting.theme === 'dark' ? styles.darkMode : styles.lightMode}>
-            <form className={styles.AddNewTaskForm} onSubmit={handleAdd}>
+            <form className={styles.taskForm} onSubmit={handleAdd}>
                 <div className={styles.inputsAndSelectContainer}>
                     <label htmlFor="taskName" className={styles.inputsLabel}>Enter the task :</label>
                     <input type="text" id='taskName' value={taskName} onChange={(e) => { setTaskName(e.target.value) }} />
@@ -64,17 +77,26 @@ export default function AddNewTaskForm({ onCloseForm }: { onCloseForm: () => voi
                     <input type="date" id='taskDate' value={taskDate} onChange={(e) => { setTaskDate(e.target.value) }} />
                 </div>
                 <div className={styles.inputsAndSelectContainer}>
-                    <div className={styles.selectContainer}>
-                        <label htmlFor="isTaskImportant">is the note important ?</label>
-                        <select id="isTaskImportant" value={isTaskImportant ? 'true' : 'false'} onChange={(e) => { setIsTaskImportant(e.target.value === 'true') }}>
-                            <option value='false'>no</option>
-                            <option value='true'>yes</option>
-                        </select>
-                    </div>
+                    {!editObj &&
+                        <div className={styles.selectContainer}>
+                            <label htmlFor="isTaskImportant">is the note important ?</label>
+                            <select id="isTaskImportant" value={isTaskImportant ? 'true' : 'false'} onChange={(e) => { setIsTaskImportant(e.target.value === 'true') }}>
+                                <option value='false'>no</option>
+                                <option value='true'>yes</option>
+                            </select>
+                        </div>}
                 </div>
                 <hr />
-                <div className={styles.addBtnContainer}>
-                    <button type='submit'>Add</button>
+                <div className={styles.btnsContainer}>
+                    {!editObj ?
+                        <button className={styles.addBtn} type='submit'>Add</button>
+                        :
+                        <div className={styles.editingBtnsContainer}>
+                            <button disabled={editObj.name !== taskName || editObj.date !== taskDate ? false : true} type='submit' className={styles.confirmBtn}>confirm</button>
+                            <button disabled={editObj.name !== taskName || editObj.date !== taskDate ? false : true} className={styles.resetEditBtn} onClick={handleReset}>reset</button>
+                            <button className={styles.cancelEditBtn} onClick={() => { onCloseForm() }}>cancel</button>
+                        </div>
+                    }
                 </div>
                 <div className={styles.cancelBtn}>
                     <button onClick={() => { onCloseForm() }}>

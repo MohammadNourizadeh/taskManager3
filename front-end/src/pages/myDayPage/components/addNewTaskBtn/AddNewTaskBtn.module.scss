@@ -2,7 +2,7 @@
 
 .king {
   padding: 12px;
-  background: index.$btn_color;
+  background: index.$btn_color_positive;
   border: 0;
   color: index.$darkMode_text_color;
   width: 70%;
@@ -15,7 +15,7 @@
   &:hover {
     width: 75%;
     border-radius: 10px;
-    background: index.$btn_hover;
+    background: index.$btn_hover_positive;
   }
 
   span {

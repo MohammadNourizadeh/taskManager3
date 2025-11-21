@@ -5,10 +5,17 @@ import { useDispatch, useSelector } from 'react-redux'
 import { openModal, setList, setTargetItemId } from '../../store/slices/confirmModal'
 import { handleDone, handleImportant } from '../../store/slices/tasks'
 import type { RootState } from '../../store/store'
-import type { TaskBoxType } from '../../types/types'
+import type { TaskEditObjType, TasksType } from '../../types/types'
 import styles from './styles/TaskBox.module.scss'
 
-export default function TaskBox({ task, index }: TaskBoxType) {
+type TaskBoxType = {
+    task: TasksType;
+    index: number;
+    onOpenEditForm: () => void,
+    onEdit: (val: TaskEditObjType) => void
+};
+
+export default function TaskBox({ task, index, onEdit, onOpenEditForm }: TaskBoxType) {
     // redux
     const pageName = useSelector((state: RootState) => state.pageName.pageName)
     const tasks = useSelector((state: RootState) => state.tasks.tasks)
@@ -52,6 +59,10 @@ export default function TaskBox({ task, index }: TaskBoxType) {
             })
     }
 
+    const handleOpenEditForm = () => {
+        if (task.id) onEdit({ id: task.id, name: task.name, date: task.date })
+        onOpenEditForm()
+    }
     return (
         <div className={styles.king} id={setting.theme === 'dark' ? styles.darkMode : styles.lightMode}>
             <div className={styles.checkboxInputContainer}>
@@ -66,7 +77,7 @@ export default function TaskBox({ task, index }: TaskBoxType) {
                         {task.date}
                     </div>
                     <div className={styles.editBtnContainer}>
-                        <button>
+                        <button onClick={handleOpenEditForm}>
                             <FontAwesomeIcon icon={faEdit} />
                         </button>
                     </div>

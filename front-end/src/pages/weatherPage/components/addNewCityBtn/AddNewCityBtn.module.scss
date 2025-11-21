@@ -8,10 +8,10 @@
   padding: 20px;
   text-align: center;
   transition: 0.2s ease-in-out;
-  background: index.$btn_color;
+  background: index.$btn_color_positive;
 
   &:hover {
-    background: index.$btn_hover;
+    background: index.$btn_hover_positive;
   }
 
   span {

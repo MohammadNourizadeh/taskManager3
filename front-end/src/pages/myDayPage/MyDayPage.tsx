@@ -1,14 +1,15 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
 import ConfirmModal from '../../components/confirmModal/ConfirmModal'
 import LoadingIcon from '../../components/loadingIcon/LoadingIcon'
 import TaskBox from '../../components/taskBox/TaskBox'
+import TaskForm from '../../components/taskForm/TaskForm'
 import useToggle from '../../customHooks/useToggle/useToggle'
 import { setAll } from '../../store/slices/tasks'
 import type { RootState } from '../../store/store'
+import type { TaskEditObjType } from '../../types/types'
 import AddNewTaskBtn from './components/addNewTaskBtn/AddNewTaskBtn'
-import AddNewTaskForm from './components/AddNewTaskForm/AddNewTaskForm'
 import styles from './MyDayPage.module.scss'
 
 export default function MyDayPage() {
@@ -19,6 +20,7 @@ export default function MyDayPage() {
 
     // state
     const [isFormOpen, setIsFormOpen] = useToggle()
+    const [editObj, setEditObj] = useState<TaskEditObjType | null>(null)
 
     // sideEffect
     useEffect(() => {
@@ -40,6 +42,12 @@ export default function MyDayPage() {
 
     }, [dispatch])
 
+    // func
+    const handleCloseForm = () => {
+        setIsFormOpen()
+        setEditObj(null)
+    }
+
 
     return (
         <div className={styles.king}>
@@ -53,6 +61,8 @@ export default function MyDayPage() {
                         key={task.id}
                         task={task}
                         index={index}
+                        onEdit={(taskInfo: TaskEditObjType) => { setEditObj(taskInfo) }}
+                        onOpenEditForm={() => { setIsFormOpen() }}
                     />
                 ))
             }
@@ -62,7 +72,7 @@ export default function MyDayPage() {
             {isModalOpen && <ConfirmModal onSetNewListOfDeletedItem={(val) => { dispatch(setAll(val)) }} />}
 
             {/* add new task form */}
-            {isFormOpen && <AddNewTaskForm onCloseForm={() => { setIsFormOpen() }} />}
+            {isFormOpen && <TaskForm onCloseForm={handleCloseForm} editObj={editObj ? editObj : undefined} />}
         </div>
     )
 }
