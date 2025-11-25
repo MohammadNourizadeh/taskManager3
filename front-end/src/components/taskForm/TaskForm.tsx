@@ -4,7 +4,7 @@ import { useState, type FormEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { add } from '../../store/slices/tasks'
+import { add, edit } from '../../store/slices/tasks'
 import type { RootState } from '../../store/store'
 import type { TaskEditObjType } from '../../types/types'
 import styles from './TaskForm.module.scss'
@@ -65,6 +65,36 @@ export default function TaskForm({ onCloseForm, editObj }: TaskFormType) {
         onCloseForm()
     }
 
+    const handleEdit = () => {
+        if (!editObj) return
+
+        let body: { id: number, name?: string, date?: string } = {
+            id: editObj.id
+        }
+
+        if (editObj.name !== taskName) {
+            body = { ...body, name: taskName }
+        }
+
+        if (editObj.name !== taskName) {
+            body = { ...body, date: taskDate }
+        }
+
+        fetch('http://localhost:8080/php/task_manager/editTask.php', {
+            method: "PATCH",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body),
+        })
+            .then(res => {
+                if (res.ok) {
+                    dispatch(edit(body))
+                }
+            })
+        onCloseForm()
+    }
+
     return (
         <div className={styles.king} id={setting.theme === 'dark' ? styles.darkMode : styles.lightMode}>
             <form className={styles.taskForm} onSubmit={handleAdd}>
@@ -92,14 +122,14 @@ export default function TaskForm({ onCloseForm, editObj }: TaskFormType) {
                         <button className={styles.addBtn} type='submit'>Add</button>
                         :
                         <div className={styles.editingBtnsContainer}>
-                            <button disabled={editObj.name !== taskName || editObj.date !== taskDate ? false : true} type='submit' className={styles.confirmBtn}>confirm</button>
-                            <button disabled={editObj.name !== taskName || editObj.date !== taskDate ? false : true} className={styles.resetEditBtn} onClick={handleReset}>reset</button>
-                            <button className={styles.cancelEditBtn} onClick={() => { onCloseForm() }}>cancel</button>
+                            <button type='button' disabled={editObj.name !== taskName || editObj.date !== taskDate ? false : true} className={styles.confirmBtn} onClick={handleEdit}>confirm</button>
+                            <button type='button' disabled={editObj.name !== taskName || editObj.date !== taskDate ? false : true} className={styles.resetEditBtn} onClick={handleReset}>reset</button>
+                            <button type='button' className={styles.cancelEditBtn} onClick={() => { onCloseForm() }}>cancel</button>
                         </div>
                     }
                 </div>
                 <div className={styles.cancelBtn}>
-                    <button onClick={() => { onCloseForm() }}>
+                    <button type='button' onClick={() => { onCloseForm() }}>
                         <FontAwesomeIcon icon={faMultiply} />
                     </button>
                 </div>

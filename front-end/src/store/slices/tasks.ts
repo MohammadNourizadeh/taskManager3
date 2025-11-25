@@ -43,27 +43,26 @@ const tasksSlice = createSlice({
       if (state.tasks !== null)
         state.tasks[index].isDone = !state.tasks[index].isDone;
     },
-    handleEdit: (
+    edit: (
       state,
-      action: PayloadAction<{ id: number; name: string; date: string }>
+      action: PayloadAction<{ id: number; name?: string; date?: string }>
     ) => {
       if (state.tasks !== null) {
-        const chosenTaskForEdit =
-          state.tasks[
-            state.tasks?.findIndex((task) => task.id === action.payload.id)
-          ];
+        const chosenTaskId = state.tasks?.findIndex(
+          (task) => task.id === action.payload.id
+        );
 
-        chosenTaskForEdit.name = action.payload.name;
-        chosenTaskForEdit.date = action.payload.date;
-
-        state.tasks[
-          state.tasks?.findIndex((task) => task.id === action.payload.id)
-        ] = chosenTaskForEdit;
+        if (action.payload.name) {
+          state.tasks[chosenTaskId].name = action.payload.name;
+        }
+        if (action.payload.date) {
+          state.tasks[chosenTaskId].date = action.payload.date;
+        }
       }
     },
   },
 });
 
-export const { setAll, add, remove, handleDone, handleImportant } =
+export const { setAll, add, remove, handleDone, handleImportant, edit } =
   tasksSlice.actions;
 export default tasksSlice.reducer;
