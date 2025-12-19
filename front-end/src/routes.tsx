@@ -9,47 +9,45 @@ import SignUpPage from "./pages/signUpPage/SignUpPage";
 import WeatherPage from "./pages/weatherPage/WeatherPage";
 import type { RoutesType } from "./types/types";
 
-
-
 export const routes: RoutesType[] = [
-    {
-        path: '/',
-        element: <Navigate to={'/auth/login'} />
-    },
-    {
-        path: '/admin',
-        element: <Admin />,
-        children: [
-            {
-                path: '/admin/my_day',
-                element: <MyDayPage />
-            },
-            {
-                path: '/admin/important_tasks',
-                element: <ImportantTasksPage />
-            },
-            {
-                path: '/admin/checked_tasks',
-                element: <CheckedTasksPage />
-            },
-            {
-                path: '/admin/weather',
-                element: <WeatherPage />
-            }
-        ]
-    },
-    {
-        path: '/auth',
-        element: <Auth />,
-        children: [
-            {
-                path: '/auth/signup',
-                element: <SignUpPage />
-            },
-            {
-                path: '/auth/login',
-                element: <LogInPage />
-            },
-        ]
-    }
-]
+  {
+    path: "/",
+    element: <Navigate to={"/auth/login"} />,
+  },
+  {
+    path: "/admin",
+    element: <Admin />,
+    children: [
+      {
+        path: "my_day",
+        element: <MyDayPage />,
+      },
+      {
+        path: "important_tasks",
+        element: <ImportantTasksPage />,
+      },
+      {
+        path: "checked_tasks",
+        element: <CheckedTasksPage />,
+      },
+      {
+        path: "weather",
+        element: <WeatherPage />,
+      },
+    ],
+  },
+  {
+    path: "/auth",
+    element: <Auth />,
+    children: [
+      {
+        path: "signup",
+        element: <SignUpPage />,
+      },
+      {
+        path: "login",
+        element: <LogInPage />,
+      },
+    ],
+  },
+];
