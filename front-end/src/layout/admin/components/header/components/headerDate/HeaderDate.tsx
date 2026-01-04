@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import LoadingIcon from "../../../../../../components/loadingIcon/LoadingIcon";
 import styles from "./HeaderDate.module.scss";
 
+// region HeaderDate()
 export default function HeaderDate() {
   const headerDateGetQuery = useQuery({
     queryKey: ["headerDate"],
