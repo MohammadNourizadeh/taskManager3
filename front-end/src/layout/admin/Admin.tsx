@@ -12,6 +12,7 @@ import Header from "./components/header/Header";
 import Sidebar from "./components/sidebar/Sidebar";
 import styles from "./styles/Admin.module.scss";
 
+// region Admin()
 export default function Admin() {
   // redux
   const setting = useSelector((state: RootState) => state.setting);
@@ -47,6 +48,7 @@ export default function Admin() {
         dispatch(setSetting(userSettingGetQuery.data));
     }, [userSettingGetQuery.data, userSettingGetQuery.error, dispatch]);
 
+  // region return
   return (
     <div
       className={styles.king}
