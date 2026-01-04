@@ -1,30 +1,45 @@
-import { useEffect, useState } from "react";
-import styles from "./HeaderDate.module.scss";
+import { useQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 import LoadingIcon from "../../../../../../components/loadingIcon/LoadingIcon";
+import styles from "./HeaderDate.module.scss";
 
 export default function HeaderDate() {
-  // state
-  const [date, setDate] = useState<string | null>(null);
+  const headerDateGetQuery = useQuery({
+    queryKey: ["headerDate"],
+    queryFn: async () => {
+      const data = await fetch(
+        "http://localhost:8080/php/task_manager/getDate.php"
+      );
 
-  // side effect
-  useEffect(() => {
-    fetch("http://localhost:8080/php/task_manager/getDate.php")
-      .then((res) => res.text())
-      .then((data) => {
-        const myNewDate = new Date(data);
-        setDate(
-          myNewDate.toLocaleString("en-US", {
-            day: "numeric",
-            weekday: "long",
-            month: "long",
-          })
-        );
+      if (!data.ok) {
+        throw new Error(data.statusText);
+      }
+
+      const response = await data.text();
+      return new Date(response).toLocaleString("en-US", {
+        day: "numeric",
+        weekday: "long",
+        month: "long",
       });
-  }, []);
+    },
+    staleTime: Infinity,
+  });
 
+  useEffect(() => {
+    if (headerDateGetQuery.error) {
+      toast.error(headerDateGetQuery.error.message);
+    }
+  }, [headerDateGetQuery.error]);
+
+  // region return
   return (
     <div className={styles.date}>
-      {date === "null" ? <LoadingIcon width={24} loadingText={false} /> : date}
+      {headerDateGetQuery.isPending ? (
+        <LoadingIcon width={24} loadingText={false} />
+      ) : (
+        headerDateGetQuery.data
+      )}
     </div>
   );
 }

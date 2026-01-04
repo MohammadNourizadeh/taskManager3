@@ -27,7 +27,7 @@ export default function Admin() {
           "http://localhost:8080/php/task_manager/getUserSetting.php",
           {
             method: "GET",
-            credentials: "include",
+            credentials: "include",   
           }
         );
 
